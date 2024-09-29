@@ -6,32 +6,62 @@ package sistemas.operativos;
 
 /**
  *
- * @author Katiuska Torres
+ * @author Santiago Fernandez
  */
 import java.util.concurrent.Semaphore;
-public class Project_Manager {
-    private int contador_dias;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public class Project_Manager extends Thread {
     private Semaphore semaforo;
     private int sueldo;
+    private boolean state;  //True working, false anime 
+    private int days_mls; 
+    private Empresa business; 
     
-    public Project_Manager(int contador_dias,int sueldo){
-        this.contador_dias=contador_dias;
+    public Project_Manager(Empresa business ,int sueldo){
         this.sueldo=sueldo;
         this.semaforo= new Semaphore(1);
-    }
-    public void Ver_Anime(){
-    }
-    public void Registrar_dias(){
-    }
-    public void Trabajar(){
+        this.days_mls = business.getDays_in_mls();
+        this.state = true; 
+        this.business = business; 
     }
 
-    public int getContador_dias() {
-        return contador_dias;
-    }
-
-    public void setContador_dias(int contador_dias) {
-        this.contador_dias = contador_dias;
+    
+    public void work(){
+        int counter_hours = 0; 
+        int counter_half = 0;
+        while (counter_hours < 16) {
+            /*
+            if (state) {
+                System.out.println("working");
+            }else {
+                System.out.println("anime");
+            }*/
+            try {
+                Thread.sleep(days_mls / 48);
+                setState(!isState()); 
+                if (counter_half == 0){
+                    counter_half++; 
+                } else {
+                    counter_hours++; 
+                    counter_half--; 
+                    //System.out.println("\\");
+                }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Project_Manager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        setState(true);
+        if (getBusiness().getCounter_days() > 0) {
+            getBusiness().setCounter_days(getBusiness().getCounter_days() -1);
+        }else {
+           // VER QUE HACER AQUI 
+        }
+        try {
+            Thread.sleep((days_mls/24)*8);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Project_Manager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public int getSueldo() {
@@ -41,5 +71,31 @@ public class Project_Manager {
     public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
     }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
+    public int getDays_mls() {
+        return days_mls;
+    }
+
+    public void setDays_mls(int days_mls) {
+        this.days_mls = days_mls;
+    }
+
+    public Empresa getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Empresa business) {
+        this.business = business;
+    }
+    
+    
     
 }

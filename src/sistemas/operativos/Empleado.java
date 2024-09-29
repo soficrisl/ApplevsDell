@@ -8,23 +8,27 @@ package sistemas.operativos;
  *
  * @author Katiuska Torres
  */
-public class Empleado {
-        private String tipo_empleado;
-        private int sueldo_por_hora;
-        private int horas_de_trabajo;
-    
-    public Empleado(String tipo_empleado , int sueldo_por_hora){
-        this.tipo_empleado=tipo_empleado;
-        this.sueldo_por_hora=sueldo_por_hora;
-        this.horas_de_trabajo=0;
-    }
+public class Empleado extends Thread {
+    private String tipo_empleado;
+    private int sueldo_por_hora;
+    private Almacen almacen;
+    private int cantidadComponentes;
+    private int tiempoSleep;
+    private int days_mls; 
+    private Empresa business; 
 
-    
-    public void Trabajar(){
-    //Logica Trabajo
+    public Empleado(String tipo_empleado, int sueldo_por_hora, Almacen almacen, int cantidadComponentes, int tiempoSleep, int days_mls, Empresa business) {
+        this.tipo_empleado = tipo_empleado;
+        this.sueldo_por_hora = sueldo_por_hora;
+        this.almacen = almacen;
+        this.cantidadComponentes = cantidadComponentes;
+        this.tiempoSleep = tiempoSleep;
+        this.business = business;
+        this.days_mls = business.getDays_in_mls();
+        
     }
-    public void cobrarSueldo(){
-    //Logica de sueldo
+    public void cobrarSueldo() {
+        // Logica de sueldo
     }
 
     public String getTipo_empleado() {
@@ -43,89 +47,68 @@ public class Empleado {
         this.sueldo_por_hora = sueldo_por_hora;
     }
 
-    public int getHoras_de_trabajo() {
-        return horas_de_trabajo;
+    public Almacen getAlmacen() {
+        return almacen;
     }
 
-    public void setHoras_de_trabajo(int horas_de_trabajo) {
-        this.horas_de_trabajo = horas_de_trabajo;
+    public void setAlmacen(Almacen almacen) {
+        this.almacen = almacen;
     }
-    public class Productores_de_placa_base extends Empleado {
-    public Productores_de_placa_base(String tipo_empleado, int sueldo_por_hora, int horas_de_trabajo) {
-        super("Productor placa base", sueldo_por_hora);
+
+    public int getCantidadComponentes() {
+        return cantidadComponentes;
     }
+
+    public void setCantidadComponentes(int cantidadComponentes) {
+        this.cantidadComponentes = cantidadComponentes;
+    }
+
+    public int getTiempoSleep() {
+        return tiempoSleep;
+    }
+
+    public void setTiempoSleep(int tiempoSleep) {
+        this.tiempoSleep = tiempoSleep;
+    }
+
+    public int getDays_mls() {
+        return days_mls;
+    }
+
+    public void setDays_mls(int days_mls) {
+        this.days_mls = days_mls;
+    }
+
+    public Empresa getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Empresa business) {
+        this.business = business;
+    }
+
     @Override
-    public void Trabajar() {
-        System.out.println("Trabajo");
+    public void run() {
+        work();
     }
-    @Override
-    public void cobrarSueldo() {
-        System.out.println("Trabajo");
+
+   public void work() {
+        while (true) {
+            
+            try {
+            
+                int tardar_trabajo= tiempoSleep*days_mls/1000;
+                System.out.println(tardar_trabajo);
+                Thread.sleep(tardar_trabajo); 
+                almacen.Almacenar(tipo_empleado, cantidadComponentes);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            
+        }
     }
-}
-    public class Productores_de_CPUs extends Empleado {
-    public Productores_de_CPUs(String tipo_empleado, int sueldo_por_hora, int horas_de_trabajo) {
-        super("Productor CPUs", sueldo_por_hora);
-    }
-    @Override
-    public void Trabajar() {
-        System.out.println("Trabajo");
-    }
-    @Override
-    public void cobrarSueldo() {
-        System.out.println("Trabajo");
-    }
-}
-     public class Productores_de_Memoria_RAM extends Empleado {
-    public Productores_de_Memoria_RAM(String tipo_empleado, int sueldo_por_hora, int horas_de_trabajo) {
-        super("Productor Memoria RAM", sueldo_por_hora);
-    }
-    @Override
-    public void Trabajar() {
-        System.out.println("Trabajo");
-    }
-    @Override
-    public void cobrarSueldo() {
-        System.out.println("Trabajo");
-    }
-}
-          public class Productores_de_Fuente_de_alimentación extends Empleado {
-    public Productores_de_Fuente_de_alimentación(String tipo_empleado, int sueldo_por_hora, int horas_de_trabajo) {
-        super("Productor Fuente de alimentacion", sueldo_por_hora);
-    }
-    @Override
-    public void Trabajar() {
-        System.out.println("Trabajo");
-    }
-    @Override
-    public void cobrarSueldo() {
-        System.out.println("Trabajo");
-    }
-}
-          public class Productores_de_tarjetas_gráficas extends Empleado {
-    public Productores_de_tarjetas_gráficas(String tipo_empleado, int sueldo_por_hora, int horas_de_trabajo) {
-        super("Productor de tarjetas graficas", sueldo_por_hora);
-    }
-    @Override
-    public void Trabajar() {
-        System.out.println("Trabajo");
-    }
-    @Override
-    public void cobrarSueldo() {
-        System.out.println("Trabajo");
-    }
-}
-  public class Ensambladores extends Empleado {
-    public Ensambladores(String tipo_empleado, int sueldo_por_hora, int horas_de_trabajo) {
-        super("Ensamblador", sueldo_por_hora);
-    }
-    @Override
-    public void Trabajar() {
-        System.out.println("Trabajo");
-    }
-    @Override
-    public void cobrarSueldo() {
-        System.out.println("Trabajo");
-    }
-}              
+
+
+
+
 }

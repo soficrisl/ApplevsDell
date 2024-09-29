@@ -8,16 +8,23 @@ package sistemas.operativos;
  *
  * @author Katiuska Torres
  */
+import java.time.Duration;
 import java.util.concurrent.Semaphore;
-public class Director {
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public class Director extends Thread{
     private int contador_dias;
     private Semaphore semaforo;
     private int sueldo;
+    Empresa business; 
+    private int days_mls; 
     
-    public Director(int contador_dias,int sueldo){
+    public Director(Empresa business,int sueldo){
         this.contador_dias=contador_dias;
         this.sueldo=sueldo;
         this.semaforo= new Semaphore(1);
+        this.business = business;
+        this.days_mls = business.getDays_in_mls(); 
     }
     public void Revisar_contador_dias(){
     }
@@ -41,6 +48,40 @@ public class Director {
     public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
     }
+    
+    public void accountability () {
+        try {
+            Thread.sleep(getDays_mls());
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void work() {
+        if (business.getCounter_days() > 0) {
+        } else {
+            accountability(); 
+            business.setCounter_days(getBusiness().getDays_to_hand_in());
+        }
+    } 
+
+    public Empresa getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Empresa business) {
+        this.business = business;
+    }
+
+    public int getDays_mls() {
+        return days_mls;
+    }
+
+    public void setDays_mls(int days_mls) {
+        this.days_mls = days_mls;
+    }
+    
+    
     
     
 }
