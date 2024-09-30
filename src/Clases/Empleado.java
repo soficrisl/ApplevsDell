@@ -1,14 +1,16 @@
+package Clases;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package sistemas.operativos;
+
 
 /**
  *
  * @author Katiuska Torres
  */
-public class Empleado {
+public class Empleado extends Thread {
         private String tipo_empleado;
         private int sueldo_por_hora;
         private int horas_de_trabajo;
