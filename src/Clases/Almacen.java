@@ -9,6 +9,10 @@ package Clases;
  * @author Katiuska Torres
  */
 import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.Random; 
+        
 public class Almacen {
     private int placa_base;
     private int Cpus;
@@ -17,21 +21,25 @@ public class Almacen {
     private int fuente_alimentacion;
     private int CompuStandard;
     private int CompuTarjeta;
-    private int contadorStandardsA = 0;
-    private int contadorStandardsD = 0;
     private final Semaphore semaforo;
+    private int CSprice; 
+    private int CGCprice; 
     
-    public Almacen(int placa_base, int Cpus, int tarjetas_graficas, int memoria_ram, int fuente_alimentacion,int CompuStandard,int CompuTarjeta){
-     
-        this.placa_base=placa_base;
-        this.Cpus=Cpus;
-        this.tarjetas_graficas=tarjetas_graficas;
-        this.memoria_ram=memoria_ram;
-        this.fuente_alimentacion=fuente_alimentacion;
-        this.CompuStandard=CompuStandard;
-        this.CompuTarjeta=CompuTarjeta;
+    public Almacen(int CSprice, int CGCprice){
+        this.placa_base=0;
+        this.Cpus=0;
+        this.tarjetas_graficas=0;
+        this.memoria_ram=0;
+        this.fuente_alimentacion=0;
+        this.CompuStandard=0;
+        this.CompuTarjeta=0;
         this.semaforo=new Semaphore(1);
+        this.CSprice = CSprice; 
+        this.CGCprice = CGCprice; 
+             
     }
+
+    
 public void Almacenar(String nombre_comp,int cantidad){
     try{
         semaforo.acquire();
@@ -90,11 +98,63 @@ public void Almacenar(String nombre_comp,int cantidad){
     
 }
 
+    public int [] Checkout() {
+        int gain [] = new int[2]; 
+        try {
+            semaforo.acquire();
+            int gainCS = getCompuStandard()*getCSprice();
+            int gainCGC = getCompuTarjeta()*getCGCprice(); 
+            gain[0] = gainCS; 
+            gain[1] = gainCGC; 
+            setCompuStandard(0); 
+            setCompuTarjeta(0); 
+            semaforo.release();
+          
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Almacen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return gain; 
+    }
+    
+
+    public int getCompuStandard() {
+        return CompuStandard;
+    }
+
+    public void setCompuStandard(int CompuStandard) {
+        this.CompuStandard = CompuStandard;
+    }
+
+    public int getCompuTarjeta() {
+        return CompuTarjeta;
+    }
+
+    public void setCompuTarjeta(int CompuTarjeta) {
+        this.CompuTarjeta = CompuTarjeta;
+    }
+
+    public int getCSprice() {
+        return CSprice;
+    }
+
+    public void setCSprice(int CSprice) {
+        this.CSprice = CSprice;
+    }
+
+    public int getCGCprice() {
+        return CGCprice;
+    }
+
+    public void setCGCprice(int CGCprice) {
+        this.CGCprice = CGCprice;
+    }
+    
+    
 
  
 
 
-
+ 
 
 }
 
