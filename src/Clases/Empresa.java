@@ -4,11 +4,12 @@
  */
 package Clases;
 
+import java.util.concurrent.Semaphore;
+
 /**
  *
  * @author Santiago Fernandez
  */
-import java.util.concurrent.Semaphore;
 public class Empresa extends Thread{
     private String nombre;
     private int num_empleados;
@@ -64,17 +65,29 @@ public class Empresa extends Thread{
         this.capacidad_almacenamiento = capacidad_almacenamiento;
     }
     
-    public void work() {
-        System.out.println("Contador dias:" + days_to_hand_in);
-        int mimi = 0; 
-        while (mimi < 25) {
-            System.out.println("Contador dias:" + counter_days);
-            director.work();
-            pm.work(); 
-            mimi++; 
+ public void work() {
+    System.out.println("Contador dias:" + days_to_hand_in);
+    int mimi = 0; 
+    for (Empleado empleado : empleados) {
+            if (empleado != null) {
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+                        empleado.work();
+                    }
+                };
+                thread.start();
+            }
         }
-       
+    while (mimi < 25) {
+        System.out.println("Contador dias:" + counter_days);
+        director.work();
+        pm.work(); 
+        
+        mimi++; 
     }
+}
+    
 
     public int getDays_to_hand_in() {
         return days_to_hand_in;
@@ -128,3 +141,4 @@ public class Empresa extends Thread{
     
     
 }
+
