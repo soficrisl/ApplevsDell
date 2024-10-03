@@ -14,11 +14,13 @@ import java.time.Duration;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Random; 
+
 public class Director extends Thread{
     private int contador_dias;
     private Semaphore semaforo;
     private int sueldo;
-    Empresa business; 
+    private Empresa business; 
     private int days_mls; 
     
     public Director(Empresa business,int sueldo){
@@ -54,19 +56,53 @@ public class Director extends Thread{
     public void accountability () {
         try {
             Thread.sleep(getDays_mls());
+            Almacen storage = getBusiness().getStorage();
+            int gains [] = storage.Checkout(); 
+            getBusiness().setBrutegains(gains[0] + gains[1]);
         } catch (InterruptedException ex) {
             Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void work() {
-        if (business.getCounter_days() > 0) {
+        if (getBusiness().getCounter_days() > 0) {
+            administrative(); 
         } else {
             accountability(); 
-            business.setCounter_days(getBusiness().getDays_to_hand_in());
+            getBusiness().change_Days(1);
         }
     } 
-
+    
+    public void administrative () {
+        Random rand = new Random();
+        int choice = rand.nextInt(24); 
+        boolean flag = false; 
+        long min = (getDays_mls()/1)*(1/24)*(1/60);
+        try {
+            Thread.sleep(getDays_mls()*choice/24);
+            int min_passed = 0; 
+            Project_Manager pm = getBusiness().getPm(); 
+                while (min_passed != 35) {
+                    if (!pm.isState()) {
+                        flag = true; 
+                        }
+                    Thread.sleep(min);
+                    choice++; 
+                    }
+                
+                if (flag) {
+                    pm.setFaults(pm.getFaults()+1);
+                    getBusiness().setFault(true); 
+                }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            
+    }
+        
+      
+    
     public Empresa getBusiness() {
         return business;
     }

@@ -23,11 +23,6 @@ public class Empleado extends Thread {
     private Empresa business; 
     private int horas_de_trabajo;
     
-    public Empleado(String tipo_empleado , int sueldo_por_hora){
-        this.tipo_empleado=tipo_empleado;
-        this.sueldo_por_hora=sueldo_por_hora;
-        this.horas_de_trabajo=0;
-    }
 
 
     public Empleado(String tipo_empleado, int sueldo_por_hora, Almacen almacen, int cantidadComponentes, int tiempoSleep, int days_mls, Empresa business) {
@@ -107,9 +102,7 @@ public class Empleado extends Thread {
 
    public void work() {
         while (true) {
-            
             try {
-            
                 int tardar_trabajo= tiempoSleep*days_mls/1000;
                 System.out.println(tardar_trabajo);
                 Thread.sleep(tardar_trabajo); 

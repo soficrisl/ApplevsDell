@@ -23,9 +23,7 @@ public class Simulation {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
-        Empresa apple = new Empresa("apple", 20, 10, 4, 10000);
-
+       /*
     // Crear almacen
     Almacen almacen = new Almacen(0, 0, 0, 0, 0, 0, 0);
 
@@ -43,8 +41,8 @@ public class Simulation {
     apple.getEmpleados()[3] = empleado4;
     apple.getEmpleados()[4] = empleado5;
     apple.work();
-
-        apple.work();
+*/
+        //apple.work();
 
     }
 }
