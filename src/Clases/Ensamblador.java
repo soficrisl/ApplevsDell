@@ -44,8 +44,7 @@ public class Ensamblador extends Thread{
                                 almacen.setCompuTarjeta(almacen.getCompuTarjeta() + 1);
                                 contadorCompuStandard = 0;
                                 almacen.getSemaforo().release(); 
-                                Thread.sleep(2*days_mls);
-                                almacen.getSemaforo().acquire();
+                                continue;
                             }
                             almacen.setPlaca_base(almacen.getPlaca_base() - 2);
                             almacen.setCpus(almacen.getCpus() - 1);
@@ -72,8 +71,7 @@ public class Ensamblador extends Thread{
                                 almacen.setCompuTarjeta(almacen.getCompuTarjeta() + 1);
                                 contadorCompuStandard = 0;
                                 almacen.getSemaforo().release(); 
-                                Thread.sleep(2*days_mls);
-                                almacen.getSemaforo().acquire();
+                                continue;
                     }
                         almacen.setPlaca_base(almacen.getPlaca_base() - 1);
                         almacen.setCpus(almacen.getCpus() - 5);
