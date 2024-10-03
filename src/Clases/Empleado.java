@@ -18,19 +18,15 @@ public class Empleado extends Thread {
     private int sueldo_por_hora;
     private Almacen almacen;
     private int cantidadComponentes;
-    private int tiempoSleep;
     private int days_mls; 
     private Empresa business; 
-    private int horas_de_trabajo;
     
 
-
-    public Empleado(String tipo_empleado, int sueldo_por_hora, Almacen almacen, int cantidadComponentes, int tiempoSleep, int days_mls, Empresa business) {
+    public Empleado(String tipo_empleado, int sueldo_por_hora, Almacen almacen, int cantidadComponentes, int days_mls, Empresa business) {
         this.tipo_empleado = tipo_empleado;
         this.sueldo_por_hora = sueldo_por_hora;
         this.almacen = almacen;
         this.cantidadComponentes = cantidadComponentes;
-        this.tiempoSleep = tiempoSleep;
         this.business = business;
         this.days_mls = business.getDays_in_mls();
         
@@ -71,14 +67,6 @@ public class Empleado extends Thread {
         this.cantidadComponentes = cantidadComponentes;
     }
 
-    public int getTiempoSleep() {
-        return tiempoSleep;
-    }
-
-    public void setTiempoSleep(int tiempoSleep) {
-        this.tiempoSleep = tiempoSleep;
-    }
-
     public int getDays_mls() {
         return days_mls;
     }
@@ -103,6 +91,7 @@ public class Empleado extends Thread {
    public void work() {
         while (true) {
             try {
+                int tiempoSleep = getTiempoSleepEmpleado(tipo_empleado);
                 int tardar_trabajo= tiempoSleep*days_mls/1000;
                 System.out.println(tardar_trabajo);
                 Thread.sleep(tardar_trabajo); 
@@ -114,7 +103,22 @@ public class Empleado extends Thread {
         }
     }
 
-
+private int getTiempoSleepEmpleado(String tipo_empleado) {
+    switch (tipo_empleado) {
+        case "placa base":
+            return 2000; 
+        case "memoria ram":
+            return 3000; 
+        case "fuente":
+            return 8000;
+        case "tarjetas graficas":
+            return 7000;
+        case "CPUs":
+            return 6000;
+        default:
+            return 10000; 
+    }
+}
 
 
 }
