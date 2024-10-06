@@ -4,45 +4,47 @@
  */
 package Main;
 
-import Clases.Empresa;
-import Clases.Empleado;
-import Clases.Productores_de_CPUs;
 import Clases.Almacen;
-import Clases.Productores_de_placa_base;
-import Clases.Productores_de_Memoria_RAM;
-import Clases.Productores_Fuente_de_alimentacion;
-import Clases.Productores_de_tarjetas_graficas;
+import Clases.Empleado;
+import Clases.Empresa;
+import Clases.Ensamblador;
+
+
 /**
  *
- * @author Katiuska Torres
+ * @author Santiago Fernandez
  */
 
 public class Simulation {
 
     /**
      * @param args the command line arguments
+     * 
      */
-    public static void main(String[] args) {
-       /*
-    // Crear almacen
-    Almacen almacen = new Almacen(0, 0, 0, 0, 0, 0, 0);
-
-    // Crear empleados
-    Empleado empleado1 = new Productores_de_placa_base(almacen, 1, 3000, apple);
-    Empleado empleado2 = new Productores_de_CPUs(almacen, 2, 6000, apple);
-    Empleado empleado3 = new Productores_de_Memoria_RAM(almacen, 3, 8000, apple);
-    Empleado empleado4 = new Productores_Fuente_de_alimentacion(almacen, 2, 1500, apple);
-    Empleado empleado5 = new Productores_de_tarjetas_graficas(almacen, 3, 10000, apple);
+    public static void main(String[] args)  {
+       
+  
+    int[] workertype = {0,1, 2, 3, 4, 5};
+    Almacen almacen = new Almacen(100, 200);
+    Empresa business = new Empresa("Apple", 6, 1000, 30, 2000, 100, 200, workertype);
+     
+    Ensamblador employee1 = new Ensamblador(almacen, business);
+    Empleado employee2 = new Empleado("memoria ram", almacen, 2, business.getDays_in_mls(), business);
+    Empleado employee3 = new Empleado("fuente", almacen, 3, business.getDays_in_mls(), business);
+    Empleado employee4 = new Empleado("tarjetas graficas", almacen, 1, business.getDays_in_mls(), business);
+    Empleado employee5 = new Empleado("Cpus", almacen, 2, business.getDays_in_mls(), business);
+    Empleado employee6 = new Empleado("placa base", almacen, 2, business.getDays_in_mls(), business);
 
     // Agregar empleados a la empresa
-    apple.getEmpleados()[0] = empleado1;
-    apple.getEmpleados()[1] = empleado2;
-    apple.getEmpleados()[2] = empleado3;
-    apple.getEmpleados()[3] = empleado4;
-    apple.getEmpleados()[4] = empleado5;
-    apple.work();
-*/
-        //apple.work();
+    business.getEmpleados()[0] = employee1;
+    business.getEmpleados()[1] = employee2;
+    business.getEmpleados()[2] = employee3;
+    business.getEmpleados()[3] = employee4;
+    business.getEmpleados()[4] = employee5;
+    business.getEmpleados()[5] = employee6;
+    business.work_business();
+
+       
 
     }
 }
