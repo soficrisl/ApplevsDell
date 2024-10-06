@@ -4,6 +4,7 @@
  */
 package Clases;
 
+
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,7 @@ public class Empresa extends Thread{
     private final Semaphore semaforo;
     private int days_to_hand_in; 
     private int days_in_mls; 
-    private Empleado empleados[];
+    private Object[] empleados;
     private Project_Manager pm; 
     private Director director; 
     private int counter_days; 
@@ -39,7 +40,7 @@ public class Empresa extends Thread{
         this.capacidad_almacenamiento=capacidad_almacenamiento;
         this.days_to_hand_in = days_hand_in; 
         this.days_in_mls = days_in_mls; 
-        this.empleados = new Empleado [num_empleados]; 
+        this.empleados = new Object[num_empleados];
         this.semaforo=new Semaphore(1);
         this.counter_days = days_hand_in;
         this.pm = new Project_Manager(this, 40); 
@@ -53,12 +54,28 @@ public class Empresa extends Thread{
         this.pmcounter = 3; 
         
      }
-    public void Agregar_empleado(Empleado empleado) {
-        //donde ppondre alguna logica agregar
-}   
-    public void Producir_componentes(){
-    //donde pondre mi logica
+public void Agregar_ensamblador() {
+    if (this.empleados == null) {
+        this.empleados = new Empleado[1];
+        this.empleados[0] = new Ensamblador(this.storage, this);
+        System.out.println("Ensamblador agregado con éxito");
+    } else {
+        System.out.println("El ensamblador ya ha sido agregado");
     }
+}
+
+public void Agregar_empleado(String tipo_empleado, int cantidadComponentes) {
+    if (this.empleados != null && this.empleados.length < this.num_empleados) {
+        Empleado[] nuevosEmpleados = new Empleado[this.empleados.length + 1];
+        System.arraycopy(this.empleados, 0, nuevosEmpleados, 0, this.empleados.length);
+        this.empleados = nuevosEmpleados;
+        this.empleados[this.empleados.length - 1] = new Empleado(tipo_empleado, this.storage, cantidadComponentes, this.days_in_mls, this);
+        this.num_empleados--;
+        System.out.println("Empleado agregado con éxito");
+    } else {
+        System.out.println("No se puede agregar más empleados");
+    }
+}
     public String getNombre() {
         return nombre;
     }
@@ -85,29 +102,7 @@ public class Empresa extends Thread{
     
     
     
-    /*
-    public void work() {
-    System.out.println("Contador dias:" + days_to_hand_in);
-    int mimi = 0; 
-    for (Empleado empleado : empleados) {
-            if (empleado != null) {
-                Thread thread = new Thread() {
-                    @Override
-                    public void run() {
-                        empleado.work();
-                    }
-                };
-                thread.start();
-            }
-        }
-    while (mimi < 25) {
-        System.out.println("Contador dias:" + counter_days);
-        director.work();
-        pm.work(); 
-        mimi++; 
-    }
-    
-}*/
+
     public void initialize_workers() {
         //Inicializamos el numero minimo de trabajadores, al cargar los archivos se debe verificar que ninguno sea 0. 
         int counter = getNum_empleados() - 1; 
@@ -143,73 +138,77 @@ public class Empresa extends Thread{
         
     }
     
-    public void paying_workers(){
-        for (int i = 0; i < getNum_empleados(); i++) {
-               Empleado worker = getEmpleados()[i]; 
-                switch(worker.getTipo_empleado()){ ///AYUDAAAAAAAAAA tipo de empleado o compuesto
-            case "placa base" -> {
-                addProductioncosts(20); 
-            }
-                
-            case "Cpus" -> {
-                addProductioncosts(26); 
-            }
-                
-            case "tarjetas graficas" -> {
-                addProductioncosts(34); 
-            }
-                
-            case "memoria ram" -> {
-                addProductioncosts(40); 
-            }
-                
-            case "fuente" -> {
-                addProductioncosts(16); 
-            }
-            
-            case "ensamblador" -> {
-                addProductioncosts(50); 
-            }
-            default -> System.out.println("metiste mal el nombre del empleado");   
-           }
-        }
-        
-        //Paying the director 
-        addProductioncosts(60); 
-        //Paying the project manager; 
-        if (isFault()) {
-            if (getPmcounter()!=1) {
-                setPmcounter(0); 
-            }else {
-                addProductioncosts(20);
-                setPmcounter(1);
-            }
+   public void paying_workers(){
+    for (int i = 0; i < getNum_empleados(); i++) {
+        Object workerObject = getEmpleados()[i];
+        if (i == 0) {
+            addProductioncosts(50); // Costo de producción del ensamblador
         } else {
-           addProductioncosts(40);  
+            Empleado worker = (Empleado) workerObject;
+            switch(worker.getTipo_empleado()){
+                case "placa base" -> {
+                    addProductioncosts(20); 
+                }
+                case "Cpus" -> {
+                    addProductioncosts(26); 
+                }
+                case "tarjetas graficas" -> {
+                    addProductioncosts(34); 
+                }
+                case "memoria ram" -> {
+                    addProductioncosts(40); 
+                }
+                case "fuente" -> {
+                    addProductioncosts(16); 
+                }
+                default -> System.out.println("metiste mal el nombre del empleado");   
+            }
         }
-        
     }
     
-    public void work_business () {
-       while (true) {
-           for (int i = 0; i < getNum_empleados(); i++) {
-               Empleado worker = getEmpleados()[i]; 
-               worker.work();
-           }
-           getPm().work();
-           getDirector().work();
-           try {
-               Thread.sleep(getDays_in_mls()/24);
-               paying_workers();
-           } catch (InterruptedException ex) {
-               Logger.getLogger(Empresa.class.getName()).log(Level.SEVERE, null, ex);
-           }
-           
-       }
-            
-        
+    //Paying the director 
+    addProductioncosts(60); 
+    //Paying the project manager; 
+    if (isFault()) {
+        if (getPmcounter()!=1) {
+            setPmcounter(0); 
+        }else {
+            addProductioncosts(20);
+            setPmcounter(1);
+        }
+    } else {
+       addProductioncosts(40);  
     }
+}
     
+public void work_business() {
+    while (true) {
+        Thread[] threads = new Thread[getNum_empleados()];
+        for (int i = 0; i < getNum_empleados(); i++) {
+            Object workerObject = getEmpleados()[i];
+            if (i == 0) {
+                Ensamblador ensamblador = (Ensamblador) workerObject;
+                threads[i] = new Thread(() -> ensamblador.work());
+                threads[i].start();
+            } else {
+                Empleado worker = (Empleado) workerObject;
+                threads[i] = new Thread(() -> worker.work());
+                threads[i].start();
+            }
+        }
+      
+        getPm().work();
+        getDirector().work();
+        try {
+            Thread.sleep(getDays_in_mls() / 24);
+            paying_workers();
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt(); // Re-interrupt the current thread
+            Thread.currentThread().interrupt(); // Re-interrupt the current thread
+            return; // Salir del método
+        }
+    }
+}
     public void change_Days(int i) {
         try {
             semaforo.acquire();
@@ -241,13 +240,16 @@ public class Empresa extends Thread{
         this.days_in_mls = days_in_mls;
     }
 
-    public Empleado[] getEmpleados() {
+    public Object[] getEmpleados() {
         return empleados;
     }
 
-    public void setEmpleados(Empleado[] empleados) {
+    public void setEmpleados(Object[] empleados) {
         this.empleados = empleados;
     }
+
+
+
 
     public Project_Manager getPm() {
         return pm;

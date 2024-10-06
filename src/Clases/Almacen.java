@@ -47,7 +47,7 @@ public void Almacenar(String nombre_comp,int cantidad){
             case "placa base" -> {
                 if (placa_base+cantidad<25){
                     placa_base+=cantidad;
-                    System.out.println("mira se añadio "+ cantidad+ "a placas base");
+                    System.out.println("mira se añadio "+ cantidad+ "  placas base");
                 }else{
                     System.out.println("Mira el almacen esta lleno no se puede hacer nada");
                 }
@@ -148,9 +148,51 @@ public void Almacenar(String nombre_comp,int cantidad){
     public void setCGCprice(int CGCprice) {
         this.CGCprice = CGCprice;
     }
-    
-    
 
+    public int getPlaca_base() {
+        return placa_base;
+    }
+
+    public void setPlaca_base(int placa_base) {
+        this.placa_base = placa_base;
+    }
+
+    public int getCpus() {
+        return Cpus;
+    }
+
+    public void setCpus(int Cpus) {
+        this.Cpus = Cpus;
+    }
+
+    public int getTarjetas_graficas() {
+        return tarjetas_graficas;
+    }
+
+    public void setTarjetas_graficas(int tarjetas_graficas) {
+        this.tarjetas_graficas = tarjetas_graficas;
+    }
+
+    public int getMemoria_ram() {
+        return memoria_ram;
+    }
+
+    public void setMemoria_ram(int memoria_ram) {
+        this.memoria_ram = memoria_ram;
+    }
+
+    public int getFuente_alimentacion() {
+        return fuente_alimentacion;
+    }
+
+    public void setFuente_alimentacion(int fuente_alimentacion) {
+        this.fuente_alimentacion = fuente_alimentacion;
+    }
+    
+    
+    public Semaphore getSemaforo() {
+        return semaforo;
+    }
  
 
 

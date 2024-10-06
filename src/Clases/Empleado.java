@@ -15,16 +15,14 @@ package Clases;
 public class Empleado extends Thread {
 
     private String tipo_empleado;
-    private int sueldo_por_hora;
     private Almacen almacen;
     private int cantidadComponentes;
     private int days_mls; 
     private Empresa business; 
     
 
-    public Empleado(String tipo_empleado, int sueldo_por_hora, Almacen almacen, int cantidadComponentes, int days_mls, Empresa business) {
+    public Empleado(String tipo_empleado, Almacen almacen, int cantidadComponentes, int days_mls, Empresa business) {
         this.tipo_empleado = tipo_empleado;
-        this.sueldo_por_hora = sueldo_por_hora;
         this.almacen = almacen;
         this.cantidadComponentes = cantidadComponentes;
         this.business = business;
@@ -41,14 +39,6 @@ public class Empleado extends Thread {
 
     public void setTipo_empleado(String tipo_empleado) {
         this.tipo_empleado = tipo_empleado;
-    }
-
-    public float getSueldo_por_hora() {
-        return sueldo_por_hora;
-    }
-
-    public void setSueldo_por_hora(int sueldo_por_hora) {
-        this.sueldo_por_hora = sueldo_por_hora;
     }
 
     public Almacen getAlmacen() {
@@ -93,7 +83,6 @@ public class Empleado extends Thread {
             try {
                 int tiempoSleep = getTiempoSleepEmpleado(tipo_empleado);
                 int tardar_trabajo= tiempoSleep*days_mls/1000;
-                System.out.println(tardar_trabajo);
                 Thread.sleep(tardar_trabajo); 
                 almacen.Almacenar(tipo_empleado, cantidadComponentes);
             } catch (InterruptedException e) {
@@ -110,7 +99,7 @@ private int getTiempoSleepEmpleado(String tipo_empleado) {
         case "memoria ram":
             return 3000; 
         case "fuente":
-            return 8000;
+            return 4000;
         case "tarjetas graficas":
             return 7000;
         case "CPUs":

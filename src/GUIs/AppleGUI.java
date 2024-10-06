@@ -26,19 +26,563 @@ public class AppleGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jPanel3 = new javax.swing.JPanel();
+        Tab = new javax.swing.JPanel();
+        ButtonBack = new javax.swing.JButton();
+        AppleNAme = new javax.swing.JLabel();
+        Workers = new javax.swing.JPanel();
+        Placa_base = new javax.swing.JLabel();
+        TextWorkers = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        Panel_base = new javax.swing.JPanel();
+        Number_base = new javax.swing.JLabel();
+        RAM_memory = new javax.swing.JLabel();
+        Bar_Ram = new javax.swing.JProgressBar();
+        Panel_RAM = new javax.swing.JPanel();
+        Num_RAM = new javax.swing.JLabel();
+        TextWorkers1 = new javax.swing.JLabel();
+        PowerName = new javax.swing.JLabel();
+        PAnel_power = new javax.swing.JPanel();
+        Num_Power = new javax.swing.JLabel();
+        BarPOwer = new javax.swing.JProgressBar();
+        CPUs_name = new javax.swing.JLabel();
+        CPus_name = new javax.swing.JPanel();
+        Num_CPUs = new javax.swing.JLabel();
+        Bar_cpus = new javax.swing.JProgressBar();
+        GRaphics_name = new javax.swing.JLabel();
+        CPus_name1 = new javax.swing.JPanel();
+        Num_Graphics = new javax.swing.JLabel();
+        BAr_Graphics = new javax.swing.JProgressBar();
+        Down_graphics = new javax.swing.JButton();
+        Up_graphics = new javax.swing.JButton();
+        DOwn_Cpus = new javax.swing.JButton();
+        Up_Cpus = new javax.swing.JButton();
+        Down_power = new javax.swing.JButton();
+        Up_power = new javax.swing.JButton();
+        UP_RAM = new javax.swing.JButton();
+        DOwn_RAM = new javax.swing.JButton();
+        Down_base = new javax.swing.JButton();
+        UP_base = new javax.swing.JButton();
+        Manager_director = new javax.swing.JPanel();
+        Gains = new javax.swing.JPanel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setForeground(new java.awt.Color(153, 153, 153));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Tab.setBackground(new java.awt.Color(204, 204, 204));
+
+        ButtonBack.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        ButtonBack.setText("🔙");
+        ButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBackActionPerformed(evt);
+            }
+        });
+
+        AppleNAme.setFont(new java.awt.Font("sansserif", 0, 32)); // NOI18N
+        AppleNAme.setForeground(new java.awt.Color(0, 0, 0));
+        AppleNAme.setText("Apple Computers 💻");
+        AppleNAme.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        javax.swing.GroupLayout TabLayout = new javax.swing.GroupLayout(Tab);
+        Tab.setLayout(TabLayout);
+        TabLayout.setHorizontalGroup(
+            TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TabLayout.createSequentialGroup()
+                .addComponent(ButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AppleNAme, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 432, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        TabLayout.setVerticalGroup(
+            TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ButtonBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(AppleNAme)
         );
+
+        jPanel3.add(Tab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
+
+        Workers.setBackground(new java.awt.Color(204, 204, 204));
+        Workers.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 51, 51), new java.awt.Color(0, 0, 0)));
+
+        Placa_base.setBackground(new java.awt.Color(255, 255, 255));
+        Placa_base.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        Placa_base.setForeground(new java.awt.Color(0, 0, 0));
+        Placa_base.setText("Motherboard:");
+        Placa_base.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        TextWorkers.setBackground(new java.awt.Color(255, 255, 255));
+        TextWorkers.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        TextWorkers.setForeground(new java.awt.Color(0, 0, 0));
+        TextWorkers.setText("Warehouse:");
+
+        Panel_base.setBackground(new java.awt.Color(255, 255, 255));
+        Panel_base.setBorder(new javax.swing.border.MatteBorder(null));
+
+        javax.swing.GroupLayout Panel_baseLayout = new javax.swing.GroupLayout(Panel_base);
+        Panel_base.setLayout(Panel_baseLayout);
+        Panel_baseLayout.setHorizontalGroup(
+            Panel_baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_baseLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Number_base, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        Panel_baseLayout.setVerticalGroup(
+            Panel_baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_baseLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Number_base, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        RAM_memory.setBackground(new java.awt.Color(255, 255, 255));
+        RAM_memory.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        RAM_memory.setForeground(new java.awt.Color(0, 0, 0));
+        RAM_memory.setText("RAM Memory:");
+        RAM_memory.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        Panel_RAM.setBackground(new java.awt.Color(255, 255, 255));
+        Panel_RAM.setBorder(new javax.swing.border.MatteBorder(null));
+
+        javax.swing.GroupLayout Panel_RAMLayout = new javax.swing.GroupLayout(Panel_RAM);
+        Panel_RAM.setLayout(Panel_RAMLayout);
+        Panel_RAMLayout.setHorizontalGroup(
+            Panel_RAMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_RAMLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Num_RAM, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        Panel_RAMLayout.setVerticalGroup(
+            Panel_RAMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_RAMLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Num_RAM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        TextWorkers1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        TextWorkers1.setForeground(new java.awt.Color(0, 0, 0));
+        TextWorkers1.setText("Type of Worker:");
+
+        PowerName.setBackground(new java.awt.Color(255, 255, 255));
+        PowerName.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        PowerName.setForeground(new java.awt.Color(0, 0, 0));
+        PowerName.setText("Power supply:");
+        PowerName.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        PAnel_power.setBackground(new java.awt.Color(255, 255, 255));
+        PAnel_power.setBorder(new javax.swing.border.MatteBorder(null));
+
+        javax.swing.GroupLayout PAnel_powerLayout = new javax.swing.GroupLayout(PAnel_power);
+        PAnel_power.setLayout(PAnel_powerLayout);
+        PAnel_powerLayout.setHorizontalGroup(
+            PAnel_powerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PAnel_powerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Num_Power, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        PAnel_powerLayout.setVerticalGroup(
+            PAnel_powerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PAnel_powerLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Num_Power, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        CPUs_name.setBackground(new java.awt.Color(255, 255, 255));
+        CPUs_name.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        CPUs_name.setForeground(new java.awt.Color(0, 0, 0));
+        CPUs_name.setText("CPUs:");
+        CPUs_name.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        CPus_name.setBackground(new java.awt.Color(255, 255, 255));
+        CPus_name.setBorder(new javax.swing.border.MatteBorder(null));
+
+        javax.swing.GroupLayout CPus_nameLayout = new javax.swing.GroupLayout(CPus_name);
+        CPus_name.setLayout(CPus_nameLayout);
+        CPus_nameLayout.setHorizontalGroup(
+            CPus_nameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CPus_nameLayout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addComponent(Num_CPUs, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        CPus_nameLayout.setVerticalGroup(
+            CPus_nameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CPus_nameLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Num_CPUs, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        GRaphics_name.setBackground(new java.awt.Color(255, 255, 255));
+        GRaphics_name.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        GRaphics_name.setForeground(new java.awt.Color(0, 0, 0));
+        GRaphics_name.setText("Graphics:");
+        GRaphics_name.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        CPus_name1.setBackground(new java.awt.Color(255, 255, 255));
+        CPus_name1.setBorder(new javax.swing.border.MatteBorder(null));
+
+        javax.swing.GroupLayout CPus_name1Layout = new javax.swing.GroupLayout(CPus_name1);
+        CPus_name1.setLayout(CPus_name1Layout);
+        CPus_name1Layout.setHorizontalGroup(
+            CPus_name1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CPus_name1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Num_Graphics, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        CPus_name1Layout.setVerticalGroup(
+            CPus_name1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CPus_name1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Num_Graphics, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        Down_graphics.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        Down_graphics.setText("▼");
+        Down_graphics.setToolTipText("");
+        Down_graphics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Down_graphicsActionPerformed(evt);
+            }
+        });
+
+        Up_graphics.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        Up_graphics.setText("▲");
+        Up_graphics.setToolTipText("");
+        Up_graphics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Up_graphicsActionPerformed(evt);
+            }
+        });
+
+        DOwn_Cpus.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        DOwn_Cpus.setText("▼");
+        DOwn_Cpus.setToolTipText("");
+        DOwn_Cpus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DOwn_CpusActionPerformed(evt);
+            }
+        });
+
+        Up_Cpus.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        Up_Cpus.setText("▲");
+        Up_Cpus.setToolTipText("");
+        Up_Cpus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Up_CpusActionPerformed(evt);
+            }
+        });
+
+        Down_power.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        Down_power.setText("▼");
+        Down_power.setToolTipText("");
+        Down_power.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Down_powerActionPerformed(evt);
+            }
+        });
+
+        Up_power.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        Up_power.setText("▲");
+        Up_power.setToolTipText("");
+        Up_power.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Up_powerActionPerformed(evt);
+            }
+        });
+
+        UP_RAM.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        UP_RAM.setText("▲");
+        UP_RAM.setToolTipText("");
+        UP_RAM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UP_RAMActionPerformed(evt);
+            }
+        });
+
+        DOwn_RAM.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        DOwn_RAM.setText("▼");
+        DOwn_RAM.setToolTipText("");
+        DOwn_RAM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DOwn_RAMActionPerformed(evt);
+            }
+        });
+
+        Down_base.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        Down_base.setText("▼");
+        Down_base.setToolTipText("");
+        Down_base.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Down_baseActionPerformed(evt);
+            }
+        });
+
+        UP_base.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
+        UP_base.setText("▲");
+        UP_base.setToolTipText("");
+        UP_base.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UP_baseActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout WorkersLayout = new javax.swing.GroupLayout(Workers);
+        Workers.setLayout(WorkersLayout);
+        WorkersLayout.setHorizontalGroup(
+            WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WorkersLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(WorkersLayout.createSequentialGroup()
+                        .addComponent(TextWorkers1)
+                        .addGap(47, 47, 47)
+                        .addComponent(TextWorkers, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WorkersLayout.createSequentialGroup()
+                        .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(WorkersLayout.createSequentialGroup()
+                                .addComponent(CPUs_name, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Up_Cpus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(CPus_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Bar_cpus, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, WorkersLayout.createSequentialGroup()
+                                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(Placa_base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(RAM_memory, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Panel_base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(UP_RAM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Panel_RAM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Down_base, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                                    .addComponent(UP_base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Bar_Ram, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, WorkersLayout.createSequentialGroup()
+                                .addComponent(GRaphics_name, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(DOwn_Cpus, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                                    .addComponent(CPus_name1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Down_graphics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Up_graphics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BAr_Graphics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, WorkersLayout.createSequentialGroup()
+                                .addComponent(PowerName, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Down_power, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(PAnel_power, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Up_power, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(DOwn_RAM, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BarPOwer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(14, 14, 14))))
+        );
+        WorkersLayout.setVerticalGroup(
+            WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WorkersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextWorkers1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextWorkers, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(UP_base, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WorkersLayout.createSequentialGroup()
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Panel_base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Placa_base, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Down_base, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(UP_RAM, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(WorkersLayout.createSequentialGroup()
+                        .addComponent(Bar_Ram, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Panel_RAM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(RAM_memory, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1, 1, 1)
+                .addComponent(DOwn_RAM, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Up_power, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(WorkersLayout.createSequentialGroup()
+                        .addComponent(BarPOwer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(PAnel_power, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PowerName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Down_power, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Up_Cpus, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(WorkersLayout.createSequentialGroup()
+                        .addComponent(Bar_cpus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(CPus_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CPUs_name, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(2, 2, 2)
+                .addComponent(DOwn_Cpus, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Up_graphics, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(WorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(CPus_name1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(GRaphics_name, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(WorkersLayout.createSequentialGroup()
+                        .addComponent(BAr_Graphics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
+                .addGap(1, 1, 1)
+                .addComponent(Down_graphics, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel3.add(Workers, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 360, 450));
+
+        Manager_director.setBackground(new java.awt.Color(204, 204, 204));
+        Manager_director.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout Manager_directorLayout = new javax.swing.GroupLayout(Manager_director);
+        Manager_director.setLayout(Manager_directorLayout);
+        Manager_directorLayout.setHorizontalGroup(
+            Manager_directorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 376, Short.MAX_VALUE)
+        );
+        Manager_directorLayout.setVerticalGroup(
+            Manager_directorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 206, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(Manager_director, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 380, 210));
+
+        Gains.setBackground(new java.awt.Color(204, 204, 204));
+        Gains.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout GainsLayout = new javax.swing.GroupLayout(Gains);
+        Gains.setLayout(GainsLayout);
+        GainsLayout.setHorizontalGroup(
+            GainsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 376, Short.MAX_VALUE)
+        );
+        GainsLayout.setVerticalGroup(
+            GainsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(Gains, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 380, 220));
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 540));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonBackActionPerformed
+
+    private void Down_graphicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Down_graphicsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Down_graphicsActionPerformed
+
+    private void Up_graphicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Up_graphicsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Up_graphicsActionPerformed
+
+    private void DOwn_CpusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DOwn_CpusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DOwn_CpusActionPerformed
+
+    private void Up_CpusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Up_CpusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Up_CpusActionPerformed
+
+    private void Down_powerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Down_powerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Down_powerActionPerformed
+
+    private void Up_powerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Up_powerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Up_powerActionPerformed
+
+    private void Down_baseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Down_baseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Down_baseActionPerformed
+
+    private void UP_RAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UP_RAMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UP_RAMActionPerformed
+
+    private void DOwn_RAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DOwn_RAMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DOwn_RAMActionPerformed
+
+    private void UP_baseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UP_baseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UP_baseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AppleNAme;
+    private javax.swing.JProgressBar BAr_Graphics;
+    private javax.swing.JProgressBar BarPOwer;
+    private javax.swing.JProgressBar Bar_Ram;
+    private javax.swing.JProgressBar Bar_cpus;
+    private javax.swing.JButton ButtonBack;
+    private javax.swing.JLabel CPUs_name;
+    private javax.swing.JPanel CPus_name;
+    private javax.swing.JPanel CPus_name1;
+    private javax.swing.JButton DOwn_Cpus;
+    private javax.swing.JButton DOwn_RAM;
+    private javax.swing.JButton Down_base;
+    private javax.swing.JButton Down_graphics;
+    private javax.swing.JButton Down_power;
+    private javax.swing.JLabel GRaphics_name;
+    private javax.swing.JPanel Gains;
+    private javax.swing.JPanel Manager_director;
+    private javax.swing.JLabel Num_CPUs;
+    private javax.swing.JLabel Num_Graphics;
+    private javax.swing.JLabel Num_Power;
+    private javax.swing.JLabel Num_RAM;
+    private javax.swing.JLabel Number_base;
+    private javax.swing.JLabel Number_base1;
+    private javax.swing.JPanel PAnel_power;
+    private javax.swing.JPanel Panel_RAM;
+    private javax.swing.JPanel Panel_base;
+    private javax.swing.JPanel Panel_base1;
+    private javax.swing.JLabel Placa_base;
+    private javax.swing.JLabel PowerName;
+    private javax.swing.JLabel RAM_memory;
+    private javax.swing.JPanel Tab;
+    private javax.swing.JLabel TextWorkers;
+    private javax.swing.JLabel TextWorkers1;
+    private javax.swing.JButton UP_RAM;
+    private javax.swing.JButton UP_base;
+    private javax.swing.JButton Up_Cpus;
+    private javax.swing.JButton Up_graphics;
+    private javax.swing.JButton Up_power;
+    private javax.swing.JPanel Workers;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables
 }
