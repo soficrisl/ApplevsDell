@@ -20,12 +20,12 @@ import java.util.logging.Logger;
 /*
 0 = duracion de dias
 1 = deadline 
-3 = ensambladores 
-4 =placa base
-5 =  cpu 
-6 = ram 
-7 = fuente 
-8 = tarjetas 
+2 = ensambladores 
+3 =placa base
+4 =  cpu 
+5 = ram 
+6 = fuente 
+7 = tarjetas 
 
 
 
@@ -58,30 +58,20 @@ public class ExcelManager {
     }
 
     public int [] GetValues () {
-        int base [] = {0}; 
+        int [] base = {0}; 
         File file = new File(getPath()); 
         Scanner sc; 
+        int [] csv = new int[8]; 
+        int counter = 0; 
+        int sum = 0; 
+        boolean flag = false; 
        try {
            sc = new Scanner(file);
            sc.useDelimiter(","); 
-           int counter = 6; 
-           int sum = 0; 
-           int [] array = getArray();
-           
-           for (int i = 2; i < 10; i++) {
-               sum += array[i]; 
-           }
-           if (sum == getMax_workers() && array[0] > 0  && array[1] > 0) {
-                while (sc.hasNext()) {
-                    
-               
-                }
-           } else {
-               return base; 
+           while (sc.hasNext()){
+               csv[counter] = Integer.parseInt(sc.next());
            }
            
-
-           sc.close(); 
        } catch (FileNotFoundException ex) {
            Logger.getLogger(ExcelManager.class.getName()).log(Level.SEVERE, null, ex);
        }

@@ -85,7 +85,7 @@ public class AppleGUI extends javax.swing.JPanel {
         AppleNAme.setFont(new java.awt.Font("sansserif", 0, 32)); // NOI18N
         AppleNAme.setForeground(new java.awt.Color(0, 0, 0));
         AppleNAme.setText("Apple Computers 💻");
-        AppleNAme.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        AppleNAme.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         javax.swing.GroupLayout TabLayout = new javax.swing.GroupLayout(Tab);
         Tab.setLayout(TabLayout);
@@ -99,8 +99,9 @@ public class AppleGUI extends javax.swing.JPanel {
         );
         TabLayout.setVerticalGroup(
             TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ButtonBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(AppleNAme)
+            .addGroup(TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(ButtonBack, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addComponent(AppleNAme))
         );
 
         jPanel3.add(Tab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
@@ -565,11 +566,9 @@ public class AppleGUI extends javax.swing.JPanel {
     private javax.swing.JLabel Num_Power;
     private javax.swing.JLabel Num_RAM;
     private javax.swing.JLabel Number_base;
-    private javax.swing.JLabel Number_base1;
     private javax.swing.JPanel PAnel_power;
     private javax.swing.JPanel Panel_RAM;
     private javax.swing.JPanel Panel_base;
-    private javax.swing.JPanel Panel_base1;
     private javax.swing.JLabel Placa_base;
     private javax.swing.JLabel PowerName;
     private javax.swing.JLabel RAM_memory;

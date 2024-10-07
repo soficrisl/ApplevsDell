@@ -29,7 +29,6 @@ public class Ensamblador extends Thread{
    public void work() {
         while (true) {
             try {
-                
                 if (business.getNombre().equals("Apple")) {
                     int placa=almacen.getPlaca_base();
                     int cpu =almacen.getCpus();
@@ -37,12 +36,12 @@ public class Ensamblador extends Thread{
                     int fuente =almacen.getFuente_alimentacion();
                     int graf=almacen.getTarjetas_graficas();
                     Thread.sleep(1);
-                    
+        
                     if (placa >= 2 && cpu >= 1 &&  ram>= 4 &&  fuente>= 4) {
                             Thread.sleep(2*days_mls);
                             almacen.getSemaforo().acquire(); 
                             if (contadorCompuStandard >= 5 && graf >=2 ) {
-                                
+                             
                                 almacen.setPlaca_base(almacen.getPlaca_base() - 2);
                                 almacen.setCpus(almacen.getCpus() - 1);
                                 almacen.setMemoria_ram(almacen.getMemoria_ram() - 4);
