@@ -62,8 +62,10 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ButtonBack" max="32767" attributes="0"/>
-                  <Component id="AppleNAme" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="ButtonBack" alignment="3" pref="60" max="32767" attributes="0"/>
+                      <Component id="AppleNAme" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
