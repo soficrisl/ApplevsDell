@@ -91,6 +91,68 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jTextField27 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField28 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField29 = new javax.swing.JTextField();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jTextField30 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jTextField31 = new javax.swing.JTextField();
+        jTextField32 = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jProgressBar7 = new javax.swing.JProgressBar();
+        jProgressBar8 = new javax.swing.JProgressBar();
+        jProgressBar9 = new javax.swing.JProgressBar();
+        jProgressBar10 = new javax.swing.JProgressBar();
+        jProgressBar11 = new javax.swing.JProgressBar();
+        jTextField33 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jButton23 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
+        jProgressBar12 = new javax.swing.JProgressBar();
+        jTextField34 = new javax.swing.JTextField();
+        jTextField35 = new javax.swing.JTextField();
+        jTextField36 = new javax.swing.JTextField();
+        jTextField37 = new javax.swing.JTextField();
+        jTextField38 = new javax.swing.JTextField();
+        jTextField39 = new javax.swing.JTextField();
+        jTextField40 = new javax.swing.JTextField();
+        jTextField41 = new javax.swing.JTextField();
+        jTextField42 = new javax.swing.JTextField();
+        jTextField43 = new javax.swing.JTextField();
+        jTextField44 = new javax.swing.JTextField();
+        jTextField45 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jTextField46 = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jTextField47 = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jTextField48 = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jTextField49 = new javax.swing.JTextField();
+        jTextField50 = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        jTextField51 = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jTextField52 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -675,7 +737,573 @@ public class BothGUI extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(157, 200, 222));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 580, 580));
+
+        jPanel7.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Ready 💻");
+        jPanel7.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
+
+        jTextField28.setEditable(false);
+        jTextField28.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField28.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField28.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField28.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField28.setText("0");
+        jTextField28.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField28.setFocusable(false);
+        jTextField28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField28ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField28, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 95, 30, 30));
+
+        jButton5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton5.setText("▼");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 70, 20));
+
+        jButton6.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton6.setText("▲");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 70, 20));
+
+        jLabel11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("RAM Memory");
+        jLabel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 40));
+
+        jTextField29.setEditable(false);
+        jTextField29.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField29.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField29.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField29.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField29.setText("0");
+        jTextField29.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField29.setFocusable(false);
+        jTextField29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField29ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField29, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 95, 30, 30));
+
+        jButton15.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton15.setText("▼");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 70, 20));
+
+        jButton16.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton16.setText("▲");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 70, 20));
+
+        jTextField30.setEditable(false);
+        jTextField30.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField30.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField30.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField30.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField30.setText("0");
+        jTextField30.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField30.setFocusable(false);
+        jTextField30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField30ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField30, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 145, 30, 30));
+
+        jLabel22.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Power suply");
+        jLabel22.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 100, 40));
+
+        jButton17.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton17.setText("▲");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 70, 20));
+
+        jButton18.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton18.setText("▼");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 70, 20));
+
+        jButton19.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton19.setText("▲");
+        jPanel7.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 70, 20));
+
+        jButton20.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton20.setText("▼");
+        jPanel7.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 70, 20));
+
+        jLabel23.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("CPUs");
+        jLabel23.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, 40));
+
+        jTextField31.setEditable(false);
+        jTextField31.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField31.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField31.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField31.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField31.setText("0");
+        jTextField31.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField31.setFocusable(false);
+        jPanel7.add(jTextField31, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 195, 30, 30));
+
+        jTextField32.setEditable(false);
+        jTextField32.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField32.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField32.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField32.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField32.setText("0");
+        jTextField32.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField32.setFocusable(false);
+        jPanel7.add(jTextField32, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 245, 30, 30));
+
+        jLabel24.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Graphic Card");
+        jLabel24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 100, 40));
+
+        jButton21.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton21.setText("▲");
+        jPanel7.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 70, 20));
+
+        jButton22.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton22.setText("▼");
+        jPanel7.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 70, 20));
+
+        jLabel25.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Type of Worker");
+        jPanel7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jPanel7.add(jProgressBar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 100, 20));
+        jPanel7.add(jProgressBar8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 100, 20));
+        jPanel7.add(jProgressBar9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 100, 20));
+        jPanel7.add(jProgressBar10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 100, 20));
+        jPanel7.add(jProgressBar11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 100, 20));
+
+        jTextField33.setEditable(false);
+        jTextField33.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField33.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField33.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField33.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField33.setText("0");
+        jTextField33.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField33.setFocusable(false);
+        jPanel7.add(jTextField33, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 295, 30, 30));
+
+        jLabel26.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("Assemblers");
+        jLabel26.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 100, 40));
+
+        jButton23.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton23.setText("▲");
+        jPanel7.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 70, 20));
+
+        jButton24.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton24.setText("▼");
+        jPanel7.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 70, 20));
+        jPanel7.add(jProgressBar12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 100, 20));
+
+        jTextField34.setEditable(false);
+        jTextField34.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField34.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField34.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField34.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField34.setText("0");
+        jTextField34.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField34.setFocusable(false);
+        jTextField34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField34ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField34, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 45, 30, 30));
+
+        jTextField35.setEditable(false);
+        jTextField35.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField35.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField35.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField35.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField35.setText("0");
+        jTextField35.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField35.setFocusable(false);
+        jTextField35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField35ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField35, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 45, 30, 30));
+
+        jTextField36.setEditable(false);
+        jTextField36.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField36.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField36.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField36.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField36.setText("0");
+        jTextField36.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField36.setFocusable(false);
+        jTextField36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField36ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField36, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 145, 30, 30));
+
+        jTextField37.setEditable(false);
+        jTextField37.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField37.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField37.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField37.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField37.setText("0");
+        jTextField37.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField37.setFocusable(false);
+        jTextField37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField37ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField37, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 245, 30, 30));
+
+        jTextField38.setEditable(false);
+        jTextField38.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField38.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField38.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField38.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField38.setText("0");
+        jTextField38.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField38.setFocusable(false);
+        jTextField38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField38ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField38, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 195, 30, 30));
+
+        jTextField39.setEditable(false);
+        jTextField39.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField39.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField39.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField39.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField39.setText("0");
+        jTextField39.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField39.setFocusable(false);
+        jTextField39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField39ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField39, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 195, 30, 30));
+
+        jTextField40.setEditable(false);
+        jTextField40.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField40.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField40.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField40.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField40.setText("0");
+        jTextField40.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField40.setFocusable(false);
+        jTextField40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField40ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField40, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 45, 30, 30));
+
+        jTextField41.setEditable(false);
+        jTextField41.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField41.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField41.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField41.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField41.setText("0");
+        jTextField41.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField41.setFocusable(false);
+        jTextField41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField41ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField41, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 95, 30, 30));
+
+        jTextField42.setEditable(false);
+        jTextField42.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField42.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField42.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField42.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField42.setText("0");
+        jTextField42.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField42.setFocusable(false);
+        jTextField42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField42ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField42, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 145, 30, 30));
+
+        jTextField43.setEditable(false);
+        jTextField43.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField43.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField43.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField43.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField43.setText("0");
+        jTextField43.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField43.setFocusable(false);
+        jTextField43.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField43ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField43, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 195, 30, 30));
+
+        jTextField44.setEditable(false);
+        jTextField44.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField44.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField44.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField44.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField44.setText("0");
+        jTextField44.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField44.setFocusable(false);
+        jTextField44.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField44ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField44, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 245, 30, 30));
+
+        jTextField45.setEditable(false);
+        jTextField45.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField45.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField45.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField45.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField45.setText("0");
+        jTextField45.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField45.setFocusable(false);
+        jTextField45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField45ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField45, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 295, 30, 30));
+
+        jLabel27.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Max");
+        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 10, -1, -1));
+
+        jLabel28.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("Standard");
+        jLabel28.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 80, 40));
+
+        jTextField46.setEditable(false);
+        jTextField46.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField46.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField46.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField46.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField46.setText("0");
+        jTextField46.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextField46.setFocusable(false);
+        jTextField46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField46ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField46, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 80, 30));
+
+        jLabel29.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("Standard");
+        jLabel29.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 80, 40));
+
+        jTextField47.setEditable(false);
+        jTextField47.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField47.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField47.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField47.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField47.setText("0");
+        jTextField47.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextField47.setFocusable(false);
+        jTextField47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField47ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField47, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 80, 30));
+
+        jLabel30.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("Type of Worker");
+        jPanel7.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jLabel31.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("Motherboard");
+        jLabel31.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 100, 40));
+
+        jTextField48.setEditable(false);
+        jTextField48.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField48.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField48.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField48.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField48.setText("0");
+        jTextField48.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        jTextField48.setFocusable(false);
+        jTextField48.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField48ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jTextField48, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 295, 30, 30));
+
+        jLabel32.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Warehouse");
+        jPanel7.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
+        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 580, 340));
+
+        jPanel8.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel33.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("Project Manager");
+        jLabel33.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel8.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 150, 40));
+
+        jTextField49.setEditable(false);
+        jTextField49.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField49.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField49.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField49.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField49.setText("....");
+        jTextField49.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        jTextField49.setFocusable(false);
+        jTextField49.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField49ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jTextField49, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 150, 40));
+
+        jTextField50.setEditable(false);
+        jTextField50.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField50.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField50.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField50.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField50.setText("0");
+        jTextField50.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        jTextField50.setFocusable(false);
+        jTextField50.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField50ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jTextField50, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 70, 40));
+
+        jLabel34.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel34.setText("Fouls");
+        jLabel34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel8.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 70, 40));
+
+        jTextField51.setEditable(false);
+        jTextField51.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField51.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField51.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField51.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField51.setText("0");
+        jTextField51.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        jTextField51.setFocusable(false);
+        jTextField51.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField51ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jTextField51, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 120, 40));
+
+        jLabel35.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel35.setText("Discounted");
+        jLabel35.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel8.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 120, 40));
+
+        jLabel36.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("Proyect Manager");
+        jLabel36.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel8.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 150, 40));
+
+        jTextField52.setEditable(false);
+        jTextField52.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField52.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField52.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField52.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField52.setText("....");
+        jTextField52.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        jTextField52.setFocusable(false);
+        jTextField52.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField52ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jTextField52, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 150, 40));
+
+        jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 580, 160));
+
+        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 780, 590));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -850,6 +1478,118 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField27ActionPerformed
 
+    private void jTextField28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField28ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField29ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jTextField30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField30ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField30ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jTextField34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField34ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField34ActionPerformed
+
+    private void jTextField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField35ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField35ActionPerformed
+
+    private void jTextField36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField36ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField36ActionPerformed
+
+    private void jTextField37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField37ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField37ActionPerformed
+
+    private void jTextField38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField38ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField38ActionPerformed
+
+    private void jTextField39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField39ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField39ActionPerformed
+
+    private void jTextField40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField40ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField40ActionPerformed
+
+    private void jTextField41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField41ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField41ActionPerformed
+
+    private void jTextField42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField42ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField42ActionPerformed
+
+    private void jTextField43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField43ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField43ActionPerformed
+
+    private void jTextField44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField44ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField44ActionPerformed
+
+    private void jTextField45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField45ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField45ActionPerformed
+
+    private void jTextField46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField46ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField46ActionPerformed
+
+    private void jTextField47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField47ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField47ActionPerformed
+
+    private void jTextField48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField48ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField48ActionPerformed
+
+    private void jTextField49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField49ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField49ActionPerformed
+
+    private void jTextField50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField50ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField50ActionPerformed
+
+    private void jTextField51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField51ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField51ActionPerformed
+
+    private void jTextField52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField52ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField52ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -892,14 +1632,27 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -911,6 +1664,22 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -923,12 +1692,20 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar10;
+    private javax.swing.JProgressBar jProgressBar11;
+    private javax.swing.JProgressBar jProgressBar12;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JProgressBar jProgressBar3;
     private javax.swing.JProgressBar jProgressBar4;
     private javax.swing.JProgressBar jProgressBar5;
     private javax.swing.JProgressBar jProgressBar6;
+    private javax.swing.JProgressBar jProgressBar7;
+    private javax.swing.JProgressBar jProgressBar8;
+    private javax.swing.JProgressBar jProgressBar9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -949,9 +1726,34 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
+    private javax.swing.JTextField jTextField28;
+    private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField30;
+    private javax.swing.JTextField jTextField31;
+    private javax.swing.JTextField jTextField32;
+    private javax.swing.JTextField jTextField33;
+    private javax.swing.JTextField jTextField34;
+    private javax.swing.JTextField jTextField35;
+    private javax.swing.JTextField jTextField36;
+    private javax.swing.JTextField jTextField37;
+    private javax.swing.JTextField jTextField38;
+    private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField40;
+    private javax.swing.JTextField jTextField41;
+    private javax.swing.JTextField jTextField42;
+    private javax.swing.JTextField jTextField43;
+    private javax.swing.JTextField jTextField44;
+    private javax.swing.JTextField jTextField45;
+    private javax.swing.JTextField jTextField46;
+    private javax.swing.JTextField jTextField47;
+    private javax.swing.JTextField jTextField48;
+    private javax.swing.JTextField jTextField49;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField50;
+    private javax.swing.JTextField jTextField51;
+    private javax.swing.JTextField jTextField52;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
