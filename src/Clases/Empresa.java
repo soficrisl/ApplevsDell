@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author Santiago Fernandez
  */
-public class Empresa extends Thread{
+public final class Empresa extends Thread{
     private String nombre;
     private int num_empleados;
     private int capacidad_almacenamiento;
@@ -26,15 +26,14 @@ public class Empresa extends Thread{
     private int counter_days; 
     private int brutegains; 
     private int productioncosts; 
-    private int totalstate;
     private Almacen storage;  
-    private int [] workertype; // 0 = ensambladores 1 = fuentes de alimentacion 2 = cpus 3 = ram 4 = base 5= tarjetas 
     private boolean fault; 
     private int pmcounter; 
+    private final int[] cantidadTrabajadores;
+    private int indiceTrabajador ;
     
     
-    
-    public Empresa(String nombre,int num_empleados, int capacidad_almacenamiento,int days_hand_in, int days_in_mls, int CSprice, int CGCprice, int type[]){
+    public Empresa(String nombre,int num_empleados, int capacidad_almacenamiento,int days_hand_in, int days_in_mls, int CSprice, int CGCprice){
         this.nombre=nombre;
         this.num_empleados=num_empleados;
         this.capacidad_almacenamiento=capacidad_almacenamiento;
@@ -46,35 +45,67 @@ public class Empresa extends Thread{
         this.pm = new Project_Manager(this, 40); 
         this.director = new Director(this, 60); 
         this.brutegains = 0;
-        this.productioncosts =0; 
-        this.totalstate = 0; 
+        this.productioncosts =0;
         this.storage = new Almacen (CSprice, CGCprice); 
-        this.workertype = type; 
         this.fault = false; 
         this.pmcounter = 3; 
+        this.cantidadTrabajadores= new int[6];
+        this.indiceTrabajador=0;
+        initialize_workers();
         
      }
-public void Agregar_ensamblador() {
-    if (this.empleados == null) {
-        this.empleados = new Empleado[1];
-        this.empleados[0] = new Ensamblador(this.storage, this);
-        System.out.println("Ensamblador agregado con éxito");
-    } else {
-        System.out.println("El ensamblador ya ha sido agregado");
+    /*Sofi antes que me explotes a preguntas
+    Añadi agregar trabajador osea arregle lo anterior , como amo el switch JAJAJAJAJAJ funciona con los dos arrays cuando se ñade uno especifico 
+    se suma +1 en su posicion.
+    Añadi inicializar initialize workers para que siempre inicialize con 1 por lo menos de cada 1
+    Restableci workers para que apenas se añada un trabajador se cree un hilo para que chambee
+    la verdad siento que me falta algo pero no me pegues si no me acuerdo pipipi, en si lo probe con souts y funcionaba
+    a tambien cambie a empresa a final para facilidad de inicar workers
+    aaa me acorde revisando, hay que ajustar las cosas para cada empresa*/
+public void agregarTrabajador(String tipoTrabajador, Almacen almacen, int cantidadComponentes) {
+    switch (tipoTrabajador) {
+        case "ensamblador":
+            cantidadTrabajadores[0]++;
+            empleados[indiceTrabajador] = new Ensamblador(almacen, this);
+            break;
+        case "placa base":
+            cantidadTrabajadores[1]++;
+            empleados[indiceTrabajador] = new Empleado("placa base", almacen, cantidadComponentes, this.days_in_mls, this);
+            break;
+        case "memoria ram":
+            cantidadTrabajadores[2]++;
+            empleados[indiceTrabajador] = new Empleado("memoria ram", almacen, cantidadComponentes, this.days_in_mls, this);
+            break;
+        case "tarjetas graficas":
+            cantidadTrabajadores[3]++;
+            empleados[indiceTrabajador] = new Empleado("tarjetas graficas", almacen, cantidadComponentes, this.days_in_mls, this);
+            break;
+        case "fuente":
+            cantidadTrabajadores[4]++;
+            empleados[indiceTrabajador] = new Empleado("fuente", almacen, cantidadComponentes, this.days_in_mls, this);
+            break;
+        case "Cpus":
+            cantidadTrabajadores[5]++;
+            empleados[indiceTrabajador] = new Empleado("Cpus", almacen, cantidadComponentes, this.days_in_mls, this);
+            break;
     }
+    indiceTrabajador++;
 }
 
-public void Agregar_empleado(String tipo_empleado, int cantidadComponentes) {
-    if (this.empleados != null && this.empleados.length < this.num_empleados) {
-        Empleado[] nuevosEmpleados = new Empleado[this.empleados.length + 1];
-        System.arraycopy(this.empleados, 0, nuevosEmpleados, 0, this.empleados.length);
-        this.empleados = nuevosEmpleados;
-        this.empleados[this.empleados.length - 1] = new Empleado(tipo_empleado, this.storage, cantidadComponentes, this.days_in_mls, this);
-        this.num_empleados--;
-        System.out.println("Empleado agregado con éxito");
-    } else {
-        System.out.println("No se puede agregar más empleados");
-    }
+public int[] getCantidadTrabajadores() {
+    return cantidadTrabajadores;
+}
+
+public Object[] getTrabajadores() {
+    return empleados;
+}
+public void initialize_workers() {// aqui varia las cantidaddes componentes que se añade segun nosotros , osea lo del numero de carnet luego se soluciona
+    agregarTrabajador("ensamblador", this.storage, 0);
+    agregarTrabajador("placa base", this.storage, 1);
+    agregarTrabajador("memoria ram", this.storage, 1);
+    agregarTrabajador("tarjetas graficas", this.storage, 1);
+    agregarTrabajador("fuente", this.storage, 1);
+    agregarTrabajador("Cpus", this.storage, 1);
 }
     public String getNombre() {
         return nombre;
@@ -101,48 +132,11 @@ public void Agregar_empleado(String tipo_empleado, int cantidadComponentes) {
     }
     
     
-    
-
-    public void initialize_workers() {
-        //Inicializamos el numero minimo de trabajadores, al cargar los archivos se debe verificar que ninguno sea 0. 
-        int counter = getNum_empleados() - 1; 
-        for (int i = 0; i < 6; i++) {
-            int array [] = getWorkertype(); 
-            int j = array[i]; 
-            while (j> 0) {
-                switch(i) {
-                    case 0 -> {
-                        //Crear cada trabajador y ponerlo en el array
-                    }
-                    case 1 -> {
-                        
-                    }
-                    case 2 -> {
-                        
-                    }
-                    case 3 -> {
-                        
-                    }
-                    case 4 -> {
-                        
-                    }
-                    case 5 -> {
-                        
-                    }
-                }
-                
-            }
-            
-        }
-        
-        
-    }
-    
    public void paying_workers(){
     for (int i = 0; i < getNum_empleados(); i++) {
         Object workerObject = getEmpleados()[i];
         if (i == 0) {
-            addProductioncosts(50); // Costo de producción del ensamblador
+            addProductioncosts(50); 
         } else {
             Empleado worker = (Empleado) workerObject;
             switch(worker.getTipo_empleado()){
@@ -180,20 +174,25 @@ public void Agregar_empleado(String tipo_empleado, int cantidadComponentes) {
        addProductioncosts(40);  
     }
 }
-    
+    //trabaje todo como objetos asi fue mas facil
 public void work_business() {
     while (true) {
-        Thread[] threads = new Thread[getNum_empleados()];
+        Thread[] threads = new Thread[getNum_empleados()];//esto es para revisar constantemente revisando el array
         for (int i = 0; i < getNum_empleados(); i++) {
-            Object workerObject = getEmpleados()[i];
-            if (i == 0) {
-                Ensamblador ensamblador = (Ensamblador) workerObject;
-                threads[i] = new Thread(() -> ensamblador.work());
+            final Object workerObject = getEmpleados()[i];//y esto evita errores de concurrencia.... no lo sabia, literal fue porq un video de youtube me explico
+            if (workerObject != null) { 
+                threads[i] = new Thread(() -> {
+                    if (workerObject instanceof Ensamblador) {
+                        Ensamblador ensamblador = (Ensamblador) workerObject;
+                        ensamblador.work();
+                    } else if (workerObject instanceof Empleado) {
+                        Empleado empleado = (Empleado) workerObject;
+                        empleado.work();
+                    }
+                });
                 threads[i].start();
             } else {
-                Empleado worker = (Empleado) workerObject;
-                threads[i] = new Thread(() -> worker.work());
-                threads[i].start();
+                threads[i] = null; //sofi esto es por si el objeto es null para que no se creen hilos extra ps
             }
         }
       
@@ -203,12 +202,13 @@ public void work_business() {
             Thread.sleep(getDays_in_mls() / 24);
             paying_workers();
         } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt(); // Re-interrupt the current thread
-            Thread.currentThread().interrupt(); // Re-interrupt the current thread
-            return; // Salir del método
+            Thread.currentThread().interrupt(); 
+            Thread.currentThread().interrupt(); 
+            return; 
         }
     }
 }
+    
     public void change_Days(int i) {
         try {
             semaforo.acquire();
@@ -304,13 +304,7 @@ public void work_business() {
         this.storage = storage;
     }
 
-    public int[] getWorkertype() {
-        return workertype;
-    }
-
-    public void setWorkertype(int[] workertype) {
-        this.workertype = workertype;
-    }
+ 
 
     public boolean isFault() {
         return fault;
