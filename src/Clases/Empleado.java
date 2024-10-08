@@ -29,9 +29,7 @@ public class Empleado extends Thread {
         this.days_mls = business.getDays_in_mls();
         
     }
-    public void cobrarSueldo() {
-        // Logica de sueldo
-    }
+
 
     public String getTipo_empleado() {
         return tipo_empleado;
