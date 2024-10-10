@@ -124,7 +124,7 @@ public class Project_Manager extends Thread {
     }
 
     public void setSalary_discounted(int salary_discounted) {
-        this.salary_discounted = salary_discounted;
+        this.salary_discounted += salary_discounted;
     }
     
     

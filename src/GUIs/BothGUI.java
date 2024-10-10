@@ -4,41 +4,193 @@
  */
 package GUIs;
 
+import Clases.Empresa;
 import Filereading.ExcelManager;
 
 /**
  *
  * @author Sofia
  */
-
 /*
+
 0 = duracion de dias
 1 = deadline 
+Empresa A 
 2 = ensambladores 
 3 =placa base
 4 =  cpu 
 5 = ram 
 6 = fuente 
 7 = tarjetas 
+Empresa B 
+8 = ensambladores 
+9 =placa base
+10 =  cpu 
+11 = ram 
+12 = fuente 
+13 = tarjetas 
+
+
+
+
+*/
+
+
+/*
+0 - ensamblador
+1- placa base
+2 - memoria ram 
+3- tarjetas graficas
+4- fuentes de alimentacion 
+5- cpu 
+
+
 */
 
 
 public class BothGUI extends javax.swing.JFrame {
+    int [] array; 
+    
     /**
      * Creates new form BothGUI
      */
-    public BothGUI() {
+    public BothGUI(int [] array) {
+        this.array = array; 
         initComponents();
-        ExcelManager manager = new ExcelManager(); 
-        int [] base = {0}; 
-        int [] apple = new int [6]; 
-        //Empresa Apple (Sofia)
+        start(); 
+    }
+    
+    
+    private void start() {
+        int [] apple;
+        int [] dell; 
+        int [] simulation = {1000, 4}; ;
+        if (this.array.length == 1) {
+            ExcelManager manager = new ExcelManager(); 
+            int [] obtain = manager.GetValues();
+            if (obtain.length == 1) {
+                apple = new int [0]; 
+                dell = new int [0]; 
+            } else { 
+                apple = new int [6];
+                dell = new int [6];
+                for (int i = 0; i < 2; i++) {
+                    simulation[i] = obtain[i]; 
+                }
+                for (int i = 2; i < 8; i++) {
+                    apple[i-2] = obtain[i]; 
+                }
+                for (int i = 8; i < 14; i++) {
+                    dell[i-8] = obtain[i]; 
+                }
+            }
+        } else {
+            apple = new int [6];
+            dell = new int [6];
+            for (int i = 0; i < 2; i++) {
+                    simulation[i] = this.array[i]; 
+                }
+                for (int i = 2; i < 8; i++) {
+                    apple[i-2] = this.array[i]; 
+                }
+                for (int i = 8; i < 14; i++) {
+                    dell[i-8] = this.array[i]; 
+                }      
+        }
+        //Empresa Apple    
+        int [] productsapple = {1,1,1,5,1}; 
+        int [] daysapple = {4,4,1,1,2}; 
+        Empresa applebusinness = new Empresa("apple",18,productsapple, simulation[1], simulation[0], 100, 150, apple, daysapple);
         
+        //Empresa  Dell
+        int [] productsdell = {1,1,2,3,1}; 
+        int [] daysdell = {3,3,1,1,3}; 
+        Empresa dellbusinness = new Empresa("dell",18,productsdell, simulation[1], simulation[0], 80, 120, dell, daysdell);
         
+        while (true) {
+                applebusinness.work_business();
+                dellbusinness.work_business();
+                
+                //Valores de apple --------------------------------------
+                
+                //Cantidades
+                mbapple.setText(String.valueOf(applebusinness.getStorage().getPlaca_base()));
+                ramapple.setText(String.valueOf(applebusinness.getStorage().getMemoria_ram()));
+                powerapple.setText(String.valueOf(applebusinness.getStorage().getFuente_alimentacion()));
+                cpuapple.setText(String.valueOf(applebusinness.getStorage().getCpus()));
+                graphicapple.setText(String.valueOf(applebusinness.getStorage().getTarjetas_graficas()));
+                
+                //Trabajadores 
+                workmbapple.setText(String.valueOf(applebusinness.getCantidadTrabajadores()[1]));
+                workramapple.setText(String.valueOf(applebusinness.getCantidadTrabajadores()[2]));
+                workpowerapple.setText(String.valueOf(applebusinness.getCantidadTrabajadores()[4]));
+                workcpuapple.setText(String.valueOf(applebusinness.getCantidadTrabajadores()[5]));
+                workgraphicapple.setText(String.valueOf(applebusinness.getCantidadTrabajadores()[3]));
+                workassemapple.setText(String.valueOf(applebusinness.getCantidadTrabajadores()[0]));
+                
+                //Computadoras
+                standardpcapple.setText(String.valueOf(applebusinness.getStorage().getCompuStandard()));
+                graphicpcapple.setText(String.valueOf(applebusinness.getStorage().getCompuTarjeta()));
+                
+                //Project Manager
+                boolean stateapplepm = applebusinness.getPm().isState(); 
+                if (stateapplepm) {
+                    pmstateapple.setText("Work");
+                } else {
+                     pmstateapple.setText("Anime");
+                }
+                foulsapple.setText(String.valueOf(applebusinness.getPm().getFaults()));
+                discountedapple.setText(String.valueOf(applebusinness.getPm().getSalary_discounted()));
+                
+                boolean stateappledir = applebusinness.getPm().isState(); 
+                if (stateappledir) {
+                    directorapple.setText("Administrative");
+                } else {
+                     directorapple.setText("Accountability");
+                }
+                
+                
+                 //Valores de dell  --------------------------------------
+                
+                //Cantidades
+                mbdell.setText(String.valueOf(dellbusinness.getStorage().getPlaca_base()));
+                ramdell.setText(String.valueOf(dellbusinness.getStorage().getMemoria_ram()));
+                powerdell.setText(String.valueOf(dellbusinness.getStorage().getFuente_alimentacion()));
+                cpudell.setText(String.valueOf(dellbusinness.getStorage().getCpus()));
+                graphicdell.setText(String.valueOf(dellbusinness.getStorage().getTarjetas_graficas()));
+                
+                //Trabajadores 
+                workmbdell.setText(String.valueOf(dellbusinness.getCantidadTrabajadores()[1]));
+                workramdell.setText(String.valueOf(dellbusinness.getCantidadTrabajadores()[2]));
+                workpowerdell.setText(String.valueOf(dellbusinness.getCantidadTrabajadores()[4]));
+                workcpudell.setText(String.valueOf(dellbusinness.getCantidadTrabajadores()[5]));
+                workgraphicdell.setText(String.valueOf(dellbusinness.getCantidadTrabajadores()[3]));
+                workassemdell.setText(String.valueOf(dellbusinness.getCantidadTrabajadores()[0]));
+                
+                //Computadoras
+                standardpcdell.setText(String.valueOf(dellbusinness.getStorage().getCompuStandard()));
+                graphicdell.setText(String.valueOf(dellbusinness.getStorage().getCompuTarjeta()));
+                
+                //Project Manager
+                boolean statedellpm = dellbusinness.getPm().isState(); 
+                if (stateapplepm) {
+                    pmstatedell.setText("Work");
+                } else {
+                     pmstatedell.setText("Anime");
+                }
+                foulsdell.setText(String.valueOf(dellbusinness.getPm().getFaults()));
+                discounteddell.setText(String.valueOf(dellbusinness.getPm().getSalary_discounted()));
+                
+                boolean statedelldir = dellbusinness.getPm().isState(); 
+                if (stateappledir) {
+                    directorapple.setText("Administrative");
+                } else {
+                     directorapple.setText("Accountability");
+                }
+               
+        }
         
-        
-        
-        
+
         
         
     }
@@ -60,18 +212,18 @@ public class BothGUI extends javax.swing.JFrame {
         downmbapple = new javax.swing.JButton();
         upmbapple = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        ramapple = new javax.swing.JTextField();
+        workramapple = new javax.swing.JTextField();
         downramapple = new javax.swing.JButton();
         upramapple = new javax.swing.JButton();
-        powerapple = new javax.swing.JTextField();
+        workpowerapple = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         uppowerapple = new javax.swing.JButton();
         downpowerapple = new javax.swing.JButton();
         upcpuapple = new javax.swing.JButton();
         downcpuapple = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        cpuapple = new javax.swing.JTextField();
-        graphicapple = new javax.swing.JTextField();
+        workcpuapple = new javax.swing.JTextField();
+        workgraphicapple = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         upgraphicapple = new javax.swing.JButton();
         downgraphicapple = new javax.swing.JButton();
@@ -81,41 +233,38 @@ public class BothGUI extends javax.swing.JFrame {
         jProgressBar3 = new javax.swing.JProgressBar();
         jProgressBar4 = new javax.swing.JProgressBar();
         jProgressBar5 = new javax.swing.JProgressBar();
-        assemapple = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         upassemapple = new javax.swing.JButton();
         downassemapple = new javax.swing.JButton();
-        jProgressBar6 = new javax.swing.JProgressBar();
-        mbapple = new javax.swing.JTextField();
+        workmbapple = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        powerapple = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
+        cpuapple = new javax.swing.JTextField();
+        mbapple = new javax.swing.JTextField();
+        ramapple = new javax.swing.JTextField();
         jTextField20 = new javax.swing.JTextField();
         jTextField21 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
+        graphicapple = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        standardpcapple = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        graphicpcapple = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
+        workassemapple = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        pmstateapple = new javax.swing.JTextField();
+        foulsapple = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
+        discountedapple = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
+        directorapple = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -123,18 +272,18 @@ public class BothGUI extends javax.swing.JFrame {
         downmbdell = new javax.swing.JButton();
         upmbdell = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        ramdell = new javax.swing.JTextField();
+        workramdell = new javax.swing.JTextField();
         downramdell = new javax.swing.JButton();
         upramdell = new javax.swing.JButton();
-        powerdell = new javax.swing.JTextField();
+        workpowerdell = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         uppowerdell = new javax.swing.JButton();
         downpowerdell = new javax.swing.JButton();
         upcpudell = new javax.swing.JButton();
         downcpudell = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
-        cpudell = new javax.swing.JTextField();
-        graphicdell = new javax.swing.JTextField();
+        workcpudell = new javax.swing.JTextField();
+        workgraphicdell = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         upgraphicdell = new javax.swing.JButton();
         downgraphicdell = new javax.swing.JButton();
@@ -144,41 +293,38 @@ public class BothGUI extends javax.swing.JFrame {
         jProgressBar9 = new javax.swing.JProgressBar();
         jProgressBar10 = new javax.swing.JProgressBar();
         jProgressBar11 = new javax.swing.JProgressBar();
-        assemdell = new javax.swing.JTextField();
+        workassemdell = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         upassemdell = new javax.swing.JButton();
         downassemadell = new javax.swing.JButton();
-        jProgressBar12 = new javax.swing.JProgressBar();
-        mbdell = new javax.swing.JTextField();
+        workmbdell = new javax.swing.JTextField();
         jTextField35 = new javax.swing.JTextField();
-        jTextField36 = new javax.swing.JTextField();
+        powerdell = new javax.swing.JTextField();
         jTextField37 = new javax.swing.JTextField();
         jTextField38 = new javax.swing.JTextField();
-        jTextField39 = new javax.swing.JTextField();
-        jTextField40 = new javax.swing.JTextField();
-        jTextField41 = new javax.swing.JTextField();
+        cpudell = new javax.swing.JTextField();
+        mbdell = new javax.swing.JTextField();
+        ramdell = new javax.swing.JTextField();
         jTextField42 = new javax.swing.JTextField();
         jTextField43 = new javax.swing.JTextField();
-        jTextField44 = new javax.swing.JTextField();
-        jTextField45 = new javax.swing.JTextField();
+        graphicdell = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jTextField46 = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
-        jTextField47 = new javax.swing.JTextField();
+        standardpcdell = new javax.swing.JTextField();
+        Graphic = new javax.swing.JLabel();
+        graphicpcdell = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jTextField48 = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
-        jTextField49 = new javax.swing.JTextField();
-        jTextField50 = new javax.swing.JTextField();
+        pmstatedell = new javax.swing.JTextField();
+        foulsdell = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
-        jTextField51 = new javax.swing.JTextField();
+        discounteddell = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        jTextField52 = new javax.swing.JTextField();
+        directordell = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -208,7 +354,7 @@ public class BothGUI extends javax.swing.JFrame {
         jTextField2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(51, 51, 51));
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("0");
+        jTextField2.setText("55");
         jTextField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField2.setFocusable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -243,20 +389,20 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 40));
 
-        ramapple.setEditable(false);
-        ramapple.setBackground(new java.awt.Color(255, 255, 255));
-        ramapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        ramapple.setForeground(new java.awt.Color(51, 51, 51));
-        ramapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        ramapple.setText("0");
-        ramapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        ramapple.setFocusable(false);
-        ramapple.addActionListener(new java.awt.event.ActionListener() {
+        workramapple.setEditable(false);
+        workramapple.setBackground(new java.awt.Color(255, 255, 255));
+        workramapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workramapple.setForeground(new java.awt.Color(51, 51, 51));
+        workramapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workramapple.setText("0");
+        workramapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workramapple.setFocusable(false);
+        workramapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ramappleActionPerformed(evt);
+                workramappleActionPerformed(evt);
             }
         });
-        jPanel5.add(ramapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 95, 30, 30));
+        jPanel5.add(workramapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 95, 30, 30));
 
         downramapple.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downramapple.setText("▼");
@@ -276,20 +422,20 @@ public class BothGUI extends javax.swing.JFrame {
         });
         jPanel5.add(upramapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 70, 20));
 
-        powerapple.setEditable(false);
-        powerapple.setBackground(new java.awt.Color(255, 255, 255));
-        powerapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        powerapple.setForeground(new java.awt.Color(51, 51, 51));
-        powerapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        powerapple.setText("0");
-        powerapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        powerapple.setFocusable(false);
-        powerapple.addActionListener(new java.awt.event.ActionListener() {
+        workpowerapple.setEditable(false);
+        workpowerapple.setBackground(new java.awt.Color(255, 255, 255));
+        workpowerapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workpowerapple.setForeground(new java.awt.Color(51, 51, 51));
+        workpowerapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workpowerapple.setText("0");
+        workpowerapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workpowerapple.setFocusable(false);
+        workpowerapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                powerappleActionPerformed(evt);
+                workpowerappleActionPerformed(evt);
             }
         });
-        jPanel5.add(powerapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 145, 30, 30));
+        jPanel5.add(workpowerapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 145, 30, 30));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -331,25 +477,25 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, 40));
 
-        cpuapple.setEditable(false);
-        cpuapple.setBackground(new java.awt.Color(255, 255, 255));
-        cpuapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        cpuapple.setForeground(new java.awt.Color(51, 51, 51));
-        cpuapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        cpuapple.setText("0");
-        cpuapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        cpuapple.setFocusable(false);
-        jPanel5.add(cpuapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 195, 30, 30));
+        workcpuapple.setEditable(false);
+        workcpuapple.setBackground(new java.awt.Color(255, 255, 255));
+        workcpuapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workcpuapple.setForeground(new java.awt.Color(51, 51, 51));
+        workcpuapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workcpuapple.setText("0");
+        workcpuapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workcpuapple.setFocusable(false);
+        jPanel5.add(workcpuapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 195, 30, 30));
 
-        graphicapple.setEditable(false);
-        graphicapple.setBackground(new java.awt.Color(255, 255, 255));
-        graphicapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        graphicapple.setForeground(new java.awt.Color(51, 51, 51));
-        graphicapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        graphicapple.setText("0");
-        graphicapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        graphicapple.setFocusable(false);
-        jPanel5.add(graphicapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 245, 30, 30));
+        workgraphicapple.setEditable(false);
+        workgraphicapple.setBackground(new java.awt.Color(255, 255, 255));
+        workgraphicapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workgraphicapple.setForeground(new java.awt.Color(51, 51, 51));
+        workgraphicapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workgraphicapple.setText("0");
+        workgraphicapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workgraphicapple.setFocusable(false);
+        jPanel5.add(workgraphicapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 245, 30, 30));
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -376,16 +522,6 @@ public class BothGUI extends javax.swing.JFrame {
         jPanel5.add(jProgressBar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 100, 20));
         jPanel5.add(jProgressBar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 100, 20));
 
-        assemapple.setEditable(false);
-        assemapple.setBackground(new java.awt.Color(255, 255, 255));
-        assemapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        assemapple.setForeground(new java.awt.Color(51, 51, 51));
-        assemapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        assemapple.setText("0");
-        assemapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        assemapple.setFocusable(false);
-        jPanel5.add(assemapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 295, 30, 30));
-
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -400,29 +536,28 @@ public class BothGUI extends javax.swing.JFrame {
         downassemapple.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downassemapple.setText("▼");
         jPanel5.add(downassemapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 70, 20));
-        jPanel5.add(jProgressBar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 100, 20));
 
-        mbapple.setEditable(false);
-        mbapple.setBackground(new java.awt.Color(255, 255, 255));
-        mbapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        mbapple.setForeground(new java.awt.Color(51, 51, 51));
-        mbapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        mbapple.setText("0");
-        mbapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        mbapple.setFocusable(false);
-        mbapple.addActionListener(new java.awt.event.ActionListener() {
+        workmbapple.setEditable(false);
+        workmbapple.setBackground(new java.awt.Color(255, 255, 255));
+        workmbapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workmbapple.setForeground(new java.awt.Color(51, 51, 51));
+        workmbapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workmbapple.setText("0");
+        workmbapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workmbapple.setFocusable(false);
+        workmbapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbappleActionPerformed(evt);
+                workmbappleActionPerformed(evt);
             }
         });
-        jPanel5.add(mbapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 45, 30, 30));
+        jPanel5.add(workmbapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 45, 30, 30));
 
         jTextField10.setEditable(false);
         jTextField10.setBackground(new java.awt.Color(255, 255, 255));
         jTextField10.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField10.setForeground(new java.awt.Color(51, 51, 51));
         jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField10.setText("0");
+        jTextField10.setText("25");
         jTextField10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField10.setFocusable(false);
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
@@ -432,27 +567,27 @@ public class BothGUI extends javax.swing.JFrame {
         });
         jPanel5.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 45, 30, 30));
 
-        jTextField12.setEditable(false);
-        jTextField12.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField12.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField12.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField12.setText("0");
-        jTextField12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField12.setFocusable(false);
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+        powerapple.setEditable(false);
+        powerapple.setBackground(new java.awt.Color(255, 255, 255));
+        powerapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        powerapple.setForeground(new java.awt.Color(51, 51, 51));
+        powerapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        powerapple.setText("0");
+        powerapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        powerapple.setFocusable(false);
+        powerapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
+                powerappleActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 145, 30, 30));
+        jPanel5.add(powerapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 145, 30, 30));
 
         jTextField13.setEditable(false);
         jTextField13.setBackground(new java.awt.Color(255, 255, 255));
         jTextField13.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField13.setForeground(new java.awt.Color(51, 51, 51));
         jTextField13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField13.setText("0");
+        jTextField13.setText("10");
         jTextField13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField13.setFocusable(false);
         jTextField13.addActionListener(new java.awt.event.ActionListener() {
@@ -467,7 +602,7 @@ public class BothGUI extends javax.swing.JFrame {
         jTextField14.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField14.setForeground(new java.awt.Color(51, 51, 51));
         jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField14.setText("0");
+        jTextField14.setText("20");
         jTextField14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField14.setFocusable(false);
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
@@ -477,57 +612,57 @@ public class BothGUI extends javax.swing.JFrame {
         });
         jPanel5.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 195, 30, 30));
 
-        jTextField15.setEditable(false);
-        jTextField15.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField15.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField15.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField15.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField15.setText("0");
-        jTextField15.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField15.setFocusable(false);
-        jTextField15.addActionListener(new java.awt.event.ActionListener() {
+        cpuapple.setEditable(false);
+        cpuapple.setBackground(new java.awt.Color(255, 255, 255));
+        cpuapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        cpuapple.setForeground(new java.awt.Color(51, 51, 51));
+        cpuapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cpuapple.setText("0");
+        cpuapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        cpuapple.setFocusable(false);
+        cpuapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField15ActionPerformed(evt);
+                cpuappleActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 195, 30, 30));
+        jPanel5.add(cpuapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 195, 30, 30));
 
-        jTextField18.setEditable(false);
-        jTextField18.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField18.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField18.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField18.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField18.setText("0");
-        jTextField18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField18.setFocusable(false);
-        jTextField18.addActionListener(new java.awt.event.ActionListener() {
+        mbapple.setEditable(false);
+        mbapple.setBackground(new java.awt.Color(255, 255, 255));
+        mbapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        mbapple.setForeground(new java.awt.Color(51, 51, 51));
+        mbapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        mbapple.setText("0");
+        mbapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        mbapple.setFocusable(false);
+        mbapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField18ActionPerformed(evt);
+                mbappleActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 45, 30, 30));
+        jPanel5.add(mbapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 45, 30, 30));
 
-        jTextField19.setEditable(false);
-        jTextField19.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField19.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField19.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField19.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField19.setText("0");
-        jTextField19.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField19.setFocusable(false);
-        jTextField19.addActionListener(new java.awt.event.ActionListener() {
+        ramapple.setEditable(false);
+        ramapple.setBackground(new java.awt.Color(255, 255, 255));
+        ramapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        ramapple.setForeground(new java.awt.Color(51, 51, 51));
+        ramapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ramapple.setText("0");
+        ramapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        ramapple.setFocusable(false);
+        ramapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField19ActionPerformed(evt);
+                ramappleActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 95, 30, 30));
+        jPanel5.add(ramapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 95, 30, 30));
 
         jTextField20.setEditable(false);
         jTextField20.setBackground(new java.awt.Color(255, 255, 255));
         jTextField20.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField20.setForeground(new java.awt.Color(51, 51, 51));
         jTextField20.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField20.setText("0");
+        jTextField20.setText("35");
         jTextField20.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField20.setFocusable(false);
         jTextField20.addActionListener(new java.awt.event.ActionListener() {
@@ -552,35 +687,20 @@ public class BothGUI extends javax.swing.JFrame {
         });
         jPanel5.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 195, 30, 30));
 
-        jTextField22.setEditable(false);
-        jTextField22.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField22.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField22.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField22.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField22.setText("0");
-        jTextField22.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField22.setFocusable(false);
-        jTextField22.addActionListener(new java.awt.event.ActionListener() {
+        graphicapple.setEditable(false);
+        graphicapple.setBackground(new java.awt.Color(255, 255, 255));
+        graphicapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        graphicapple.setForeground(new java.awt.Color(51, 51, 51));
+        graphicapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        graphicapple.setText("0");
+        graphicapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        graphicapple.setFocusable(false);
+        graphicapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField22ActionPerformed(evt);
+                graphicappleActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 245, 30, 30));
-
-        jTextField23.setEditable(false);
-        jTextField23.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField23.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField23.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField23.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField23.setText("0");
-        jTextField23.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField23.setFocusable(false);
-        jTextField23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField23ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 295, 30, 30));
+        jPanel5.add(graphicapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 245, 30, 30));
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
@@ -594,42 +714,42 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 80, 40));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("0");
-        jTextField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTextField1.setFocusable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        standardpcapple.setEditable(false);
+        standardpcapple.setBackground(new java.awt.Color(0, 0, 0));
+        standardpcapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        standardpcapple.setForeground(new java.awt.Color(255, 255, 255));
+        standardpcapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        standardpcapple.setText("0");
+        standardpcapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        standardpcapple.setFocusable(false);
+        standardpcapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                standardpcappleActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 80, 30));
+        jPanel5.add(standardpcapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 80, 30));
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Standard");
+        jLabel15.setText("Graphic");
         jLabel15.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 80, 40));
 
-        jTextField17.setEditable(false);
-        jTextField17.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField17.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField17.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField17.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField17.setText("0");
-        jTextField17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTextField17.setFocusable(false);
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+        graphicpcapple.setEditable(false);
+        graphicpcapple.setBackground(new java.awt.Color(0, 0, 0));
+        graphicpcapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        graphicpcapple.setForeground(new java.awt.Color(255, 255, 255));
+        graphicpcapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        graphicpcapple.setText("0");
+        graphicpcapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        graphicpcapple.setFocusable(false);
+        graphicpcapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
+                graphicpcappleActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 80, 30));
+        jPanel5.add(graphicpcapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 80, 30));
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
@@ -643,25 +763,20 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 100, 40));
 
-        jTextField25.setEditable(false);
-        jTextField25.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField25.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField25.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField25.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField25.setText("0");
-        jTextField25.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField25.setFocusable(false);
-        jTextField25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField25ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 295, 30, 30));
-
         jLabel19.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Warehouse");
         jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
+        workassemapple.setEditable(false);
+        workassemapple.setBackground(new java.awt.Color(255, 255, 255));
+        workassemapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workassemapple.setForeground(new java.awt.Color(51, 51, 51));
+        workassemapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workassemapple.setText("0");
+        workassemapple.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workassemapple.setFocusable(false);
+        jPanel5.add(workassemapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 295, 30, 30));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 580, 340));
 
@@ -676,35 +791,35 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 150, 40));
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setText("....");
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
-        jTextField3.setFocusable(false);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        pmstateapple.setEditable(false);
+        pmstateapple.setBackground(new java.awt.Color(255, 255, 255));
+        pmstateapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        pmstateapple.setForeground(new java.awt.Color(51, 51, 51));
+        pmstateapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pmstateapple.setText("....");
+        pmstateapple.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        pmstateapple.setFocusable(false);
+        pmstateapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                pmstateappleActionPerformed(evt);
             }
         });
-        jPanel6.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 150, 40));
+        jPanel6.add(pmstateapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 150, 40));
 
-        jTextField11.setEditable(false);
-        jTextField11.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField11.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField11.setText("0");
-        jTextField11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
-        jTextField11.setFocusable(false);
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        foulsapple.setEditable(false);
+        foulsapple.setBackground(new java.awt.Color(255, 255, 255));
+        foulsapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        foulsapple.setForeground(new java.awt.Color(51, 51, 51));
+        foulsapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        foulsapple.setText("0");
+        foulsapple.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        foulsapple.setFocusable(false);
+        foulsapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                foulsappleActionPerformed(evt);
             }
         });
-        jPanel6.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 70, 40));
+        jPanel6.add(foulsapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 70, 40));
 
         jLabel18.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
@@ -713,20 +828,20 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 70, 40));
 
-        jTextField26.setEditable(false);
-        jTextField26.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField26.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField26.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField26.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField26.setText("0");
-        jTextField26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
-        jTextField26.setFocusable(false);
-        jTextField26.addActionListener(new java.awt.event.ActionListener() {
+        discountedapple.setEditable(false);
+        discountedapple.setBackground(new java.awt.Color(255, 255, 255));
+        discountedapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        discountedapple.setForeground(new java.awt.Color(51, 51, 51));
+        discountedapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        discountedapple.setText("0");
+        discountedapple.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        discountedapple.setFocusable(false);
+        discountedapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField26ActionPerformed(evt);
+                discountedappleActionPerformed(evt);
             }
         });
-        jPanel6.add(jTextField26, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 120, 40));
+        jPanel6.add(discountedapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 120, 40));
 
         jLabel20.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
@@ -738,24 +853,24 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setText("Proyect Manager");
+        jLabel21.setText("Director");
         jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 150, 40));
 
-        jTextField27.setEditable(false);
-        jTextField27.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField27.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField27.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField27.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField27.setText("....");
-        jTextField27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
-        jTextField27.setFocusable(false);
-        jTextField27.addActionListener(new java.awt.event.ActionListener() {
+        directorapple.setEditable(false);
+        directorapple.setBackground(new java.awt.Color(255, 255, 255));
+        directorapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        directorapple.setForeground(new java.awt.Color(51, 51, 51));
+        directorapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        directorapple.setText("....");
+        directorapple.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        directorapple.setFocusable(false);
+        directorapple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField27ActionPerformed(evt);
+                directorappleActionPerformed(evt);
             }
         });
-        jPanel6.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 150, 40));
+        jPanel6.add(directorapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 150, 40));
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 580, 160));
 
@@ -778,7 +893,7 @@ public class BothGUI extends javax.swing.JFrame {
         jTextField28.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField28.setForeground(new java.awt.Color(51, 51, 51));
         jTextField28.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField28.setText("0");
+        jTextField28.setText("55");
         jTextField28.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField28.setFocusable(false);
         jTextField28.addActionListener(new java.awt.event.ActionListener() {
@@ -813,20 +928,20 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 40));
 
-        ramdell.setEditable(false);
-        ramdell.setBackground(new java.awt.Color(255, 255, 255));
-        ramdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        ramdell.setForeground(new java.awt.Color(51, 51, 51));
-        ramdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        ramdell.setText("0");
-        ramdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        ramdell.setFocusable(false);
-        ramdell.addActionListener(new java.awt.event.ActionListener() {
+        workramdell.setEditable(false);
+        workramdell.setBackground(new java.awt.Color(255, 255, 255));
+        workramdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workramdell.setForeground(new java.awt.Color(51, 51, 51));
+        workramdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workramdell.setText("0");
+        workramdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workramdell.setFocusable(false);
+        workramdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ramdellActionPerformed(evt);
+                workramdellActionPerformed(evt);
             }
         });
-        jPanel7.add(ramdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 95, 30, 30));
+        jPanel7.add(workramdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 95, 30, 30));
 
         downramdell.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downramdell.setText("▼");
@@ -846,20 +961,20 @@ public class BothGUI extends javax.swing.JFrame {
         });
         jPanel7.add(upramdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 70, 20));
 
-        powerdell.setEditable(false);
-        powerdell.setBackground(new java.awt.Color(255, 255, 255));
-        powerdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        powerdell.setForeground(new java.awt.Color(51, 51, 51));
-        powerdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        powerdell.setText("0");
-        powerdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        powerdell.setFocusable(false);
-        powerdell.addActionListener(new java.awt.event.ActionListener() {
+        workpowerdell.setEditable(false);
+        workpowerdell.setBackground(new java.awt.Color(255, 255, 255));
+        workpowerdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workpowerdell.setForeground(new java.awt.Color(51, 51, 51));
+        workpowerdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workpowerdell.setText("0");
+        workpowerdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workpowerdell.setFocusable(false);
+        workpowerdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                powerdellActionPerformed(evt);
+                workpowerdellActionPerformed(evt);
             }
         });
-        jPanel7.add(powerdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 145, 30, 30));
+        jPanel7.add(workpowerdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 145, 30, 30));
 
         jLabel22.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
@@ -901,25 +1016,25 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel23.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, 40));
 
-        cpudell.setEditable(false);
-        cpudell.setBackground(new java.awt.Color(255, 255, 255));
-        cpudell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        cpudell.setForeground(new java.awt.Color(51, 51, 51));
-        cpudell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        cpudell.setText("0");
-        cpudell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        cpudell.setFocusable(false);
-        jPanel7.add(cpudell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 195, 30, 30));
+        workcpudell.setEditable(false);
+        workcpudell.setBackground(new java.awt.Color(255, 255, 255));
+        workcpudell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workcpudell.setForeground(new java.awt.Color(51, 51, 51));
+        workcpudell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workcpudell.setText("0");
+        workcpudell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workcpudell.setFocusable(false);
+        jPanel7.add(workcpudell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 195, 30, 30));
 
-        graphicdell.setEditable(false);
-        graphicdell.setBackground(new java.awt.Color(255, 255, 255));
-        graphicdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        graphicdell.setForeground(new java.awt.Color(51, 51, 51));
-        graphicdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        graphicdell.setText("0");
-        graphicdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        graphicdell.setFocusable(false);
-        jPanel7.add(graphicdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 245, 30, 30));
+        workgraphicdell.setEditable(false);
+        workgraphicdell.setBackground(new java.awt.Color(255, 255, 255));
+        workgraphicdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workgraphicdell.setForeground(new java.awt.Color(51, 51, 51));
+        workgraphicdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workgraphicdell.setText("0");
+        workgraphicdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workgraphicdell.setFocusable(false);
+        jPanel7.add(workgraphicdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 245, 30, 30));
 
         jLabel24.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
@@ -946,15 +1061,15 @@ public class BothGUI extends javax.swing.JFrame {
         jPanel7.add(jProgressBar10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 100, 20));
         jPanel7.add(jProgressBar11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 100, 20));
 
-        assemdell.setEditable(false);
-        assemdell.setBackground(new java.awt.Color(255, 255, 255));
-        assemdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        assemdell.setForeground(new java.awt.Color(51, 51, 51));
-        assemdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        assemdell.setText("0");
-        assemdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        assemdell.setFocusable(false);
-        jPanel7.add(assemdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 295, 30, 30));
+        workassemdell.setEditable(false);
+        workassemdell.setBackground(new java.awt.Color(255, 255, 255));
+        workassemdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workassemdell.setForeground(new java.awt.Color(51, 51, 51));
+        workassemdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workassemdell.setText("0");
+        workassemdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workassemdell.setFocusable(false);
+        jPanel7.add(workassemdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 295, 30, 30));
 
         jLabel26.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
@@ -970,29 +1085,28 @@ public class BothGUI extends javax.swing.JFrame {
         downassemadell.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downassemadell.setText("▼");
         jPanel7.add(downassemadell, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 70, 20));
-        jPanel7.add(jProgressBar12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 100, 20));
 
-        mbdell.setEditable(false);
-        mbdell.setBackground(new java.awt.Color(255, 255, 255));
-        mbdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        mbdell.setForeground(new java.awt.Color(51, 51, 51));
-        mbdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        mbdell.setText("0");
-        mbdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        mbdell.setFocusable(false);
-        mbdell.addActionListener(new java.awt.event.ActionListener() {
+        workmbdell.setEditable(false);
+        workmbdell.setBackground(new java.awt.Color(255, 255, 255));
+        workmbdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        workmbdell.setForeground(new java.awt.Color(51, 51, 51));
+        workmbdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        workmbdell.setText("0");
+        workmbdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        workmbdell.setFocusable(false);
+        workmbdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbdellActionPerformed(evt);
+                workmbdellActionPerformed(evt);
             }
         });
-        jPanel7.add(mbdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 45, 30, 30));
+        jPanel7.add(workmbdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 45, 30, 30));
 
         jTextField35.setEditable(false);
         jTextField35.setBackground(new java.awt.Color(255, 255, 255));
         jTextField35.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField35.setForeground(new java.awt.Color(51, 51, 51));
         jTextField35.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField35.setText("0");
+        jTextField35.setText("25");
         jTextField35.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField35.setFocusable(false);
         jTextField35.addActionListener(new java.awt.event.ActionListener() {
@@ -1002,27 +1116,27 @@ public class BothGUI extends javax.swing.JFrame {
         });
         jPanel7.add(jTextField35, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 45, 30, 30));
 
-        jTextField36.setEditable(false);
-        jTextField36.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField36.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField36.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField36.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField36.setText("0");
-        jTextField36.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField36.setFocusable(false);
-        jTextField36.addActionListener(new java.awt.event.ActionListener() {
+        powerdell.setEditable(false);
+        powerdell.setBackground(new java.awt.Color(255, 255, 255));
+        powerdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        powerdell.setForeground(new java.awt.Color(51, 51, 51));
+        powerdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        powerdell.setText("0");
+        powerdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        powerdell.setFocusable(false);
+        powerdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField36ActionPerformed(evt);
+                powerdellActionPerformed(evt);
             }
         });
-        jPanel7.add(jTextField36, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 145, 30, 30));
+        jPanel7.add(powerdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 145, 30, 30));
 
         jTextField37.setEditable(false);
         jTextField37.setBackground(new java.awt.Color(255, 255, 255));
         jTextField37.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField37.setForeground(new java.awt.Color(51, 51, 51));
         jTextField37.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField37.setText("0");
+        jTextField37.setText("10");
         jTextField37.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField37.setFocusable(false);
         jTextField37.addActionListener(new java.awt.event.ActionListener() {
@@ -1037,7 +1151,7 @@ public class BothGUI extends javax.swing.JFrame {
         jTextField38.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField38.setForeground(new java.awt.Color(51, 51, 51));
         jTextField38.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField38.setText("0");
+        jTextField38.setText("20");
         jTextField38.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField38.setFocusable(false);
         jTextField38.addActionListener(new java.awt.event.ActionListener() {
@@ -1047,57 +1161,57 @@ public class BothGUI extends javax.swing.JFrame {
         });
         jPanel7.add(jTextField38, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 195, 30, 30));
 
-        jTextField39.setEditable(false);
-        jTextField39.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField39.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField39.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField39.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField39.setText("0");
-        jTextField39.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField39.setFocusable(false);
-        jTextField39.addActionListener(new java.awt.event.ActionListener() {
+        cpudell.setEditable(false);
+        cpudell.setBackground(new java.awt.Color(255, 255, 255));
+        cpudell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        cpudell.setForeground(new java.awt.Color(51, 51, 51));
+        cpudell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cpudell.setText("0");
+        cpudell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        cpudell.setFocusable(false);
+        cpudell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField39ActionPerformed(evt);
+                cpudellActionPerformed(evt);
             }
         });
-        jPanel7.add(jTextField39, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 195, 30, 30));
+        jPanel7.add(cpudell, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 195, 30, 30));
 
-        jTextField40.setEditable(false);
-        jTextField40.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField40.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField40.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField40.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField40.setText("0");
-        jTextField40.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField40.setFocusable(false);
-        jTextField40.addActionListener(new java.awt.event.ActionListener() {
+        mbdell.setEditable(false);
+        mbdell.setBackground(new java.awt.Color(255, 255, 255));
+        mbdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        mbdell.setForeground(new java.awt.Color(51, 51, 51));
+        mbdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        mbdell.setText("0");
+        mbdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        mbdell.setFocusable(false);
+        mbdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField40ActionPerformed(evt);
+                mbdellActionPerformed(evt);
             }
         });
-        jPanel7.add(jTextField40, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 45, 30, 30));
+        jPanel7.add(mbdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 45, 30, 30));
 
-        jTextField41.setEditable(false);
-        jTextField41.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField41.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField41.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField41.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField41.setText("0");
-        jTextField41.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField41.setFocusable(false);
-        jTextField41.addActionListener(new java.awt.event.ActionListener() {
+        ramdell.setEditable(false);
+        ramdell.setBackground(new java.awt.Color(255, 255, 255));
+        ramdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        ramdell.setForeground(new java.awt.Color(51, 51, 51));
+        ramdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ramdell.setText("0");
+        ramdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        ramdell.setFocusable(false);
+        ramdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField41ActionPerformed(evt);
+                ramdellActionPerformed(evt);
             }
         });
-        jPanel7.add(jTextField41, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 95, 30, 30));
+        jPanel7.add(ramdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 95, 30, 30));
 
         jTextField42.setEditable(false);
         jTextField42.setBackground(new java.awt.Color(255, 255, 255));
         jTextField42.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jTextField42.setForeground(new java.awt.Color(51, 51, 51));
         jTextField42.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField42.setText("0");
+        jTextField42.setText("35");
         jTextField42.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
         jTextField42.setFocusable(false);
         jTextField42.addActionListener(new java.awt.event.ActionListener() {
@@ -1122,35 +1236,20 @@ public class BothGUI extends javax.swing.JFrame {
         });
         jPanel7.add(jTextField43, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 195, 30, 30));
 
-        jTextField44.setEditable(false);
-        jTextField44.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField44.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField44.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField44.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField44.setText("0");
-        jTextField44.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField44.setFocusable(false);
-        jTextField44.addActionListener(new java.awt.event.ActionListener() {
+        graphicdell.setEditable(false);
+        graphicdell.setBackground(new java.awt.Color(255, 255, 255));
+        graphicdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        graphicdell.setForeground(new java.awt.Color(51, 51, 51));
+        graphicdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        graphicdell.setText("0");
+        graphicdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
+        graphicdell.setFocusable(false);
+        graphicdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField44ActionPerformed(evt);
+                graphicdellActionPerformed(evt);
             }
         });
-        jPanel7.add(jTextField44, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 245, 30, 30));
-
-        jTextField45.setEditable(false);
-        jTextField45.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField45.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField45.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField45.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField45.setText("0");
-        jTextField45.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField45.setFocusable(false);
-        jTextField45.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField45ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jTextField45, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 295, 30, 30));
+        jPanel7.add(graphicdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 245, 30, 30));
 
         jLabel27.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
@@ -1164,42 +1263,42 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel28.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 80, 40));
 
-        jTextField46.setEditable(false);
-        jTextField46.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField46.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField46.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField46.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField46.setText("0");
-        jTextField46.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTextField46.setFocusable(false);
-        jTextField46.addActionListener(new java.awt.event.ActionListener() {
+        standardpcdell.setEditable(false);
+        standardpcdell.setBackground(new java.awt.Color(0, 0, 0));
+        standardpcdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        standardpcdell.setForeground(new java.awt.Color(255, 255, 255));
+        standardpcdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        standardpcdell.setText("0");
+        standardpcdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        standardpcdell.setFocusable(false);
+        standardpcdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField46ActionPerformed(evt);
+                standardpcdellActionPerformed(evt);
             }
         });
-        jPanel7.add(jTextField46, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 80, 30));
+        jPanel7.add(standardpcdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 80, 30));
 
-        jLabel29.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("Standard");
-        jLabel29.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel7.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 80, 40));
+        Graphic.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        Graphic.setForeground(new java.awt.Color(0, 0, 0));
+        Graphic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Graphic.setText("Graphic");
+        Graphic.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel7.add(Graphic, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 80, 40));
 
-        jTextField47.setEditable(false);
-        jTextField47.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField47.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField47.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField47.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField47.setText("0");
-        jTextField47.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTextField47.setFocusable(false);
-        jTextField47.addActionListener(new java.awt.event.ActionListener() {
+        graphicpcdell.setEditable(false);
+        graphicpcdell.setBackground(new java.awt.Color(0, 0, 0));
+        graphicpcdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        graphicpcdell.setForeground(new java.awt.Color(255, 255, 255));
+        graphicpcdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        graphicpcdell.setText("0");
+        graphicpcdell.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        graphicpcdell.setFocusable(false);
+        graphicpcdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField47ActionPerformed(evt);
+                graphicpcdellActionPerformed(evt);
             }
         });
-        jPanel7.add(jTextField47, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 80, 30));
+        jPanel7.add(graphicpcdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 80, 30));
 
         jLabel30.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
@@ -1212,21 +1311,6 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel31.setText("Motherboard");
         jLabel31.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 100, 40));
-
-        jTextField48.setEditable(false);
-        jTextField48.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField48.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField48.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField48.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField48.setText("0");
-        jTextField48.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
-        jTextField48.setFocusable(false);
-        jTextField48.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField48ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jTextField48, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 295, 30, 30));
 
         jLabel32.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(0, 0, 0));
@@ -1246,35 +1330,35 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel33.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel8.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 150, 40));
 
-        jTextField49.setEditable(false);
-        jTextField49.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField49.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField49.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField49.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField49.setText("....");
-        jTextField49.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
-        jTextField49.setFocusable(false);
-        jTextField49.addActionListener(new java.awt.event.ActionListener() {
+        pmstatedell.setEditable(false);
+        pmstatedell.setBackground(new java.awt.Color(255, 255, 255));
+        pmstatedell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        pmstatedell.setForeground(new java.awt.Color(51, 51, 51));
+        pmstatedell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pmstatedell.setText("....");
+        pmstatedell.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        pmstatedell.setFocusable(false);
+        pmstatedell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField49ActionPerformed(evt);
+                pmstatedellActionPerformed(evt);
             }
         });
-        jPanel8.add(jTextField49, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 150, 40));
+        jPanel8.add(pmstatedell, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 150, 40));
 
-        jTextField50.setEditable(false);
-        jTextField50.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField50.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField50.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField50.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField50.setText("0");
-        jTextField50.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
-        jTextField50.setFocusable(false);
-        jTextField50.addActionListener(new java.awt.event.ActionListener() {
+        foulsdell.setEditable(false);
+        foulsdell.setBackground(new java.awt.Color(255, 255, 255));
+        foulsdell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        foulsdell.setForeground(new java.awt.Color(51, 51, 51));
+        foulsdell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        foulsdell.setText("0");
+        foulsdell.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        foulsdell.setFocusable(false);
+        foulsdell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField50ActionPerformed(evt);
+                foulsdellActionPerformed(evt);
             }
         });
-        jPanel8.add(jTextField50, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 70, 40));
+        jPanel8.add(foulsdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 70, 40));
 
         jLabel34.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
@@ -1283,20 +1367,20 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel8.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 70, 40));
 
-        jTextField51.setEditable(false);
-        jTextField51.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField51.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField51.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField51.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField51.setText("0");
-        jTextField51.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
-        jTextField51.setFocusable(false);
-        jTextField51.addActionListener(new java.awt.event.ActionListener() {
+        discounteddell.setEditable(false);
+        discounteddell.setBackground(new java.awt.Color(255, 255, 255));
+        discounteddell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        discounteddell.setForeground(new java.awt.Color(51, 51, 51));
+        discounteddell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        discounteddell.setText("0");
+        discounteddell.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        discounteddell.setFocusable(false);
+        discounteddell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField51ActionPerformed(evt);
+                discounteddellActionPerformed(evt);
             }
         });
-        jPanel8.add(jTextField51, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 120, 40));
+        jPanel8.add(discounteddell, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 120, 40));
 
         jLabel35.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
@@ -1308,24 +1392,24 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel36.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel36.setText("Proyect Manager");
+        jLabel36.setText("Director");
         jLabel36.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel8.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 150, 40));
 
-        jTextField52.setEditable(false);
-        jTextField52.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField52.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField52.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField52.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField52.setText("....");
-        jTextField52.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
-        jTextField52.setFocusable(false);
-        jTextField52.addActionListener(new java.awt.event.ActionListener() {
+        directordell.setEditable(false);
+        directordell.setBackground(new java.awt.Color(255, 255, 255));
+        directordell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        directordell.setForeground(new java.awt.Color(51, 51, 51));
+        directordell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        directordell.setText("....");
+        directordell.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        directordell.setFocusable(false);
+        directordell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField52ActionPerformed(evt);
+                directordellActionPerformed(evt);
             }
         });
-        jPanel8.add(jTextField52, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 150, 40));
+        jPanel8.add(directordell, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 150, 40));
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 360, 570, 160));
 
@@ -1384,13 +1468,13 @@ public class BothGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void standardpcappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardpcappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_standardpcappleActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void pmstateappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pmstateappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_pmstateappleActionPerformed
 
     private void downmbappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downmbappleActionPerformed
         // TODO add your handling code here:
@@ -1400,9 +1484,9 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_upmbappleActionPerformed
 
-    private void ramappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ramappleActionPerformed
+    private void workramappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workramappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ramappleActionPerformed
+    }//GEN-LAST:event_workramappleActionPerformed
 
     private void downramappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downramappleActionPerformed
         // TODO add your handling code here:
@@ -1412,9 +1496,9 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_upramappleActionPerformed
 
-    private void powerappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerappleActionPerformed
+    private void workpowerappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workpowerappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_powerappleActionPerformed
+    }//GEN-LAST:event_workpowerappleActionPerformed
 
     private void uppowerappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uppowerappleActionPerformed
         // TODO add your handling code here:
@@ -1432,33 +1516,33 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
 
-    private void mbappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbappleActionPerformed
+    private void workmbappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workmbappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbappleActionPerformed
+    }//GEN-LAST:event_workmbappleActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void foulsappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foulsappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_foulsappleActionPerformed
 
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+    private void powerappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
+    }//GEN-LAST:event_powerappleActionPerformed
 
     private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField14ActionPerformed
 
-    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+    private void cpuappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpuappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField15ActionPerformed
+    }//GEN-LAST:event_cpuappleActionPerformed
 
-    private void jTextField18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField18ActionPerformed
+    private void mbappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField18ActionPerformed
+    }//GEN-LAST:event_mbappleActionPerformed
 
-    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
+    private void ramappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ramappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField19ActionPerformed
+    }//GEN-LAST:event_ramappleActionPerformed
 
     private void jTextField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField20ActionPerformed
         // TODO add your handling code here:
@@ -1472,37 +1556,29 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField13ActionPerformed
 
-    private void jTextField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField22ActionPerformed
+    private void graphicappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphicappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField22ActionPerformed
-
-    private void jTextField23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField23ActionPerformed
+    }//GEN-LAST:event_graphicappleActionPerformed
 
     private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField16ActionPerformed
 
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
+    private void graphicpcappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphicpcappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
+    }//GEN-LAST:event_graphicpcappleActionPerformed
 
     private void jTextField24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField24ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField24ActionPerformed
 
-    private void jTextField25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField25ActionPerformed
+    private void discountedappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountedappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField25ActionPerformed
+    }//GEN-LAST:event_discountedappleActionPerformed
 
-    private void jTextField26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField26ActionPerformed
+    private void directorappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorappleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField26ActionPerformed
-
-    private void jTextField27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField27ActionPerformed
+    }//GEN-LAST:event_directorappleActionPerformed
 
     private void jTextField28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField28ActionPerformed
         // TODO add your handling code here:
@@ -1516,9 +1592,9 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_upmbdellActionPerformed
 
-    private void ramdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ramdellActionPerformed
+    private void workramdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workramdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ramdellActionPerformed
+    }//GEN-LAST:event_workramdellActionPerformed
 
     private void downramdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downramdellActionPerformed
         // TODO add your handling code here:
@@ -1528,9 +1604,9 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_upramdellActionPerformed
 
-    private void powerdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerdellActionPerformed
+    private void workpowerdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workpowerdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_powerdellActionPerformed
+    }//GEN-LAST:event_workpowerdellActionPerformed
 
     private void uppowerdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uppowerdellActionPerformed
         // TODO add your handling code here:
@@ -1540,17 +1616,17 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_downpowerdellActionPerformed
 
-    private void mbdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbdellActionPerformed
+    private void workmbdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workmbdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbdellActionPerformed
+    }//GEN-LAST:event_workmbdellActionPerformed
 
     private void jTextField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField35ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField35ActionPerformed
 
-    private void jTextField36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField36ActionPerformed
+    private void powerdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField36ActionPerformed
+    }//GEN-LAST:event_powerdellActionPerformed
 
     private void jTextField37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField37ActionPerformed
         // TODO add your handling code here:
@@ -1560,17 +1636,17 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField38ActionPerformed
 
-    private void jTextField39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField39ActionPerformed
+    private void cpudellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpudellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField39ActionPerformed
+    }//GEN-LAST:event_cpudellActionPerformed
 
-    private void jTextField40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField40ActionPerformed
+    private void mbdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField40ActionPerformed
+    }//GEN-LAST:event_mbdellActionPerformed
 
-    private void jTextField41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField41ActionPerformed
+    private void ramdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ramdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField41ActionPerformed
+    }//GEN-LAST:event_ramdellActionPerformed
 
     private void jTextField42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField42ActionPerformed
         // TODO add your handling code here:
@@ -1580,41 +1656,33 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField43ActionPerformed
 
-    private void jTextField44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField44ActionPerformed
+    private void graphicdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphicdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField44ActionPerformed
+    }//GEN-LAST:event_graphicdellActionPerformed
 
-    private void jTextField45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField45ActionPerformed
+    private void standardpcdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardpcdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField45ActionPerformed
+    }//GEN-LAST:event_standardpcdellActionPerformed
 
-    private void jTextField46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField46ActionPerformed
+    private void graphicpcdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphicpcdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField46ActionPerformed
+    }//GEN-LAST:event_graphicpcdellActionPerformed
 
-    private void jTextField47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField47ActionPerformed
+    private void pmstatedellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pmstatedellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField47ActionPerformed
+    }//GEN-LAST:event_pmstatedellActionPerformed
 
-    private void jTextField48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField48ActionPerformed
+    private void foulsdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foulsdellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField48ActionPerformed
+    }//GEN-LAST:event_foulsdellActionPerformed
 
-    private void jTextField49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField49ActionPerformed
+    private void discounteddellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discounteddellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField49ActionPerformed
+    }//GEN-LAST:event_discounteddellActionPerformed
 
-    private void jTextField50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField50ActionPerformed
+    private void directordellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directordellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField50ActionPerformed
-
-    private void jTextField51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField51ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField51ActionPerformed
-
-    private void jTextField52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField52ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField52ActionPerformed
+    }//GEN-LAST:event_directordellActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1642,20 +1710,24 @@ public class BothGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(BothGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                /*
                 new BothGUI().setVisible(true);
+*/
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField assemapple;
-    private javax.swing.JTextField assemdell;
+    private javax.swing.JLabel Graphic;
     private javax.swing.JTextField cpuapple;
     private javax.swing.JTextField cpudell;
+    private javax.swing.JTextField directorapple;
+    private javax.swing.JTextField directordell;
+    private javax.swing.JTextField discountedapple;
+    private javax.swing.JTextField discounteddell;
     private javax.swing.JButton downassemadell;
     private javax.swing.JButton downassemapple;
     private javax.swing.JButton downcpuapple;
@@ -1668,8 +1740,12 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JButton downpowerdell;
     private javax.swing.JButton downramapple;
     private javax.swing.JButton downramdell;
+    private javax.swing.JTextField foulsapple;
+    private javax.swing.JTextField foulsdell;
     private javax.swing.JTextField graphicapple;
     private javax.swing.JTextField graphicdell;
+    private javax.swing.JTextField graphicpcapple;
+    private javax.swing.JTextField graphicpcdell;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1691,7 +1767,6 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
@@ -1717,61 +1792,37 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar10;
     private javax.swing.JProgressBar jProgressBar11;
-    private javax.swing.JProgressBar jProgressBar12;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JProgressBar jProgressBar3;
     private javax.swing.JProgressBar jProgressBar4;
     private javax.swing.JProgressBar jProgressBar5;
-    private javax.swing.JProgressBar jProgressBar6;
     private javax.swing.JProgressBar jProgressBar7;
     private javax.swing.JProgressBar jProgressBar8;
     private javax.swing.JProgressBar jProgressBar9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField37;
     private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField39;
-    private javax.swing.JTextField jTextField40;
-    private javax.swing.JTextField jTextField41;
     private javax.swing.JTextField jTextField42;
     private javax.swing.JTextField jTextField43;
-    private javax.swing.JTextField jTextField44;
-    private javax.swing.JTextField jTextField45;
-    private javax.swing.JTextField jTextField46;
-    private javax.swing.JTextField jTextField47;
-    private javax.swing.JTextField jTextField48;
-    private javax.swing.JTextField jTextField49;
-    private javax.swing.JTextField jTextField50;
-    private javax.swing.JTextField jTextField51;
-    private javax.swing.JTextField jTextField52;
     private javax.swing.JTextField mbapple;
     private javax.swing.JTextField mbdell;
+    private javax.swing.JTextField pmstateapple;
+    private javax.swing.JTextField pmstatedell;
     private javax.swing.JTextField powerapple;
     private javax.swing.JTextField powerdell;
     private javax.swing.JTextField ramapple;
     private javax.swing.JTextField ramdell;
+    private javax.swing.JTextField standardpcapple;
+    private javax.swing.JTextField standardpcdell;
     private javax.swing.JButton upassemapple;
     private javax.swing.JButton upassemdell;
     private javax.swing.JButton upcpuapple;
@@ -1784,5 +1835,17 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JButton uppowerdell;
     private javax.swing.JButton upramapple;
     private javax.swing.JButton upramdell;
+    private javax.swing.JTextField workassemapple;
+    private javax.swing.JTextField workassemdell;
+    private javax.swing.JTextField workcpuapple;
+    private javax.swing.JTextField workcpudell;
+    private javax.swing.JTextField workgraphicapple;
+    private javax.swing.JTextField workgraphicdell;
+    private javax.swing.JTextField workmbapple;
+    private javax.swing.JTextField workmbdell;
+    private javax.swing.JTextField workpowerapple;
+    private javax.swing.JTextField workpowerdell;
+    private javax.swing.JTextField workramapple;
+    private javax.swing.JTextField workramdell;
     // End of variables declaration//GEN-END:variables
 }
