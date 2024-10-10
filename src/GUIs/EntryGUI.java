@@ -86,7 +86,9 @@ public class EntryGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startbuttonActionPerformed
-        // TODO add your handling code here:
+            BothGUI m = new BothGUI(); 
+            this.setVisible(false); 
+            m.setVisible(true);
     }//GEN-LAST:event_startbuttonActionPerformed
 
     /**

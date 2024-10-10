@@ -11,13 +11,37 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Santiago Fernandez
+ * @author Santiago Fernandez y sofi Leon 
  */
+
+
+
+/*
+Capacidad array
+0 - placa base 
+1 - cpu
+2- Ram
+3- fuente 
+4- tarjetas
+*/
+
+/*
+Array cantidad de trabajadores 
+0 - placa base 
+1 - cpu
+2- Ram
+3- fuente 
+4- tarjetas
+5- ensambladores
+
+*/
+
+
 public final class Empresa extends Thread{
-    private String nombre;
-    private int num_empleados;
-    private int capacidad_almacenamiento;
-    private final Semaphore semaforo;
+    private String nombre; 
+    private int num_empleados; 
+    private int [] capacidad_almacenamiento; 
+    private final Semaphore semaforo; 
     private int days_to_hand_in; 
     private int days_in_mls; 
     private Object[] empleados;
@@ -32,8 +56,9 @@ public final class Empresa extends Thread{
     private final int[] cantidadTrabajadores;
     private int indiceTrabajador ;
     
+   
     
-    public Empresa(String nombre,int num_empleados, int capacidad_almacenamiento,int days_hand_in, int days_in_mls, int CSprice, int CGCprice){
+    public Empresa(String nombre,int num_empleados, int [] capacidad_almacenamiento,int days_hand_in, int days_in_mls, int CSprice, int CGCprice, int[] worker_cuantity){
         this.nombre=nombre;
         this.num_empleados=num_empleados;
         this.capacidad_almacenamiento=capacidad_almacenamiento;
@@ -49,9 +74,9 @@ public final class Empresa extends Thread{
         this.storage = new Almacen (CSprice, CGCprice); 
         this.fault = false; 
         this.pmcounter = 3; 
-        this.cantidadTrabajadores= new int[6];
+        this.cantidadTrabajadores=worker_cuantity; 
         this.indiceTrabajador=0;
-        initialize_workers();
+        //initialize_workers();
         
      }
     /*Sofi antes que me explotes a preguntas
@@ -63,6 +88,11 @@ public final class Empresa extends Thread{
     a tambien cambie a empresa a final para facilidad de inicar workers
     aaa me acorde revisando, hay que ajustar las cosas para cada empresa*/
 public void agregarTrabajador(String tipoTrabajador, Almacen almacen, int cantidadComponentes) {
+    for (int i = 0; i < empleados.length; i++) {
+        if (empleados[i] == null) {
+            indiceTrabajador = i; 
+        }
+    }
     switch (tipoTrabajador) {
         case "ensamblador":
             cantidadTrabajadores[0]++;
@@ -89,8 +119,128 @@ public void agregarTrabajador(String tipoTrabajador, Almacen almacen, int cantid
             empleados[indiceTrabajador] = new Empleado("Cpus", almacen, cantidadComponentes, this.days_in_mls, this);
             break;
     }
-    indiceTrabajador++;
 }
+
+public String EliminarTrabajador(String tipoTrabajador, Almacen almacen, int cantidadComponentes) {
+    String completado = "Se elimino el trabajador"; 
+    String error = "No puedes eliminar cuando hay un solo trabajador de este tipo"; 
+    boolean flag = false; 
+    boolean deleted = false; 
+    int counter = 0; 
+    switch (tipoTrabajador) {
+        case "ensamblador":
+            if (cantidadTrabajadores[0] != 1) {
+                cantidadTrabajadores[0] --;
+                while (!deleted) {
+                    if ((empleados[counter] instanceof Ensamblador)) {
+                       empleados[counter] = null; 
+                       deleted = true; 
+                    }
+                    counter++; 
+                }
+            } else {
+                flag = true; 
+            }
+            break; 
+        case "placa base":
+             if (cantidadTrabajadores[1] != 1) {
+                cantidadTrabajadores[1] --;
+                Empleado n; 
+                while (!deleted) {
+                    if (!(empleados[counter] instanceof Ensamblador)) {
+                        n = (Empleado) empleados[counter]; 
+                        if (n.getTipo_empleado().equals("placa base")) {
+                            empleados[counter] = null; 
+                            deleted = true; 
+                        }
+                        counter++; 
+                    }
+                }
+            } else {
+                flag = true; 
+            }
+             break;
+        case "memoria ram":
+            if (cantidadTrabajadores[2] != 1) {
+                cantidadTrabajadores[2]--;
+                Empleado n; 
+                while (!deleted) {
+                    if (!(empleados[counter] instanceof Ensamblador)) {
+                        n = (Empleado) empleados[counter]; 
+                        if (n.getTipo_empleado().equals("memoria ram")) {
+                            empleados[counter] = null; 
+                            deleted = true; 
+                        }
+                        counter++; 
+                    }
+                } 
+            }else {
+                flag = true; 
+            }
+            break;
+        case "tarjetas graficas":
+            if (cantidadTrabajadores[3] != 1) {
+                cantidadTrabajadores[3]--;
+                Empleado n; 
+                while (!deleted) {
+                    if (!(empleados[counter] instanceof Ensamblador)) {
+                        n = (Empleado) empleados[counter]; 
+                        if (n.getTipo_empleado().equals("tarjetas graficas")) {
+                            empleados[counter] = null; 
+                            deleted = true; 
+                        }
+                        counter++; 
+                    }
+                }
+            } else {
+                flag = true; 
+            }
+                break;
+        case "fuente":
+            if (cantidadTrabajadores[4] != 1) {
+                cantidadTrabajadores[4]--;
+                Empleado n; 
+                while (!deleted) {
+                    if (!(empleados[counter] instanceof Ensamblador)) {
+                        n = (Empleado) empleados[counter]; 
+                        if (n.getTipo_empleado().equals("fuente")) {
+                            empleados[counter] = null; 
+                            deleted = true; 
+                        }
+                        counter++; 
+                    }
+                }
+            } else {
+             flag = true; 
+            }
+            break;
+        case "Cpus":
+            if (cantidadTrabajadores[5] != 1) {
+                cantidadTrabajadores[5]--;
+                Empleado n; 
+                while (!deleted) {
+                    if (!(empleados[counter] instanceof Ensamblador)) {
+                        n = (Empleado) empleados[counter]; 
+                        if (n.getTipo_empleado().equals("Cpus")) {
+                            empleados[counter] = null; 
+                            deleted = true; 
+                        }
+                        counter++; 
+                    }
+                }
+            } else {
+                flag = true; 
+            }
+            break;       
+    }
+    if (flag) {
+        return error; 
+    } else {
+        return completado; 
+    }
+}
+
+
 
 public int[] getCantidadTrabajadores() {
     return cantidadTrabajadores;
@@ -99,13 +249,47 @@ public int[] getCantidadTrabajadores() {
 public Object[] getTrabajadores() {
     return empleados;
 }
-public void initialize_workers() {// aqui varia las cantidaddes componentes que se añade segun nosotros , osea lo del numero de carnet luego se soluciona
-    agregarTrabajador("ensamblador", this.storage, 0);
-    agregarTrabajador("placa base", this.storage, 1);
-    agregarTrabajador("memoria ram", this.storage, 1);
-    agregarTrabajador("tarjetas graficas", this.storage, 1);
-    agregarTrabajador("fuente", this.storage, 1);
-    agregarTrabajador("Cpus", this.storage, 1);
+public void initialize_workers() {// 
+   
+    if (cantidadTrabajadores.length == 1) {
+        agregarTrabajador("ensamblador", this.storage, 0); 
+        agregarTrabajador("placa base", this.storage, capacidad_almacenamiento[0]);
+        agregarTrabajador("memoria ram", this.storage, capacidad_almacenamiento[2]);
+        agregarTrabajador("tarjetas graficas", this.storage, capacidad_almacenamiento[4]);
+        agregarTrabajador("fuente", this.storage, capacidad_almacenamiento[3]);
+        agregarTrabajador("Cpus", this.storage, capacidad_almacenamiento[1]);
+    } else {
+        for (int i = 0; i < cantidadTrabajadores.length; i++) {
+            if (i == 0) {
+                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                    agregarTrabajador("placa base", this.storage, capacidad_almacenamiento[0]);
+                }
+            } else if (i == 1) {
+                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                    agregarTrabajador("Cpus", this.storage, capacidad_almacenamiento[1]);
+                }
+            } else if (i==2) {
+                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                    agregarTrabajador("memoria ram", this.storage, capacidad_almacenamiento[2]);
+                }
+            } else if (i==3) {
+                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                    agregarTrabajador("fuente", this.storage, capacidad_almacenamiento[3]);
+                } 
+            } else if (i==4) {
+                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                   agregarTrabajador("tarjetas graficas", this.storage, capacidad_almacenamiento[4]);
+                }         
+            } else if (i==5) {
+                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                   agregarTrabajador("ensamblador", this.storage, 0); 
+                }  
+            }
+        }
+       
+    }
+    
+    
 }
     public String getNombre() {
         return nombre;
@@ -123,43 +307,28 @@ public void initialize_workers() {// aqui varia las cantidaddes componentes que 
         this.num_empleados = num_empleados;
     }
 
-    public int getCapacidad_almacenamiento() {
-        return capacidad_almacenamiento;
-    }
-
-    public void setCapacidad_almacenamiento(int capacidad_almacenamiento) {
-        this.capacidad_almacenamiento = capacidad_almacenamiento;
-    }
-    
-    
+  
    public void paying_workers(){
-    for (int i = 0; i < getNum_empleados(); i++) {
-        Object workerObject = getEmpleados()[i];
+    for (int i = 0; i < getCantidadTrabajadores().length; i++) 
+        //Ensamblador
         if (i == 0) {
-            addProductioncosts(50); 
-        } else {
-            Empleado worker = (Empleado) workerObject;
-            switch(worker.getTipo_empleado()){
-                case "placa base" -> {
-                    addProductioncosts(20); 
-                }
-                case "Cpus" -> {
-                    addProductioncosts(26); 
-                }
-                case "tarjetas graficas" -> {
-                    addProductioncosts(34); 
-                }
-                case "memoria ram" -> {
-                    addProductioncosts(40); 
-                }
-                case "fuente" -> {
-                    addProductioncosts(16); 
-                }
-                default -> System.out.println("metiste mal el nombre del empleado");   
-            }
+            addProductioncosts(50 * getCantidadTrabajadores()[0]); 
+        //placa base 
+        } else if (i == 1) {
+             addProductioncosts(20 * getCantidadTrabajadores()[1]); 
+         //Memoria Ram
+        } else if (i ==2) {
+             addProductioncosts(40 * getCantidadTrabajadores()[2]); 
+        //tarjetas graficas
+        } else if (i ==3) {
+             addProductioncosts(34 * getCantidadTrabajadores()[3]); 
+         //Fuentes de alimentación
+        } else if (i == 4) {
+            addProductioncosts(16 *  getCantidadTrabajadores()[4] );
+         //CPus
+        } else if (i == 5) {
+            addProductioncosts(26 *  getCantidadTrabajadores()[5] ); 
         }
-    }
-    
     //Paying the director 
     addProductioncosts(60); 
     //Paying the project manager; 
@@ -195,7 +364,6 @@ public void work_business() {
                 threads[i] = null; //sofi esto es por si el objeto es null para que no se creen hilos extra ps
             }
         }
-      
         getPm().work();
         getDirector().work();
         try {
