@@ -10,7 +10,7 @@ package Clases;
  *
  * @author Katiuska Torres
  */
-
+import java.time.Duration;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +29,12 @@ public class Director extends Thread{
         this.semaforo= new Semaphore(1);
         this.business = business;
         this.days_mls = business.getDays_in_mls(); 
+    }
+    public void Revisar_contador_dias(){
+    }
+    public void Enviar_computadoras(){
+    }
+    public void Registrar_ganancias(){
     }
 
     public int getContador_dias() {
