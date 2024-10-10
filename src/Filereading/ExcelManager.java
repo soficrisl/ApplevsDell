@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 
 /*
+Empresa A 
 0 = duracion de dias
 1 = deadline 
 2 = ensambladores 
@@ -26,68 +27,60 @@ import java.util.logging.Logger;
 5 = ram 
 6 = fuente 
 7 = tarjetas 
+Empresa B 
+8 = duracion de dias
+9 = deadline 
+10 = ensambladores 
+11 =placa base
+12 =  cpu 
+13 = ram 
+14 = fuente 
+15 = tarjetas 
 
 
 
 
 */
 public class ExcelManager {
-   private String path; 
-   private int Array []; 
-   private int max_workers; 
 
-    public ExcelManager(String path, int max_workers) {
-        this.path = path;
-        this.max_workers = max_workers;
-    }
-   
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public int[] getArray() {
-        return Array;
-    }
-
-    public void setArray(int[] Array) {
-        this.Array = Array;
+    public ExcelManager() {
     }
 
     public int [] GetValues () {
         int [] base = {0}; 
-        File file = new File(getPath()); 
+        String path = "test\\personas.csv";
+        File file = new File(path);
+        int [] csv = new int[16];
         Scanner sc; 
-        int [] csv = new int[8]; 
-        int counter = 0; 
-        int sum = 0; 
         boolean flag = false; 
-       try {
+        try {
            sc = new Scanner(file);
            sc.useDelimiter(","); 
-           while (sc.hasNext()){
-               csv[counter] = Integer.parseInt(sc.next());
+           while (sc.hasNext()) {
+                String m = sc.next(); 
+                String [] first = m.split("\r\n"); 
+                String h; 
+                for (int i = 0; i < first.length; i++) {
+                    h = first[i];
+                    int s = Integer.parseInt(h); 
+                }
+                
+                for (int i = 0; i < first.length; i++) {
+                   csv[i] = Integer.parseInt(first[i]); 
+               }
+                flag = true; 
+                
            }
-           
+           sc.close(); 
        } catch (FileNotFoundException ex) {
            Logger.getLogger(ExcelManager.class.getName()).log(Level.SEVERE, null, ex);
        }
-
-        return base; 
+       if (flag) {
+            return csv; 
+       } else {
+            return base;  
+       }
     }
 
-    public int getMax_workers() {
-        return max_workers;
-    }
-
-    public void setMax_workers(int max_workers) {
-        this.max_workers = max_workers;
-    }
-   
-   
     
-    
-}
+    }

@@ -8,6 +8,7 @@ import Clases.Almacen;
 import Clases.Empleado;
 import Clases.Empresa;
 import Clases.Ensamblador;
+import Filereading.ExcelManager;
 
 
 /**
@@ -22,15 +23,11 @@ public class Simulation {
      * 
      */
     public static void main(String[] args)  {
-       
-  
-    
-
-    Empresa business = new Empresa("Apple", 6, 1000, 30, 2000, 100, 200);
-     
-    
-    business.work_business();
-
+      ExcelManager x = new ExcelManager(); 
+      int[] array = x.GetValues(); 
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
        
 
     }
