@@ -32,8 +32,9 @@ public class EntryGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        startbutton = new javax.swing.JButton();
+        startbuttonold = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        startbuttonnew = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
@@ -61,22 +62,35 @@ public class EntryGUI extends javax.swing.JFrame {
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.darkGray, null, null));
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 600, 80));
 
-        startbutton.setBackground(new java.awt.Color(255, 255, 255));
-        startbutton.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
-        startbutton.setForeground(new java.awt.Color(153, 153, 153));
-        startbutton.setText("START SIMULATION");
-        startbutton.setBorder(null);
-        startbutton.setBorderPainted(false);
-        startbutton.addActionListener(new java.awt.event.ActionListener() {
+        startbuttonold.setBackground(new java.awt.Color(255, 255, 255));
+        startbuttonold.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        startbuttonold.setForeground(new java.awt.Color(153, 153, 153));
+        startbuttonold.setText("START SIMULATION");
+        startbuttonold.setBorder(null);
+        startbuttonold.setBorderPainted(false);
+        startbuttonold.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startbuttonActionPerformed(evt);
+                startbuttonoldActionPerformed(evt);
             }
         });
-        jPanel1.add(startbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 450, 60));
+        jPanel1.add(startbuttonold, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 520, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUIs/pictures/Apple-Logosu.png"))); // NOI18N
         jLabel5.setText("jLabel5");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(822, 280, 3720, 2010));
+
+        startbuttonnew.setBackground(new java.awt.Color(255, 255, 255));
+        startbuttonnew.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        startbuttonnew.setForeground(new java.awt.Color(153, 153, 153));
+        startbuttonnew.setText("START NEW SIMULATION");
+        startbuttonnew.setBorder(null);
+        startbuttonnew.setBorderPainted(false);
+        startbuttonnew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startbuttonnewActionPerformed(evt);
+            }
+        });
+        jPanel1.add(startbuttonnew, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 520, 40));
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 760, 430));
 
@@ -85,11 +99,16 @@ public class EntryGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void startbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startbuttonActionPerformed
-            BothGUI m = new BothGUI(); 
+    private void startbuttonoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startbuttonoldActionPerformed
+            int [] base = {0};
+            BothGUI m = new BothGUI(base); 
             this.setVisible(false); 
             m.setVisible(true);
-    }//GEN-LAST:event_startbuttonActionPerformed
+    }//GEN-LAST:event_startbuttonoldActionPerformed
+
+    private void startbuttonnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startbuttonnewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startbuttonnewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,6 +152,7 @@ public class EntryGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton startbutton;
+    private javax.swing.JButton startbuttonnew;
+    private javax.swing.JButton startbuttonold;
     // End of variables declaration//GEN-END:variables
 }

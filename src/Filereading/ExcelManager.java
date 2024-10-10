@@ -18,9 +18,10 @@ import java.util.logging.Logger;
 
 
 /*
-Empresa A 
+
 0 = duracion de dias
 1 = deadline 
+Empresa A 
 2 = ensambladores 
 3 =placa base
 4 =  cpu 
@@ -28,8 +29,6 @@ Empresa A
 6 = fuente 
 7 = tarjetas 
 Empresa B 
-8 = duracion de dias
-9 = deadline 
 10 = ensambladores 
 11 =placa base
 12 =  cpu 
@@ -50,7 +49,7 @@ public class ExcelManager {
         int [] base = {0}; 
         String path = "test\\personas.csv";
         File file = new File(path);
-        int [] csv = new int[16];
+        int [] csv = new int[14];
         Scanner sc; 
         boolean flag = false; 
         try {

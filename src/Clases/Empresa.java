@@ -55,10 +55,11 @@ public final class Empresa extends Thread{
     private int pmcounter; 
     private final int[] cantidadTrabajadores;
     private int indiceTrabajador ;
+    private int [] day_w; 
     
    
     
-    public Empresa(String nombre,int num_empleados, int [] capacidad_almacenamiento,int days_hand_in, int days_in_mls, int CSprice, int CGCprice, int[] worker_cuantity){
+    public Empresa(String nombre,int num_empleados, int [] capacidad_almacenamiento,int days_hand_in, int days_in_mls, int CSprice, int CGCprice, int[] worker_cuantity, int[]day_worker){
         this.nombre=nombre;
         this.num_empleados=num_empleados;
         this.capacidad_almacenamiento=capacidad_almacenamiento;
@@ -76,7 +77,9 @@ public final class Empresa extends Thread{
         this.pmcounter = 3; 
         this.cantidadTrabajadores=worker_cuantity; 
         this.indiceTrabajador=0;
-        //initialize_workers();
+        this.day_w = day_worker; 
+        
+       
         
      }
     /*Sofi antes que me explotes a preguntas
@@ -100,23 +103,23 @@ public void agregarTrabajador(String tipoTrabajador, Almacen almacen, int cantid
             break;
         case "placa base":
             cantidadTrabajadores[1]++;
-            empleados[indiceTrabajador] = new Empleado("placa base", almacen, cantidadComponentes, this.days_in_mls, this);
+            empleados[indiceTrabajador] = new Empleado("placa base", almacen, cantidadComponentes, this.days_in_mls, this, day_w[0]);
             break;
         case "memoria ram":
             cantidadTrabajadores[2]++;
-            empleados[indiceTrabajador] = new Empleado("memoria ram", almacen, cantidadComponentes, this.days_in_mls, this);
+            empleados[indiceTrabajador] = new Empleado("memoria ram", almacen, cantidadComponentes, this.days_in_mls, this, day_w[2]);
             break;
         case "tarjetas graficas":
             cantidadTrabajadores[3]++;
-            empleados[indiceTrabajador] = new Empleado("tarjetas graficas", almacen, cantidadComponentes, this.days_in_mls, this);
+            empleados[indiceTrabajador] = new Empleado("tarjetas graficas", almacen, cantidadComponentes, this.days_in_mls, this, day_w[4]);
             break;
         case "fuente":
             cantidadTrabajadores[4]++;
-            empleados[indiceTrabajador] = new Empleado("fuente", almacen, cantidadComponentes, this.days_in_mls, this);
+            empleados[indiceTrabajador] = new Empleado("fuente", almacen, cantidadComponentes, this.days_in_mls, this, day_w[3]);
             break;
         case "Cpus":
             cantidadTrabajadores[5]++;
-            empleados[indiceTrabajador] = new Empleado("Cpus", almacen, cantidadComponentes, this.days_in_mls, this);
+            empleados[indiceTrabajador] = new Empleado("Cpus", almacen, cantidadComponentes, this.days_in_mls, this, day_w[1]);
             break;
     }
 }
@@ -335,9 +338,11 @@ public void initialize_workers() {//
     if (isFault()) {
         if (getPmcounter()!=1) {
             setPmcounter(0); 
+            pm.setSalary_discounted(40);
         }else {
             addProductioncosts(20);
             setPmcounter(1);
+            pm.setSalary_discounted(20);
         }
     } else {
        addProductioncosts(40);  
@@ -345,6 +350,7 @@ public void initialize_workers() {//
 }
     //trabaje todo como objetos asi fue mas facil
 public void work_business() {
+    initialize_workers();
     while (true) {
         Thread[] threads = new Thread[getNum_empleados()];//esto es para revisar constantemente revisando el array
         for (int i = 0; i < getNum_empleados(); i++) {

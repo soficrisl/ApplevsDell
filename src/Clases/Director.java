@@ -22,6 +22,7 @@ public class Director extends Thread{
     private int sueldo;
     private Empresa business; 
     private int days_mls; 
+    private boolean state; // true administrative false acountability
     
     public Director(Empresa business,int sueldo){
         this.contador_dias=contador_dias;
@@ -29,6 +30,7 @@ public class Director extends Thread{
         this.semaforo= new Semaphore(1);
         this.business = business;
         this.days_mls = business.getDays_in_mls(); 
+        this.state = true; 
     }
     public void Revisar_contador_dias(){
     }
@@ -66,14 +68,17 @@ public class Director extends Thread{
     
     public void work() {
         if (getBusiness().getCounter_days() > 0) {
+            setState(true); 
             administrative(); 
         } else {
+            setState(false);
             accountability(); 
             getBusiness().change_Days(1);
         }
     } 
     
     public void administrative () {
+        
         Random rand = new Random();
         int choice = rand.nextInt(24); 
         boolean flag = false; 
@@ -87,7 +92,7 @@ public class Director extends Thread{
                         flag = true; 
                         }
                     Thread.sleep(min);
-                    choice++; 
+                    min_passed++; 
                     }
                 
                 if (flag) {
@@ -117,6 +122,14 @@ public class Director extends Thread{
 
     public void setDays_mls(int days_mls) {
         this.days_mls = days_mls;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
     
     

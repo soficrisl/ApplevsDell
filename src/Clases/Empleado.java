@@ -19,14 +19,16 @@ public class Empleado extends Thread {
     private int cantidadComponentes;
     private int days_mls; 
     private Empresa business; 
+    private int workt; 
     
 
-    public Empleado(String tipo_empleado, Almacen almacen, int cantidadComponentes, int days_mls, Empresa business) {
+    public Empleado(String tipo_empleado, Almacen almacen, int cantidadComponentes, int days_mls, Empresa business, int workt) {
         this.tipo_empleado = tipo_empleado;
         this.almacen = almacen;
         this.cantidadComponentes = cantidadComponentes;
         this.business = business;
         this.days_mls = business.getDays_in_mls();
+        this.workt = workt; 
         
     }
 
@@ -79,8 +81,7 @@ public class Empleado extends Thread {
    public void work() {
         while (true) {
             try {
-                int tiempoSleep = getTiempoSleepEmpleado(tipo_empleado);
-                int tardar_trabajo= tiempoSleep*days_mls/1000;
+                int tardar_trabajo= (workt*days_mls);
                 Thread.sleep(tardar_trabajo); 
                 almacen.Almacenar(tipo_empleado, cantidadComponentes);
             } catch (InterruptedException e) {
@@ -90,22 +91,6 @@ public class Empleado extends Thread {
         }
     }
 
-private int getTiempoSleepEmpleado(String tipo_empleado) {
-    switch (tipo_empleado) {
-        case "placa base":
-            return 2000; 
-        case "memoria ram":
-            return 3000; 
-        case "fuente":
-            return 4000;
-        case "tarjetas graficas":
-            return 7000;
-        case "CPUs":
-            return 6000;
-        default:
-            return 10000; 
-    }
-}
 
 
 }
