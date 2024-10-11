@@ -35,6 +35,10 @@ public class GUImanager  extends Thread{
            if (window.getWorkassemapple() != apple.getCantidadTrabajadores()[0]) {
                window.setworkassemapple(String.valueOf(apple.getCantidadTrabajadores()[0]));
            }
+           
+           if (window.getcoundown()!= apple.getCounter_days()) {
+               window.setcoundown(apple.getCounter_days());
+           }
             if (window.getWorkassemdell() != dell.getCantidadTrabajadores()[0]) {
                window.setworkassemdell(String.valueOf(dell.getCantidadTrabajadores()[0]));
            }
@@ -91,11 +95,7 @@ public class GUImanager  extends Thread{
             if (window.getStandardpcdell() != dell.getStorage().getCompuStandard()) {
                 window.setstandardpcdell(String.valueOf(dell.getStorage().getCompuStandard()));
             }
-            /*
-            if (window.getPmstatedell() != dell.getStorage.getCSprice()) {
-                window.setpmstatedell(String.valueOf(dell.getStorage().getCSprice()));
-            }
-            */
+
             if (window.getGraphicpcdell() != dell.getStorage().getCompuTarjeta()) {
                 window.setgraphicpcdell(String.valueOf(dell.getStorage().getCompuTarjeta()));
             }
@@ -128,13 +128,78 @@ public class GUImanager  extends Thread{
             if (window.getGraphicpcapple() != apple.getStorage().getCompuTarjeta()) {
                 window.setgraphicpcapple(String.valueOf(apple.getStorage().getCompuTarjeta()));
             }
-            if (window.getDirectorapple().equalsIgnoreCase("admin")){
-                
+            
+            if (!apple.getDirector().isState()){
+                window.setdirectorapple("account");
+            }   
+            if (apple.getDirector().isState()){
+                   window.setdirectorapple("admin");
+               }
+            if (!dell.getDirector().isState()){
+                    window.setdirectordell("account");
+                } 
+            if (dell.getDirector().isState()){
+                    window.setdirectordell("admin");
+                }
+ 
+            if (window.getFoulsdell() != dell.getPm().getFaults()) {
+                window.setfoulsdell(String.valueOf(dell.getPm().getFaults()));
             }
+            if (window.getDiscounteddell() != dell.getPm().getFaults()) {
+                window.setdiscounteddell(String.valueOf(dell.getPm().getSalary_discounted()));
+            }
+            
+            if (window.getFoulsapple() != apple.getPm().getFaults()) {
+                window.setfoulsapple(String.valueOf(apple.getPm().getFaults()));
+                }
+            if (window.getDiscountedapple() != apple.getPm().getFaults()) {
+                window.setdiscountedapple(String.valueOf(apple.getPm().getSalary_discounted()));
+            }
+            if (!apple.getPm().isState()){
+                    window.setpmstateapple("anime");
+                }
+            if (apple.getPm().isState()){
+                    window.setpmstateapple("work");
+                }
+            
+            if (!dell.getPm().isState()){
+                    window.setpmstatedell("anime");
+                }
+            if (dell.getPm().isState()){
+                    window.setpmstatedell("work");
+                }
+            
+            
+            if (window.getCostbapple() != apple.getBrutegains()){
+                window.setCostbapple(apple.getBrutegains());
+            }
+            
+            if (window.getCostoapple() != apple.getProductioncosts()){
+                window.setCostoapple(apple.getProductioncosts());
+            }
+            
+            if (window.getCosttapple() != (apple.getBrutegains() - apple.getProductioncosts())){
+                window.setCosttapple(apple.getBrutegains() - apple.getProductioncosts());
+            }
+            
+            if (window.getCostbdell() != dell.getBrutegains()){
+                window.setCostbdell(dell.getBrutegains());
+            }
+
+            if (window.getCostodell() != dell.getProductioncosts()){
+                window.setCostodell(dell.getProductioncosts());
+            }
+
+            if (window.getCosttdell() != (dell.getBrutegains()-dell.getProductioncosts())){
+                window.setCosttdell(dell.getBrutegains() - dell.getProductioncosts());
+            }
+            
+            
+            
                     }
                 }
     
-    
+            
                 
    
 }
