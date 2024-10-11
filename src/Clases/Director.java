@@ -10,7 +10,7 @@ package Clases;
  *
  * @author Katiuska Torres
  */
-import java.time.Duration;
+
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,12 +31,6 @@ public class Director extends Thread{
         this.business = business;
         this.days_mls = business.getDays_in_mls(); 
         this.state = true; 
-    }
-    public void Revisar_contador_dias(){
-    }
-    public void Enviar_computadoras(){
-    }
-    public void Registrar_ganancias(){
     }
 
     public int getContador_dias() {
@@ -66,6 +60,11 @@ public class Director extends Thread{
         }
     }
     
+    @Override 
+    public void run (){
+        work(); 
+    }
+    
     public void work() {
         if (getBusiness().getCounter_days() > 0) {
             setState(true); 
@@ -74,6 +73,7 @@ public class Director extends Thread{
             setState(false);
             accountability(); 
             getBusiness().change_Days(1);
+            System.out.println("se entrego mi bro");
         }
     } 
     

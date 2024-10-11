@@ -103,7 +103,6 @@ public class EntryGUI extends javax.swing.JFrame {
             int [] base = {0};
             BothGUI m = new BothGUI(base); 
             this.setVisible(false); 
-            m.setVisible(true);
     }//GEN-LAST:event_startbuttonoldActionPerformed
 
     private void startbuttonnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startbuttonnewActionPerformed
