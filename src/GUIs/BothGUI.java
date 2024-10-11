@@ -272,6 +272,7 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
+        exitbutton = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         pmstatedell = new javax.swing.JTextField();
@@ -1273,6 +1274,15 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel32.setText("Warehouse");
         jPanel7.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
+        exitbutton.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        exitbutton.setText("EXIT");
+        exitbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitbuttonActionPerformed(evt);
+            }
+        });
+        jPanel7.add(exitbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 190, -1));
+
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 10, 570, 340));
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
@@ -1562,9 +1572,6 @@ public class BothGUI extends javax.swing.JFrame {
     public void setdirectorapple(String a) {
         directorapple.setText(a);
     }
-
-
-
 
     public int getCpuapple() {
         return Integer.parseInt(cpuapple.getText());
@@ -1926,6 +1933,10 @@ public class BothGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_directordellActionPerformed
 
+    private void exitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitbuttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitbuttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1982,6 +1993,7 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JButton downpowerdell;
     private javax.swing.JButton downramapple;
     private javax.swing.JButton downramdell;
+    private javax.swing.JButton exitbutton;
     private javax.swing.JTextField foulsapple;
     private javax.swing.JTextField foulsdell;
     private javax.swing.JTextField graphicapple;
