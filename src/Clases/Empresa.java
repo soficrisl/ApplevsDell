@@ -4,7 +4,8 @@
  */
 package Clases;
 
-
+import GUIs.GUImanager;
+import GUIs.GUImanager;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +39,7 @@ Array cantidad de trabajadores
 
 
 public final class Empresa extends Thread{
-    private String nombre; 
+    private int nombre; 
     private int num_empleados; 
     private int [] capacidad_almacenamiento; 
     private final Semaphore semaforo; 
@@ -56,10 +57,11 @@ public final class Empresa extends Thread{
     private final int[] cantidadTrabajadores;
     private int indiceTrabajador ;
     private int [] day_w; 
+    private int [] beginning;
     
    
     
-    public Empresa(String nombre,int num_empleados, int [] capacidad_almacenamiento,int days_hand_in, int days_in_mls, int CSprice, int CGCprice, int[] worker_cuantity, int[]day_worker){
+    public Empresa(int nombre,int num_empleados, int [] capacidad_almacenamiento,int days_hand_in, int days_in_mls, int CSprice, int CGCprice, int[] worker_cuantity, int[]day_worker){
         this.nombre=nombre;
         this.num_empleados=num_empleados;
         this.capacidad_almacenamiento=capacidad_almacenamiento;
@@ -75,10 +77,11 @@ public final class Empresa extends Thread{
         this.storage = new Almacen (CSprice, CGCprice); 
         this.fault = false; 
         this.pmcounter = 3; 
-        this.cantidadTrabajadores=worker_cuantity; 
+        this.cantidadTrabajadores= new int [6]; 
+        this.beginning = worker_cuantity; 
         this.indiceTrabajador=0;
         this.day_w = day_worker; 
-        
+        initialize_workers();
        
         
      }
@@ -91,12 +94,21 @@ public final class Empresa extends Thread{
     a tambien cambie a empresa a final para facilidad de inicar workers
     aaa me acorde revisando, hay que ajustar las cosas para cada empresa*/
 public void agregarTrabajador(String tipoTrabajador, Almacen almacen, int cantidadComponentes) {
-    for (int i = 0; i < empleados.length; i++) {
-        if (empleados[i] == null) {
-            indiceTrabajador = i; 
+    boolean flag = false; 
+    int counter = 0; 
+    boolean found = false; 
+    
+    while (!flag) {
+        if (empleados[counter] == null) {
+            indiceTrabajador = counter;          
+            found = true; 
+            flag = true; 
         }
+        counter++; 
     }
-    switch (tipoTrabajador) {
+    
+    if (flag) {
+        switch (tipoTrabajador) {
         case "ensamblador":
             cantidadTrabajadores[0]++;
             empleados[indiceTrabajador] = new Ensamblador(almacen, this);
@@ -121,8 +133,12 @@ public void agregarTrabajador(String tipoTrabajador, Almacen almacen, int cantid
             cantidadTrabajadores[5]++;
             empleados[indiceTrabajador] = new Empleado("Cpus", almacen, cantidadComponentes, this.days_in_mls, this, day_w[1]);
             break;
+        }
+    } else {
+        System.out.println("No se puede agregar mas");
     }
-}
+    
+    }
 
 public String EliminarTrabajador(String tipoTrabajador, Almacen almacen, int cantidadComponentes) {
     String completado = "Se elimino el trabajador"; 
@@ -253,38 +269,38 @@ public Object[] getTrabajadores() {
     return empleados;
 }
 public void initialize_workers() {// 
-   
-    if (cantidadTrabajadores.length == 1) {
+    if (beginning.length == 1) {
         agregarTrabajador("ensamblador", this.storage, 0); 
         agregarTrabajador("placa base", this.storage, capacidad_almacenamiento[0]);
         agregarTrabajador("memoria ram", this.storage, capacidad_almacenamiento[2]);
         agregarTrabajador("tarjetas graficas", this.storage, capacidad_almacenamiento[4]);
         agregarTrabajador("fuente", this.storage, capacidad_almacenamiento[3]);
         agregarTrabajador("Cpus", this.storage, capacidad_almacenamiento[1]);
+        agregarTrabajador("ensamblador", this.storage, 0); 
     } else {
-        for (int i = 0; i < cantidadTrabajadores.length; i++) {
+        for (int i = 0; i < beginning.length; i++) {
             if (i == 0) {
-                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                for (int j = 0; j < beginning[i]; j++) {
                     agregarTrabajador("placa base", this.storage, capacidad_almacenamiento[0]);
                 }
             } else if (i == 1) {
-                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                for (int j = 0; j < beginning[i]; j++) {
                     agregarTrabajador("Cpus", this.storage, capacidad_almacenamiento[1]);
                 }
             } else if (i==2) {
-                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                for (int j = 0; j < beginning[i]; j++) {
                     agregarTrabajador("memoria ram", this.storage, capacidad_almacenamiento[2]);
                 }
             } else if (i==3) {
-                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                for (int j = 0; j < beginning[i]; j++) {
                     agregarTrabajador("fuente", this.storage, capacidad_almacenamiento[3]);
                 } 
             } else if (i==4) {
-                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                for (int j = 0; j < beginning[i]; j++) {
                    agregarTrabajador("tarjetas graficas", this.storage, capacidad_almacenamiento[4]);
                 }         
             } else if (i==5) {
-                for (int j = 0; j < cantidadTrabajadores[i]; j++) {
+                for (int j = 0; j < beginning[i]; j++) {
                    agregarTrabajador("ensamblador", this.storage, 0); 
                 }  
             }
@@ -294,11 +310,11 @@ public void initialize_workers() {//
     
     
 }
-    public String getNombre() {
+    public int getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(int nombre) {
         this.nombre = nombre;
     }
 
@@ -348,10 +364,15 @@ public void initialize_workers() {//
        addProductioncosts(40);  
     }
 }
+   
+  @Override
+  public void run (){
+      work_business(); 
+  }
+   
+   
     //trabaje todo como objetos asi fue mas facil
 public void work_business() {
-    initialize_workers();
-    while (true) {
         Thread[] threads = new Thread[getNum_empleados()];//esto es para revisar constantemente revisando el array
         for (int i = 0; i < getNum_empleados(); i++) {
             final Object workerObject = getEmpleados()[i];//y esto evita errores de concurrencia.... no lo sabia, literal fue porq un video de youtube me explico
@@ -359,10 +380,12 @@ public void work_business() {
                 threads[i] = new Thread(() -> {
                     if (workerObject instanceof Ensamblador) {
                         Ensamblador ensamblador = (Ensamblador) workerObject;
-                        ensamblador.work();
+                        ensamblador.start();
+                        System.out.println("Ensam trabajando");
                     } else if (workerObject instanceof Empleado) {
                         Empleado empleado = (Empleado) workerObject;
-                        empleado.work();
+                        empleado.start();
+                        System.out.println("trabjador trabajando");
                     }
                 });
                 threads[i].start();
@@ -370,8 +393,8 @@ public void work_business() {
                 threads[i] = null; //sofi esto es por si el objeto es null para que no se creen hilos extra ps
             }
         }
-        getPm().work();
-        getDirector().work();
+        getPm().start();
+        getDirector().start();
         try {
             Thread.sleep(getDays_in_mls() / 24);
             paying_workers();
@@ -380,7 +403,7 @@ public void work_business() {
             Thread.currentThread().interrupt(); 
             return; 
         }
-    }
+    
 }
     
     public void change_Days(int i) {

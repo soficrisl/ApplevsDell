@@ -50,7 +50,11 @@ public class Project_Manager extends Thread {
         setState(true);
     }
     
-    
+    @Override 
+    public void run (){
+        work(); 
+    }
+          
     
     public void work(){
         setSalary_discounted(getFaults() *100); 

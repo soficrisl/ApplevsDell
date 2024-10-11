@@ -66,8 +66,9 @@ public class ExcelManager {
                 
                 for (int i = 0; i < first.length; i++) {
                    csv[i] = Integer.parseInt(first[i]); 
+                   flag = true; 
                }
-                flag = true; 
+                
                 
            }
            sc.close(); 

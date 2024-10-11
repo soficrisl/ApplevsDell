@@ -15,27 +15,30 @@ public class Ensamblador extends Thread{
     private Empresa business;
     private int days_mls; 
     private int contadorCompuStandard=0;
+    private int f;
     
     
    public Ensamblador(Almacen almacen, Empresa business) {
         this.almacen = almacen;
         this.business = business;
         this.days_mls = business.getDays_in_mls();
+        this.f = business.getNombre(); 
     }
    @Override
    public void run(){
    work();
    }
+   
    public void work() {
         while (true) {
             try {
-                if (business.getNombre().equals("Apple")) {
+                if (f == 0) {
                     int placa=almacen.getPlaca_base();
                     int cpu =almacen.getCpus();
                     int ram =almacen.getMemoria_ram();
                     int fuente =almacen.getFuente_alimentacion();
                     int graf=almacen.getTarjetas_graficas();
-                    Thread.sleep(1);
+                    Thread.sleep(2);
         
                     if (placa >= 2 && cpu >= 1 &&  ram>= 4 &&  fuente>= 4) {
                             Thread.sleep(2*days_mls);
@@ -63,7 +66,7 @@ public class Ensamblador extends Thread{
                             almacen.getSemaforo().release();
                     }
                     
-                } else if (business.getNombre().equals("Dell")) {
+                } else if (f == 1) {
                     int placa=almacen.getPlaca_base();
                     int cpu =almacen.getCpus();
                     int ram =almacen.getMemoria_ram();

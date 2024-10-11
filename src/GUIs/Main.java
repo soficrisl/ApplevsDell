@@ -9,11 +9,9 @@ package GUIs;
  * @author Sofia
  */
 public class Main {
-    
       public static void main(String[] args)  {
           EntryGUI start = new EntryGUI(); 
           start.setVisible(true); 
       }
-       
-    
+
 }
