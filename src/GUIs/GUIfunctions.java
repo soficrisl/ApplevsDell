@@ -62,7 +62,7 @@ public class GUIfunctions {
         Empresa dellbusinness = new Empresa(1,18,productsdell, simulation[1], simulation[0], 80, 120, dell, daysdell); 
 
                 //Valores de apple --------------------------------------
-        BothGUI gui = new BothGUI(); 
+        BothGUI gui = new BothGUI(dellbusinness,applebusinness); 
         gui.setVisible(true);
         applebusinness.start();
         dellbusinness.start(); 

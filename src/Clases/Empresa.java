@@ -9,6 +9,7 @@ import GUIs.GUImanager;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -93,16 +94,17 @@ public final class Empresa extends Thread{
     la verdad siento que me falta algo pero no me pegues si no me acuerdo pipipi, en si lo probe con souts y funcionaba
     a tambien cambie a empresa a final para facilidad de inicar workers
     aaa me acorde revisando, hay que ajustar las cosas para cada empresa*/
-public void agregarTrabajador(String tipoTrabajador, Almacen almacen, int cantidadComponentes) {
+public void agregarTrabajador(String tipoTrabajador, Almacen almacen) {
     boolean flag = false; 
     int counter = 0; 
     boolean found = false; 
-    
+    try{
     while (!flag) {
         if (empleados[counter] == null) {
             indiceTrabajador = counter;          
             found = true; 
-            flag = true; 
+            flag = true;
+            
         }
         counter++; 
     }
@@ -117,57 +119,65 @@ public void agregarTrabajador(String tipoTrabajador, Almacen almacen, int cantid
             break;
         case "placa base":
             cantidadTrabajadores[1]++;
-            Empleado nuevo2 = new Empleado("placa base", almacen, cantidadComponentes, this.days_in_mls, this, day_w[0]);
+            Empleado nuevo2 = new Empleado("placa base", almacen, capacidad_almacenamiento[0], this.days_in_mls, this, day_w[0]);
             empleados[indiceTrabajador] = nuevo2;
             nuevo2.start();
             break;
         case "memoria ram":
             cantidadTrabajadores[2]++;
-            Empleado nuevo3 = new Empleado("memoria ram", almacen, cantidadComponentes, this.days_in_mls, this, day_w[2]);
+            Empleado nuevo3 = new Empleado("memoria ram", almacen,capacidad_almacenamiento[2], this.days_in_mls, this, day_w[2]);
             empleados[indiceTrabajador]  = nuevo3; 
             nuevo3.start();
             
             break;
         case "tarjetas graficas":
             cantidadTrabajadores[3]++;
-            Empleado nuevo4 =new Empleado("tarjetas graficas", almacen, cantidadComponentes, this.days_in_mls, this, day_w[4]);
+            Empleado nuevo4 =new Empleado("tarjetas graficas", almacen, capacidad_almacenamiento[4], this.days_in_mls, this, day_w[4]);
             empleados[indiceTrabajador] = nuevo4;
             nuevo4.start();
             break;
         case "fuente":
             cantidadTrabajadores[4]++;
-            Empleado nuevo5 = new Empleado("fuente", almacen, cantidadComponentes, this.days_in_mls, this, day_w[3]);
+            Empleado nuevo5 = new Empleado("fuente", almacen, capacidad_almacenamiento[3], this.days_in_mls, this, day_w[3]);
             empleados[indiceTrabajador] = nuevo5;
             nuevo5.start();
             break;
         case "Cpus":
             cantidadTrabajadores[5]++;
-            Empleado nuevo6 = new Empleado("Cpus", almacen, cantidadComponentes, this.days_in_mls, this, day_w[1]);
+            Empleado nuevo6 = new Empleado("Cpus", almacen, capacidad_almacenamiento[1], this.days_in_mls, this, day_w[1]);
             empleados[indiceTrabajador] = nuevo6;
             nuevo6.start();
             break;
         }
     } else {
         System.out.println("No se puede agregar mas");
-    }
+    }}catch(Exception e){
+    JOptionPane.showMessageDialog(null, "No se pueden agregar mas");}
     
     }
 
-public String EliminarTrabajador(String tipoTrabajador, Almacen almacen, int cantidadComponentes) {
+public String EliminarTrabajador(String tipoTrabajador, Almacen almacen) {
     String completado = "Se elimino el trabajador"; 
     String error = "No puedes eliminar cuando hay un solo trabajador de este tipo"; 
     boolean flag = false; 
     boolean deleted = false; 
     int counter = 0; 
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Empresa.class.getName()).log(Level.SEVERE, null, ex);
+        }
     switch (tipoTrabajador) {
         case "ensamblador":
             if (cantidadTrabajadores[0] != 1) {
                 cantidadTrabajadores[0] --;
                 while (!deleted) {
                     if ((empleados[counter] instanceof Ensamblador)) {
-                        
+                       Ensamblador n = (Ensamblador) empleados[counter]; 
+                       n.interrupt();
                        empleados[counter] = null; 
                        deleted = true; 
+                        System.out.println("se borro");
                     }
                     counter++; 
                 }
@@ -179,15 +189,19 @@ public String EliminarTrabajador(String tipoTrabajador, Almacen almacen, int can
              if (cantidadTrabajadores[1] != 1) {
                 cantidadTrabajadores[1] --;
                 Empleado n; 
-                while (!deleted) {
+                while (!deleted && counter< getNum_empleados()) {
                     if (!(empleados[counter] instanceof Ensamblador)) {
                         n = (Empleado) empleados[counter]; 
-                        if (n.getTipo_empleado().equals("placa base")) {
+                        if (n != null) {
+                            if (n.getTipo_empleado().equals("placa base")) {
                             empleados[counter] = null; 
+                            n.interrupt();
                             deleted = true; 
+                            
                         }
-                        counter++; 
+                        }
                     }
+                    counter++; 
                 }
             } else {
                 flag = true; 
@@ -197,15 +211,18 @@ public String EliminarTrabajador(String tipoTrabajador, Almacen almacen, int can
             if (cantidadTrabajadores[2] != 1) {
                 cantidadTrabajadores[2]--;
                 Empleado n; 
-                while (!deleted) {
+                while (!deleted && counter< getNum_empleados()) {
                     if (!(empleados[counter] instanceof Ensamblador)) {
                         n = (Empleado) empleados[counter]; 
-                        if (n.getTipo_empleado().equals("memoria ram")) {
-                            empleados[counter] = null; 
+                        if (n!= null) {
+                            if (n.getTipo_empleado().equals("memoria ram")) {
+                            empleados[counter] = null;
+                            n.interrupt();
                             deleted = true; 
                         }
-                        counter++; 
-                    }
+                        }
+                         
+                    } counter++;
                 } 
             }else {
                 flag = true; 
@@ -215,15 +232,18 @@ public String EliminarTrabajador(String tipoTrabajador, Almacen almacen, int can
             if (cantidadTrabajadores[3] != 1) {
                 cantidadTrabajadores[3]--;
                 Empleado n; 
-                while (!deleted) {
+                while (!deleted && counter< getNum_empleados()) {
                     if (!(empleados[counter] instanceof Ensamblador)) {
                         n = (Empleado) empleados[counter]; 
-                        if (n.getTipo_empleado().equals("tarjetas graficas")) {
+                        if (n != null) {
+                            if (n.getTipo_empleado().equals("tarjetas graficas")) {
                             empleados[counter] = null; 
+                            n.interrupt();
                             deleted = true; 
                         }
-                        counter++; 
-                    }
+                        }
+                        
+                    }counter++; 
                 }
             } else {
                 flag = true; 
@@ -233,15 +253,18 @@ public String EliminarTrabajador(String tipoTrabajador, Almacen almacen, int can
             if (cantidadTrabajadores[4] != 1) {
                 cantidadTrabajadores[4]--;
                 Empleado n; 
-                while (!deleted) {
+                while (!deleted && counter< getNum_empleados()) {
                     if (!(empleados[counter] instanceof Ensamblador)) {
                         n = (Empleado) empleados[counter]; 
-                        if (n.getTipo_empleado().equals("fuente")) {
+                        if (n != null) {
+                            if (n.getTipo_empleado().equals("fuente")) {
                             empleados[counter] = null; 
+                            n.interrupt();
                             deleted = true; 
                         }
-                        counter++; 
-                    }
+                        }
+                         
+                    }counter++;
                 }
             } else {
              flag = true; 
@@ -251,15 +274,18 @@ public String EliminarTrabajador(String tipoTrabajador, Almacen almacen, int can
             if (cantidadTrabajadores[5] != 1) {
                 cantidadTrabajadores[5]--;
                 Empleado n; 
-                while (!deleted) {
+                while (!deleted && counter< getNum_empleados()) {
                     if (!(empleados[counter] instanceof Ensamblador)) {
                         n = (Empleado) empleados[counter]; 
-                        if (n.getTipo_empleado().equals("Cpus")) {
-                            empleados[counter] = null; 
+                        if (n != null) {
+                            if (n.getTipo_empleado().equals("Cpus")) {
+                            empleados[counter] = null;
+                            n.interrupt();
                             deleted = true; 
                         }
-                        counter++; 
-                    }
+                        }
+                        
+                    }counter++; 
                 }
             } else {
                 flag = true; 
@@ -284,38 +310,38 @@ public Object[] getTrabajadores() {
 }
 public void initialize_workers() {// 
     if (beginning.length == 1) {
-        agregarTrabajador("ensamblador", this.storage, 0); 
-        agregarTrabajador("placa base", this.storage, capacidad_almacenamiento[0]);
-        agregarTrabajador("memoria ram", this.storage, capacidad_almacenamiento[2]);
-        agregarTrabajador("tarjetas graficas", this.storage, capacidad_almacenamiento[4]);
-        agregarTrabajador("fuente", this.storage, capacidad_almacenamiento[3]);
-        agregarTrabajador("Cpus", this.storage, capacidad_almacenamiento[1]);
+        agregarTrabajador("ensamblador", this.storage); 
+        agregarTrabajador("placa base", this.storage);
+        agregarTrabajador("memoria ram", this.storage);
+        agregarTrabajador("tarjetas graficas", this.storage);
+        agregarTrabajador("fuente", this.storage);
+        agregarTrabajador("Cpus", this.storage);
  
     } else {
         for (int i = 0; i < beginning.length; i++) {
             if (i == 0) {
                 for (int j = 0; j < beginning[i]; j++) {
-                    agregarTrabajador("placa base", this.storage, capacidad_almacenamiento[0]);
+                    agregarTrabajador("placa base", this.storage);
                 }
             } else if (i == 1) {
                 for (int j = 0; j < beginning[i]; j++) {
-                    agregarTrabajador("Cpus", this.storage, capacidad_almacenamiento[1]);
+                    agregarTrabajador("Cpus", this.storage);
                 }
             } else if (i==2) {
                 for (int j = 0; j < beginning[i]; j++) {
-                    agregarTrabajador("memoria ram", this.storage, capacidad_almacenamiento[2]);
+                    agregarTrabajador("memoria ram", this.storage);
                 }
             } else if (i==3) {
                 for (int j = 0; j < beginning[i]; j++) {
-                    agregarTrabajador("fuente", this.storage, capacidad_almacenamiento[3]);
+                    agregarTrabajador("fuente", this.storage);
                 } 
             } else if (i==4) {
                 for (int j = 0; j < beginning[i]; j++) {
-                   agregarTrabajador("tarjetas graficas", this.storage, capacidad_almacenamiento[4]);
+                   agregarTrabajador("tarjetas graficas", this.storage);
                 }         
             } else if (i==5) {
                 for (int j = 0; j < beginning[i]; j++) {
-                   agregarTrabajador("ensamblador", this.storage, 0); 
+                   agregarTrabajador("ensamblador", this.storage); 
                 }  
             }
         }

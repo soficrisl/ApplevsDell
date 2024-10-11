@@ -44,7 +44,15 @@ public class ExcelManager {
 
     public ExcelManager() {
     }
+public void Write_Csv( int[] datos){
+        try (PrintWriter writer = new PrintWriter(new FileWriter("test\\personas.csv"))) {
+       
 
+        // Escribir los datos del array
+        writer.println(datos[0] + "\r\n" + datos[1] + "\r\n" + datos[2] + "\r\n" + datos[3] + "\r\n" + datos[4] + "\r\n" + datos[5] + "\r\n" + datos[6] + "\r\n" + datos[7] + "\r\n" + datos[8] + "\r\n" + datos[9] + "\r\n" + datos[10] + "\r\n" + datos[11] + "\r\n" + datos[12] + "\r\n" + datos[13]);
+    } catch (IOException e) {
+        System.err.println("Error al escribir el archivo CSV: " + e.getMessage());
+    }}
     public int [] GetValues () {
         int [] base = {0}; 
         String path = "test\\personas.csv";

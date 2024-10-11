@@ -32,6 +32,49 @@ public class GUImanager  extends Thread{
             } catch (InterruptedException ex) {
                 Logger.getLogger(GUImanager.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            int placaBaseProgress = (int) ((apple.getStorage().getPlaca_base() / 25.0) * 100);
+    int cpuProgress = (int) ((apple.getStorage().getCpus() / 20.0) * 100);
+    int graphicCardProgress = (int) ((apple.getStorage().getTarjetas_graficas() / 10.0) * 100);
+    int ramProgress = (int) ((apple.getStorage().getMemoria_ram() / 55.0) * 100);
+    int powerSupplyProgress = (int) ((apple.getStorage().getFuente_alimentacion() / 35.0) * 100);
+     int placaBaseProgress1 = (int) ((dell.getStorage().getPlaca_base() / 25.0) * 100);
+    int cpuProgress1 = (int) ((dell.getStorage().getCpus() / 20.0) * 100);
+    int graphicCardProgress1 = (int) ((dell.getStorage().getTarjetas_graficas() / 10.0) * 100);
+    int ramProgress1 = (int) ((dell.getStorage().getMemoria_ram() / 55.0) * 100);
+    int powerSupplyProgress1 = (int) ((dell.getStorage().getFuente_alimentacion() / 35.0) * 100);
+
+    if (window.getBarcpusapple() != cpuProgress) {
+        window.setBarcpusapple(cpuProgress);
+    }
+    if (window.getBarcpusdell() != cpuProgress1) {
+        window.setBarcpusdell(cpuProgress1);
+    }
+    if (window.getBargraphicapple() != graphicCardProgress) {
+        window.setBargraphicapple(graphicCardProgress);
+    }
+    if (window.getBargraphicdell() != graphicCardProgress1) {
+        window.setBargraphicdell(graphicCardProgress1);
+    }
+    if (window.getBarmotherapple() != placaBaseProgress) {
+        window.setBarmotherapple(placaBaseProgress);
+    }
+    if (window.getBarmotherdell() != placaBaseProgress1) {
+        window.setBarmotherdell(placaBaseProgress1);
+    }
+    if (window.getBarpowerapple() != powerSupplyProgress) {
+        window.setBarpowerapple(powerSupplyProgress);
+    }
+    if (window.getBarpowerdell() != powerSupplyProgress1) {
+        window.setBarpowerdell(powerSupplyProgress1);
+    }
+    if (window.getBarramapple() != ramProgress) {
+        window.setBarramapple(ramProgress);
+    }
+    if (window.getBarramdell() != ramProgress1) {
+        window.setBarramdell(ramProgress1);
+    }
+
            if (window.getWorkassemapple() != apple.getCantidadTrabajadores()[0]) {
                window.setworkassemapple(String.valueOf(apple.getCantidadTrabajadores()[0]));
            }
@@ -135,6 +178,5 @@ public class GUImanager  extends Thread{
                 }
     
     
-                
-   
+
 }

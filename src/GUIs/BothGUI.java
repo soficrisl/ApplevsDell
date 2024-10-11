@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUIs;
-
+import GUIs.GUImanager;
 import Clases.Empresa;
 import Filereading.ExcelManager;
 import javax.swing.JButton;
@@ -54,11 +54,16 @@ Empresa B
 
 
 public class BothGUI extends javax.swing.JFrame {
-    
+    private Empresa dell;
+    private Empresa apple;
     /**
      * Creates new form BothGUI
+     * @param dell
+     * @param apple
      */
-    public BothGUI() {
+    public BothGUI(Empresa dell, Empresa apple) {
+        this.dell=dell;
+        this.apple=apple;
         initComponents();
     }
     
@@ -421,10 +426,20 @@ public class BothGUI extends javax.swing.JFrame {
 
         upcpuapple.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         upcpuapple.setText("▲");
+        upcpuapple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upcpuappleActionPerformed(evt);
+            }
+        });
         jPanel5.add(upcpuapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 70, 20));
 
         downcpuapple.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downcpuapple.setText("▼");
+        downcpuapple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downcpuappleActionPerformed(evt);
+            }
+        });
         jPanel5.add(downcpuapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 70, 20));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -463,10 +478,20 @@ public class BothGUI extends javax.swing.JFrame {
 
         upgraphicapple.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         upgraphicapple.setText("▲");
+        upgraphicapple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upgraphicappleActionPerformed(evt);
+            }
+        });
         jPanel5.add(upgraphicapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 70, 20));
 
         downgraphicapple.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downgraphicapple.setText("▼");
+        downgraphicapple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downgraphicappleActionPerformed(evt);
+            }
+        });
         jPanel5.add(downgraphicapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 70, 20));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -488,10 +513,20 @@ public class BothGUI extends javax.swing.JFrame {
 
         upassemapple.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         upassemapple.setText("▲");
+        upassemapple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upassemappleActionPerformed(evt);
+            }
+        });
         jPanel5.add(upassemapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 70, 20));
 
         downassemapple.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downassemapple.setText("▼");
+        downassemapple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downassemappleActionPerformed(evt);
+            }
+        });
         jPanel5.add(downassemapple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 70, 20));
 
         workmbapple.setEditable(false);
@@ -960,10 +995,20 @@ public class BothGUI extends javax.swing.JFrame {
 
         upcpudell.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         upcpudell.setText("▲");
+        upcpudell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upcpudellActionPerformed(evt);
+            }
+        });
         jPanel7.add(upcpudell, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 70, 20));
 
         downcpudell.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downcpudell.setText("▼");
+        downcpudell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downcpudellActionPerformed(evt);
+            }
+        });
         jPanel7.add(downcpudell, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 70, 20));
 
         jLabel23.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -1002,10 +1047,20 @@ public class BothGUI extends javax.swing.JFrame {
 
         upgraphicdell.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         upgraphicdell.setText("▲");
+        upgraphicdell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upgraphicdellActionPerformed(evt);
+            }
+        });
         jPanel7.add(upgraphicdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 70, 20));
 
         downgraphicdell.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downgraphicdell.setText("▼");
+        downgraphicdell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downgraphicdellActionPerformed(evt);
+            }
+        });
         jPanel7.add(downgraphicdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 70, 20));
 
         jLabel25.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -1037,10 +1092,20 @@ public class BothGUI extends javax.swing.JFrame {
 
         upassemdell.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         upassemdell.setText("▲");
+        upassemdell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upassemdellActionPerformed(evt);
+            }
+        });
         jPanel7.add(upassemdell, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 70, 20));
 
         downassemadell.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         downassemadell.setText("▼");
+        downassemadell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downassemadellActionPerformed(evt);
+            }
+        });
         jPanel7.add(downassemadell, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 70, 20));
 
         workmbdell.setEditable(false);
@@ -1433,7 +1498,7 @@ public class BothGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        
         public int getBarcpusapple() {
             return Bar_cpus_apple.getValue();
             }
@@ -1792,7 +1857,7 @@ public class BothGUI extends javax.swing.JFrame {
     }
     
     
-    
+
     
     
     private void standardpcappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardpcappleActionPerformed
@@ -1804,11 +1869,11 @@ public class BothGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_pmstateappleActionPerformed
 
     private void downmbappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downmbappleActionPerformed
-        // TODO add your handling code here:
+        apple.EliminarTrabajador("placa base", apple.getStorage());
     }//GEN-LAST:event_downmbappleActionPerformed
 
     private void upmbappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upmbappleActionPerformed
-        // TODO add your handling code here:
+        apple.agregarTrabajador("placa base", apple.getStorage());
     }//GEN-LAST:event_upmbappleActionPerformed
 
     private void workramappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workramappleActionPerformed
@@ -1816,11 +1881,11 @@ public class BothGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_workramappleActionPerformed
 
     private void downramappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downramappleActionPerformed
-        // TODO add your handling code here:
+       apple.EliminarTrabajador("memoria ram", apple.getStorage());
     }//GEN-LAST:event_downramappleActionPerformed
 
     private void upramappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upramappleActionPerformed
-        // TODO add your handling code here:
+        apple.agregarTrabajador("memoria ram", apple.getStorage());
     }//GEN-LAST:event_upramappleActionPerformed
 
     private void workpowerappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workpowerappleActionPerformed
@@ -1828,11 +1893,11 @@ public class BothGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_workpowerappleActionPerformed
 
     private void uppowerappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uppowerappleActionPerformed
-        // TODO add your handling code here:
+        apple.agregarTrabajador("fuente", apple.getStorage());
     }//GEN-LAST:event_uppowerappleActionPerformed
 
     private void downpowerappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downpowerappleActionPerformed
-        // TODO add your handling code here:
+        apple.EliminarTrabajador("fuente", apple.getStorage());
     }//GEN-LAST:event_downpowerappleActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -1912,11 +1977,11 @@ public class BothGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField28ActionPerformed
 
     private void downmbdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downmbdellActionPerformed
-        // TODO add your handling code here:
+        dell.EliminarTrabajador("placa base", dell.getStorage());
     }//GEN-LAST:event_downmbdellActionPerformed
 
     private void upmbdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upmbdellActionPerformed
-        // TODO add your handling code here:
+        dell.agregarTrabajador("placa base", dell.getStorage());
     }//GEN-LAST:event_upmbdellActionPerformed
 
     private void workramdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workramdellActionPerformed
@@ -1924,11 +1989,11 @@ public class BothGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_workramdellActionPerformed
 
     private void downramdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downramdellActionPerformed
-        // TODO add your handling code here:
+        dell.EliminarTrabajador("memoria ram", dell.getStorage());
     }//GEN-LAST:event_downramdellActionPerformed
 
     private void upramdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upramdellActionPerformed
-        // TODO add your handling code here:
+       dell.agregarTrabajador("memoria ram", dell.getStorage());
     }//GEN-LAST:event_upramdellActionPerformed
 
     private void workpowerdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workpowerdellActionPerformed
@@ -1936,11 +2001,11 @@ public class BothGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_workpowerdellActionPerformed
 
     private void uppowerdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uppowerdellActionPerformed
-        // TODO add your handling code here:
+        dell.agregarTrabajador("fuente", dell.getStorage());
     }//GEN-LAST:event_uppowerdellActionPerformed
 
     private void downpowerdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downpowerdellActionPerformed
-        // TODO add your handling code here:
+        dell.EliminarTrabajador("fuente", dell.getStorage());
     }//GEN-LAST:event_downpowerdellActionPerformed
 
     private void workmbdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workmbdellActionPerformed
@@ -2014,6 +2079,54 @@ public class BothGUI extends javax.swing.JFrame {
     private void exitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitbuttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_exitbuttonActionPerformed
+
+    private void upcpuappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upcpuappleActionPerformed
+         apple.agregarTrabajador("Cpus", apple.getStorage());
+    }//GEN-LAST:event_upcpuappleActionPerformed
+
+    private void upgraphicappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upgraphicappleActionPerformed
+        apple.agregarTrabajador("tarjetas graficas", apple.getStorage());
+    }//GEN-LAST:event_upgraphicappleActionPerformed
+
+    private void upassemappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upassemappleActionPerformed
+        apple.agregarTrabajador("ensamblador", apple.getStorage());
+    }//GEN-LAST:event_upassemappleActionPerformed
+
+    private void upcpudellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upcpudellActionPerformed
+        dell.agregarTrabajador("Cpus", dell.getStorage());
+    }//GEN-LAST:event_upcpudellActionPerformed
+
+    private void upgraphicdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upgraphicdellActionPerformed
+      dell.agregarTrabajador("tarjetas graficas", dell.getStorage());
+    }//GEN-LAST:event_upgraphicdellActionPerformed
+
+    private void upassemdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upassemdellActionPerformed
+        dell.agregarTrabajador("ensamblador", dell.getStorage());
+    }//GEN-LAST:event_upassemdellActionPerformed
+
+    private void downcpuappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downcpuappleActionPerformed
+        apple.EliminarTrabajador("Cpus", apple.getStorage());
+    }//GEN-LAST:event_downcpuappleActionPerformed
+
+    private void downgraphicappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downgraphicappleActionPerformed
+        apple.EliminarTrabajador("tarjetas graficas", apple.getStorage());
+    }//GEN-LAST:event_downgraphicappleActionPerformed
+
+    private void downassemappleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downassemappleActionPerformed
+        apple.EliminarTrabajador("ensamblador", apple.getStorage());
+    }//GEN-LAST:event_downassemappleActionPerformed
+
+    private void downassemadellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downassemadellActionPerformed
+        dell.EliminarTrabajador("ensamblador", dell.getStorage());
+    }//GEN-LAST:event_downassemadellActionPerformed
+
+    private void downgraphicdellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downgraphicdellActionPerformed
+        dell.EliminarTrabajador("tarjetas graficas", dell.getStorage());
+    }//GEN-LAST:event_downgraphicdellActionPerformed
+
+    private void downcpudellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downcpudellActionPerformed
+        dell.EliminarTrabajador("Cpus", dell.getStorage());
+    }//GEN-LAST:event_downcpudellActionPerformed
 
     /**
      * @param args the command line arguments
