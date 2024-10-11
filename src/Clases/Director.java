@@ -62,10 +62,12 @@ public class Director extends Thread{
     
     @Override 
     public void run (){
+        
         work(); 
     }
     
     public void work() {
+        while (true){
         if (getBusiness().getCounter_days() > 0) {
             setState(true); 
             administrative(); 
@@ -74,6 +76,7 @@ public class Director extends Thread{
             accountability(); 
             getBusiness().change_Days(1);
             System.out.println("se entrego mi bro");
+        }
         }
     } 
     

@@ -52,11 +52,14 @@ public class Project_Manager extends Thread {
     
     @Override 
     public void run (){
-        work(); 
+        
+            work(); 
+        
     }
           
     
     public void work(){
+        while (true) {
         setSalary_discounted(getFaults() *100); 
         change_state(); 
         if (getBusiness().getCounter_days() == 0 ) {
@@ -80,7 +83,7 @@ public class Project_Manager extends Thread {
             }
             getBusiness().change_Days(0);
         }
-        
+        }
     }
 
     public int getSueldo() {
