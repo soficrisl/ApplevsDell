@@ -95,11 +95,7 @@ public class GUImanager  extends Thread{
             if (window.getStandardpcdell() != dell.getStorage().getCompuStandard()) {
                 window.setstandardpcdell(String.valueOf(dell.getStorage().getCompuStandard()));
             }
-            /*
-            if (window.getPmstatedell() != dell.getStorage.getCSprice()) {
-                window.setpmstatedell(String.valueOf(dell.getStorage().getCSprice()));
-            }
-            */
+
             if (window.getGraphicpcdell() != dell.getStorage().getCompuTarjeta()) {
                 window.setgraphicpcdell(String.valueOf(dell.getStorage().getCompuTarjeta()));
             }
@@ -171,11 +167,39 @@ public class GUImanager  extends Thread{
                 }
             if (dell.getPm().isState()){
                     window.setpmstatedell("work");
-                }     
+                }
+            
+            
+            if (window.getCostbapple() != apple.getBrutegains()){
+                window.setCostbapple(apple.getBrutegains());
+            }
+            
+            if (window.getCostoapple() != apple.getProductioncosts()){
+                window.setCostoapple(apple.getProductioncosts());
+            }
+            
+            if (window.getCosttapple() != (apple.getBrutegains() - apple.getProductioncosts())){
+                window.setCosttapple(apple.getBrutegains() - apple.getProductioncosts());
+            }
+            
+            if (window.getCostbdell() != dell.getBrutegains()){
+                window.setCostbdell(dell.getBrutegains());
+            }
+
+            if (window.getCostodell() != dell.getProductioncosts()){
+                window.setCostodell(dell.getProductioncosts());
+            }
+
+            if (window.getCosttdell() != (dell.getBrutegains()-dell.getProductioncosts())){
+                window.setCosttdell(dell.getBrutegains() - dell.getProductioncosts());
+            }
+            
+            
+            
                     }
                 }
     
-    
+            
                 
    
 }

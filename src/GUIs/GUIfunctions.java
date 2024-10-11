@@ -70,5 +70,10 @@ public class GUIfunctions {
         observer.start(); 
         
     }
+    public static void closeSim(int array []){  {
+   
+    }
+        
+    }
     
 }
