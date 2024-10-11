@@ -1549,7 +1549,7 @@ public class BothGUI extends javax.swing.JFrame {
         workassemapple.setText(a);
     }
     
-    private void setstandardpcapple(String a) {
+    public void setstandardpcapple(String a) {
         standardpcapple.setText(a);
     }
     

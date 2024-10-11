@@ -65,12 +65,75 @@ public class GUImanager  extends Thread{
            if (window.getWorkcpuapple()!= apple.getCantidadTrabajadores()[5]) {
                window.setworkcpuapple(String.valueOf(apple.getCantidadTrabajadores()[5]));
            }
-            if (window.getWorkcpudell()!= dell.getCantidadTrabajadores()[5]) {
+           if (window.getWorkcpudell()!= dell.getCantidadTrabajadores()[5]) {
                window.setworkcpudell(String.valueOf(dell.getCantidadTrabajadores()[5]));
-           
+           }
+           if (window.getMbdell() != dell.getStorage().getPlaca_base()) {
+                window.setmbdell(String.valueOf(dell.getStorage().getPlaca_base()));
+                }
 
-        }}
-    }
+            if (window.getRamdell() != dell.getStorage().getMemoria_ram()) {
+                window.setramdell(String.valueOf(dell.getStorage().getMemoria_ram()));
+            }
+
+            if (window.getPowerdell() != dell.getStorage().getFuente_alimentacion()) {
+                window.setpowerdell(String.valueOf(dell.getStorage().getFuente_alimentacion()));
+            }
+
+            if (window.getCpudell() != dell.getStorage().getCpus()) {
+                window.setcpudell(String.valueOf(dell.getStorage().getCpus()));
+            }
+
+            if (window.getGraphicdell() != dell.getStorage().getTarjetas_graficas()) {
+                window.setgraphicdell(String.valueOf(dell.getStorage().getTarjetas_graficas()));
+            }
+
+            if (window.getStandardpcdell() != dell.getStorage().getCompuStandard()) {
+                window.setstandardpcdell(String.valueOf(dell.getStorage().getCompuStandard()));
+            }
+            /*
+            if (window.getPmstatedell() != dell.getStorage.getCSprice()) {
+                window.setpmstatedell(String.valueOf(dell.getStorage().getCSprice()));
+            }
+            */
+            if (window.getGraphicpcdell() != dell.getStorage().getCompuTarjeta()) {
+                window.setgraphicpcdell(String.valueOf(dell.getStorage().getCompuTarjeta()));
+            }
+
+            // Apple properties
+            if (window.getMbapple() != apple.getStorage().getPlaca_base()) {
+                window.setmbapple(String.valueOf(apple.getStorage().getPlaca_base()));
+            }
+
+            if (window.getRamapple() != apple.getStorage().getMemoria_ram()) {
+                window.setramapple(String.valueOf(apple.getStorage().getMemoria_ram()));
+            }
+
+            if (window.getPowerapple() != apple.getStorage().getFuente_alimentacion()) {
+                window.setpowerapple(String.valueOf(apple.getStorage().getFuente_alimentacion()));
+            }
+
+            if (window.getCpuapple() != apple.getStorage().getCpus()) {
+                window.setcpuapple(String.valueOf(apple.getStorage().getCpus()));
+            }
+
+            if (window.getGraphicapple() != apple.getStorage().getTarjetas_graficas()) {
+                window.setgraphicapple(String.valueOf(apple.getStorage().getTarjetas_graficas()));
+            }
+
+            if (window.getStandardpcapple() != apple.getStorage().getCompuStandard()) {
+                window.setstandardpcapple(String.valueOf(apple.getStorage().getCompuStandard()));
+            }
+/*
+            if (window.getPmstateapple() != apple.getStorage().getCSprice()) {
+                window.setpmstateapple(String.valueOf(apple.getStorage().getCSprice()));
+            }
+*/
+            if (window.getGraphicpcapple() != apple.getStorage().getCompuTarjeta()) {
+                window.setgraphicpcapple(String.valueOf(apple.getStorage().getCompuTarjeta()));
+            }
+                    }
+                }
     
    
 }
