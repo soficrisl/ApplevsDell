@@ -106,7 +106,9 @@ public class EntryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_startbuttonoldActionPerformed
 
     private void startbuttonnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startbuttonnewActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false); 
+        NewData x = new NewData();
+        x.setVisible(true);
     }//GEN-LAST:event_startbuttonnewActionPerformed
 
     /**

@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
  * @author Katiuska Torres
  */
 public class NewData extends javax.swing.JFrame {
-
+    int values1 []; 
+    int values2 [] = new int [14]; 
     /**
      * Creates new form NewData
      */
@@ -67,7 +68,7 @@ public class NewData extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
@@ -92,11 +93,11 @@ public class NewData extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 60));
 
-        jLabel2.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SansSerif", 3, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Dell:");
         jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -128,91 +129,91 @@ public class NewData extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 730, 10));
 
-        jLabel4.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("sansserif", 3, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Apple:");
-        jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Deadline time:");
         jLabel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Motherboard:");
         jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("CPUs:");
         jLabel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Power Spupply:");
         jLabel8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("RAM memory:");
         jLabel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Graphic Card:");
         jLabel10.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Assembler:");
         jLabel17.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Time of day:");
         jLabel18.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, -1, -1));
 
         Assembly_apple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Assembly_apple.setText("0");
-        jPanel1.add(Assembly_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 40, -1));
+        jPanel1.add(Assembly_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 40, -1));
 
         Mother_apple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Mother_apple.setText("0");
-        jPanel1.add(Mother_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 40, -1));
+        jPanel1.add(Mother_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 40, -1));
 
         Cpus_apple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Cpus_apple.setText("0");
-        jPanel1.add(Cpus_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 40, -1));
+        jPanel1.add(Cpus_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 40, -1));
 
         Power_apple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Power_apple.setText("0");
-        jPanel1.add(Power_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 40, -1));
+        jPanel1.add(Power_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 40, -1));
 
         Ram_apple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Ram_apple.setText("0");
-        jPanel1.add(Ram_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 40, -1));
+        jPanel1.add(Ram_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 40, -1));
 
         Graphic_apple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Graphic_apple.setText("0");
-        jPanel1.add(Graphic_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 40, -1));
+        jPanel1.add(Graphic_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 40, -1));
 
         Mother_dell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Mother_dell.setText("0");
-        jPanel1.add(Mother_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 40, -1));
+        jPanel1.add(Mother_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 40, -1));
 
         Cpus_dell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Cpus_dell.setText("0");
-        jPanel1.add(Cpus_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 40, -1));
+        jPanel1.add(Cpus_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 40, -1));
 
         Power_dell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Power_dell.setText("0");
-        jPanel1.add(Power_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 40, -1));
+        jPanel1.add(Power_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 40, -1));
 
         Ram_dell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Ram_dell.setText("0");
-        jPanel1.add(Ram_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 40, -1));
+        jPanel1.add(Ram_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, 40, -1));
 
         Deadline.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Deadline.setText("0");
@@ -220,16 +221,17 @@ public class NewData extends javax.swing.JFrame {
 
         Assembly_dell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Assembly_dell.setText("0");
-        jPanel1.add(Assembly_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 40, -1));
+        jPanel1.add(Assembly_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 320, 40, -1));
 
         Graphic_dell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Graphic_dell.setText("0");
-        jPanel1.add(Graphic_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 40, -1));
+        jPanel1.add(Graphic_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, 40, -1));
 
         Time_day.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Time_day.setText("0");
         jPanel1.add(Time_day, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, 60, -1));
 
+        Enter.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         Enter.setText("Enter");
         Enter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,32 +243,32 @@ public class NewData extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Motherboard:");
         jLabel19.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("CPUs:");
         jLabel20.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, -1, -1));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, -1, -1));
 
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Power Spupply:");
         jLabel21.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, -1, -1));
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("RAM memory:");
         jLabel22.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, -1, -1));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, -1, -1));
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Graphic Card:");
         jLabel23.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, -1, -1));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, -1, -1));
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Assembler:");
         jLabel24.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, -1, -1));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -283,9 +285,25 @@ public class NewData extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterActionPerformed
-        if (validateInput()){int [] base = {0};
-            this.setVisible(false); 
-            GUIfunctions.openSim(base);}
+        if (validateInput()){
+            this.setVisible(false);
+            values2[0] = values1[13]; 
+            values2[1] = values1[12]; 
+            values2[2] = values1[0];
+            values2[2] = values1[0];
+            values2[3] = values1[1];
+            values2[4] = values1[2];
+            values2[5] = values1[3];
+            values2[6] = values1[4];
+            values2[7] = values1[5];
+            values2[8] = values1[6];
+            values2[9] = values1[7];
+            values2[10] = values1[8];
+            values2[11] = values1[9];
+            values2[12] = values1[10];
+            values2[13] = values1[11];
+            
+            GUIfunctions.openSim(values2);}
         else{
             JOptionPane.showMessageDialog(null, "Se tienen que ingresar NUMEROS mayores a 0");
         }
@@ -329,20 +347,20 @@ private boolean validateInput() {
     int[] values = new int[14];
     int cont1 = 0;
     int cont = 0;
-
+    
     try {
-        values[0] = Integer.parseInt(Graphic_apple.getText());
-        values[1] = Integer.parseInt(Assembly_apple.getText());
+        values[0] = Integer.parseInt(Assembly_apple.getText());
+        values[1] = Integer.parseInt(Mother_apple.getText());
         values[2] = Integer.parseInt(Cpus_apple.getText());
         values[3] = Integer.parseInt(Ram_apple.getText());
-        values[4] = Integer.parseInt(Mother_apple.getText());
-        values[5] = Integer.parseInt(Power_apple.getText());
-        values[6] = Integer.parseInt(Graphic_dell.getText());
-        values[7] = Integer.parseInt(Ram_dell.getText());
-        values[8] = Integer.parseInt(Mother_dell.getText());
-        values[9] = Integer.parseInt(Assembly_dell.getText());
+        values[4] = Integer.parseInt(Power_apple.getText());
+        values[5] = Integer.parseInt(Graphic_apple.getText()); 
+        values[6] = Integer.parseInt(Assembly_dell.getText());
+        values[7] = Integer.parseInt(Mother_dell.getText());
+        values[8] = Integer.parseInt(Cpus_dell.getText());
+        values[9] = Integer.parseInt(Ram_dell.getText());
         values[10] = Integer.parseInt(Power_dell.getText());
-        values[11] = Integer.parseInt(Cpus_dell.getText());
+        values[11] = Integer.parseInt(Graphic_dell.getText());
         values[12] = Integer.parseInt(Deadline.getText());
         values[13] = Integer.parseInt(Time_day.getText());
     } catch (NumberFormatException e) {
@@ -361,8 +379,10 @@ private boolean validateInput() {
         cont = cont + values[i];
     }
     if (cont1 > 18 || cont > 15) {
+        
         return false;
     } else {
+        values1 = values; 
         return true;
     }
 }
