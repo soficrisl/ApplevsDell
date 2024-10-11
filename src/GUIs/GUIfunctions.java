@@ -59,10 +59,10 @@ public class GUIfunctions {
         //Empresa  Dell
         int [] productsdell = {1,1,2,3,1}; 
         int [] daysdell = {3,3,1,1,3}; 
-        Empresa dellbusinness = new Empresa(1,18,productsdell, simulation[1], simulation[0], 80, 120, dell, daysdell); 
+        Empresa dellbusinness = new Empresa(1,15,productsdell, simulation[1], simulation[0], 80, 120, dell, daysdell); 
 
                 //Valores de apple --------------------------------------
-        BothGUI gui = new BothGUI(); 
+        BothGUI gui = new BothGUI(applebusinness, dellbusinness);  
         gui.setVisible(true);
         applebusinness.start();
         dellbusinness.start(); 
@@ -71,7 +71,9 @@ public class GUIfunctions {
         
     }
     public static void closeSim(int array []){  {
-   
+         ExcelManager manager = new ExcelManager(); 
+         manager.Write_Csv(array);
+         System.exit(0);
     }
         
     }
