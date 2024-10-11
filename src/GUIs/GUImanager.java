@@ -124,16 +124,17 @@ public class GUImanager  extends Thread{
             if (window.getStandardpcapple() != apple.getStorage().getCompuStandard()) {
                 window.setstandardpcapple(String.valueOf(apple.getStorage().getCompuStandard()));
             }
-/*
-            if (window.getPmstateapple() != apple.getStorage().getCSprice()) {
-                window.setpmstateapple(String.valueOf(apple.getStorage().getCSprice()));
-            }
-*/
+
             if (window.getGraphicpcapple() != apple.getStorage().getCompuTarjeta()) {
                 window.setgraphicpcapple(String.valueOf(apple.getStorage().getCompuTarjeta()));
+            }
+            if (window.getDirectorapple().equalsIgnoreCase("admin")){
+                
             }
                     }
                 }
     
+    
+                
    
 }
