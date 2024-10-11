@@ -16,7 +16,7 @@ public class GUIfunctions {
     public static void openSim(int array[]){ 
         int [] apple;
         int [] dell; 
-        int [] simulation = {1000, 4}; ;
+        int [] simulation = {2000, 20}; ;
         if (array.length == 1) {   
             ExcelManager manager = new ExcelManager(); 
             int [] obtain = manager.GetValues();
@@ -60,9 +60,7 @@ public class GUIfunctions {
         int [] productsdell = {1,1,2,3,1}; 
         int [] daysdell = {3,3,1,1,3}; 
         Empresa dellbusinness = new Empresa(1,18,productsdell, simulation[1], simulation[0], 80, 120, dell, daysdell); 
-        
-               
-                
+
                 //Valores de apple --------------------------------------
         BothGUI gui = new BothGUI(); 
         gui.setVisible(true);

@@ -4,6 +4,9 @@
  */
 package Clases;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 
 /**
@@ -16,6 +19,7 @@ public class Ensamblador extends Thread{
     private int days_mls; 
     private int contadorCompuStandard=0;
     private int f;
+    private boolean started;
     
     
    public Ensamblador(Almacen almacen, Empresa business) {
@@ -23,26 +27,48 @@ public class Ensamblador extends Thread{
         this.business = business;
         this.days_mls = business.getDays_in_mls();
         this.f = business.getNombre(); 
+        this.started = false;
     }
+   
    @Override
    public void run(){
-   work();
+    work();
    }
+   
+   public void start() {
+        if (!started) {
+            super.start();
+            started = true;
+        }
+    }
+   
+
    
    public void work() {
         while (true) {
-            try {
                 if (f == 0) {
                     int placa=almacen.getPlaca_base();
                     int cpu =almacen.getCpus();
                     int ram =almacen.getMemoria_ram();
                     int fuente =almacen.getFuente_alimentacion();
                     int graf=almacen.getTarjetas_graficas();
-                    Thread.sleep(2);
+                    try {
+                        Thread.sleep(2);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Ensamblador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         
                     if (placa >= 2 && cpu >= 1 &&  ram>= 4 &&  fuente>= 4) {
+                        try {
                             Thread.sleep(2*days_mls);
-                            almacen.getSemaforo().acquire(); 
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Ensamblador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        try { 
+                            almacen.getSemaforo().acquire();
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Ensamblador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                             if (contadorCompuStandard >= 5 && graf >=2 ) {
                              
                                 almacen.setPlaca_base(almacen.getPlaca_base() - 2);
@@ -73,9 +99,17 @@ public class Ensamblador extends Thread{
                     int fuente =almacen.getFuente_alimentacion();
                     int graf=almacen.getTarjetas_graficas();
                     if (placa >= 1 && cpu >= 5 && ram >= 6 && fuente >= 5 ) {
-                        Thread.sleep(2*days_mls);
+                        try {
+                            Thread.sleep(2*days_mls);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Ensamblador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         
-                        almacen.getSemaforo().acquire(); 
+                        try { 
+                            almacen.getSemaforo().acquire();
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Ensamblador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         if (contadorCompuStandard >= 3 && graf >=1) {
                                 
                                 almacen.setPlaca_base(almacen.getPlaca_base() - 1);
@@ -104,9 +138,7 @@ public class Ensamblador extends Thread{
 
                 
                 
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+        
         }
     }
 }

@@ -111,27 +111,40 @@ public void agregarTrabajador(String tipoTrabajador, Almacen almacen, int cantid
         switch (tipoTrabajador) {
         case "ensamblador":
             cantidadTrabajadores[0]++;
-            empleados[indiceTrabajador] = new Ensamblador(almacen, this);
+            Ensamblador nuevo =new Ensamblador(almacen, this);
+            empleados[indiceTrabajador] = nuevo;
+            nuevo.start();
             break;
         case "placa base":
             cantidadTrabajadores[1]++;
-            empleados[indiceTrabajador] = new Empleado("placa base", almacen, cantidadComponentes, this.days_in_mls, this, day_w[0]);
+            Empleado nuevo2 = new Empleado("placa base", almacen, cantidadComponentes, this.days_in_mls, this, day_w[0]);
+            empleados[indiceTrabajador] = nuevo2;
+            nuevo2.start();
             break;
         case "memoria ram":
             cantidadTrabajadores[2]++;
-            empleados[indiceTrabajador] = new Empleado("memoria ram", almacen, cantidadComponentes, this.days_in_mls, this, day_w[2]);
+            Empleado nuevo3 = new Empleado("memoria ram", almacen, cantidadComponentes, this.days_in_mls, this, day_w[2]);
+            empleados[indiceTrabajador]  = nuevo3; 
+            nuevo3.start();
+            
             break;
         case "tarjetas graficas":
             cantidadTrabajadores[3]++;
-            empleados[indiceTrabajador] = new Empleado("tarjetas graficas", almacen, cantidadComponentes, this.days_in_mls, this, day_w[4]);
+            Empleado nuevo4 =new Empleado("tarjetas graficas", almacen, cantidadComponentes, this.days_in_mls, this, day_w[4]);
+            empleados[indiceTrabajador] = nuevo4;
+            nuevo4.start();
             break;
         case "fuente":
             cantidadTrabajadores[4]++;
-            empleados[indiceTrabajador] = new Empleado("fuente", almacen, cantidadComponentes, this.days_in_mls, this, day_w[3]);
+            Empleado nuevo5 = new Empleado("fuente", almacen, cantidadComponentes, this.days_in_mls, this, day_w[3]);
+            empleados[indiceTrabajador] = nuevo5;
+            nuevo5.start();
             break;
         case "Cpus":
             cantidadTrabajadores[5]++;
-            empleados[indiceTrabajador] = new Empleado("Cpus", almacen, cantidadComponentes, this.days_in_mls, this, day_w[1]);
+            Empleado nuevo6 = new Empleado("Cpus", almacen, cantidadComponentes, this.days_in_mls, this, day_w[1]);
+            empleados[indiceTrabajador] = nuevo6;
+            nuevo6.start();
             break;
         }
     } else {
@@ -152,6 +165,7 @@ public String EliminarTrabajador(String tipoTrabajador, Almacen almacen, int can
                 cantidadTrabajadores[0] --;
                 while (!deleted) {
                     if ((empleados[counter] instanceof Ensamblador)) {
+                        
                        empleados[counter] = null; 
                        deleted = true; 
                     }
@@ -276,7 +290,7 @@ public void initialize_workers() {//
         agregarTrabajador("tarjetas graficas", this.storage, capacidad_almacenamiento[4]);
         agregarTrabajador("fuente", this.storage, capacidad_almacenamiento[3]);
         agregarTrabajador("Cpus", this.storage, capacidad_almacenamiento[1]);
-        agregarTrabajador("ensamblador", this.storage, 0); 
+ 
     } else {
         for (int i = 0; i < beginning.length; i++) {
             if (i == 0) {
@@ -370,35 +384,40 @@ public void initialize_workers() {//
       work_business(); 
   }
    
+  
+  public void create_thread(){
+      
+      
+      
+  }
    
     //trabaje todo como objetos asi fue mas facil
 public void work_business() {
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Empresa.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    while (true) {
-        Thread[] threads = new Thread[getNum_empleados()];//esto es para revisar constantemente revisando el array
+       
         for (int i = 0; i < getNum_empleados(); i++) {
             final Object workerObject = getEmpleados()[i];//y esto evita errores de concurrencia.... no lo sabia, literal fue porq un video de youtube me explico
             if (workerObject != null) { 
-                threads[i] = new Thread(() -> {
-                    if (workerObject instanceof Ensamblador) {
+                if (workerObject instanceof Ensamblador) {
                         Ensamblador ensamblador = (Ensamblador) workerObject;
-                        System.out.println("Ensam trabajando");
-                    } else if (workerObject instanceof Empleado) {
+                        if (!ensamblador.isAlive()) {
+                            ensamblador.start();
+                            System.out.println("Ensam trabajando");
+                            }
+                } else if (workerObject instanceof Empleado) {
                         Empleado empleado = (Empleado) workerObject;
                         System.out.println("trabjador trabajando");
+                        
+                        empleado.start();
                     }
-                });
-                threads[i].start();
+              
             } else {
-                threads[i] = null; //sofi esto es por si el objeto es null para que no se creen hilos extra ps
+                 //sofi esto es por si el objeto es null para que no se creen hilos extra ps
             }
         }
+        
         getPm().start();
         getDirector().start();
+    while (true) {
         try {
             Thread.sleep(getDays_in_mls() / 24);
             paying_workers();

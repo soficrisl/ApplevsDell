@@ -52,9 +52,12 @@ public class Project_Manager extends Thread {
     
     @Override 
     public void run (){
-        
-            work(); 
-        
+         try {
+            Thread.sleep(10);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            work();  
     }
           
     

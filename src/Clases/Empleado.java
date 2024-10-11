@@ -8,6 +8,10 @@
  */
 
 package Clases;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Santiago Fernandez
@@ -20,6 +24,7 @@ public class Empleado extends Thread {
     private int days_mls; 
     private Empresa business; 
     private int workt; 
+    private boolean started;
     
 
     public Empleado(String tipo_empleado, Almacen almacen, int cantidadComponentes, int days_mls, Empresa business, int workt) {
@@ -29,6 +34,7 @@ public class Empleado extends Thread {
         this.business = business;
         this.days_mls = business.getDays_in_mls();
         this.workt = workt; 
+        this.started = false;
         
     }
 
@@ -76,6 +82,13 @@ public class Empleado extends Thread {
     @Override
     public void run() {
         work();
+    }
+    
+     public void start() {
+        if (!started) {
+            super.start();
+            started = true;
+        }
     }
 
    public void work() {
