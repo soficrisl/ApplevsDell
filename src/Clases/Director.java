@@ -50,6 +50,7 @@ public class Director extends Thread{
     }
     
     public void accountability () {
+        setState(false);
         try {
             Thread.sleep(getDays_mls());
             Almacen storage = getBusiness().getStorage();
@@ -73,10 +74,9 @@ public class Director extends Thread{
     public void work() {
         while (true){
         if (getBusiness().getCounter_days() > 0) {
-            setState(true); 
             administrative(); 
         } else {
-            setState(false);
+            
             accountability(); 
             getBusiness().change_Days(1);
             System.out.println("se entrego mi bro");
@@ -85,7 +85,7 @@ public class Director extends Thread{
     } 
     
     public void administrative () {
-        
+        setState(true); 
         Random rand = new Random();
         int choice = rand.nextInt(24); 
         boolean flag = false; 

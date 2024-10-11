@@ -368,11 +368,9 @@ public void initialize_workers() {//
     if (isFault()) {
         if (getPmcounter()!=1) {
             setPmcounter(0); 
-            pm.setSalary_discounted(40);
         }else {
             addProductioncosts(20);
             setPmcounter(1);
-            pm.setSalary_discounted(20);
         }
     } else {
        addProductioncosts(40);  

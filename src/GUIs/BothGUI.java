@@ -753,7 +753,7 @@ public class BothGUI extends javax.swing.JFrame {
         pmstateapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         pmstateapple.setForeground(new java.awt.Color(51, 51, 51));
         pmstateapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pmstateapple.setText("....");
+        pmstateapple.setText("anime");
         pmstateapple.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
         pmstateapple.setFocusable(false);
         pmstateapple.addActionListener(new java.awt.event.ActionListener() {
@@ -819,7 +819,7 @@ public class BothGUI extends javax.swing.JFrame {
         directorapple.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         directorapple.setForeground(new java.awt.Color(51, 51, 51));
         directorapple.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        directorapple.setText("....");
+        directorapple.setText("account");
         directorapple.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
         directorapple.setFocusable(false);
         directorapple.addActionListener(new java.awt.event.ActionListener() {
@@ -1301,7 +1301,7 @@ public class BothGUI extends javax.swing.JFrame {
         pmstatedell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         pmstatedell.setForeground(new java.awt.Color(51, 51, 51));
         pmstatedell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pmstatedell.setText("....");
+        pmstatedell.setText("anime");
         pmstatedell.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
         pmstatedell.setFocusable(false);
         pmstatedell.addActionListener(new java.awt.event.ActionListener() {
@@ -1367,7 +1367,7 @@ public class BothGUI extends javax.swing.JFrame {
         directordell.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         directordell.setForeground(new java.awt.Color(51, 51, 51));
         directordell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        directordell.setText("....");
+        directordell.setText("account");
         directordell.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
         directordell.setFocusable(false);
         directordell.addActionListener(new java.awt.event.ActionListener() {
@@ -1514,7 +1514,13 @@ public class BothGUI extends javax.swing.JFrame {
             Bar_ram_dell.setValue(value);
         }
     
+    public void setcoundown(int value) {
+        countdown.setText(String.valueOf(value));
+    }
     
+    public int getcoundown() {
+        return Integer.parseInt(countdown.getText()); 
+    }
     
     
     public void setmbdell(String a) {
