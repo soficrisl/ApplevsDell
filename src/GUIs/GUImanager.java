@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package GUIs;
-
+import Clases.Almacen;
 import Clases.Empresa;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +32,48 @@ public class GUImanager  extends Thread{
             } catch (InterruptedException ex) {
                 Logger.getLogger(GUImanager.class.getName()).log(Level.SEVERE, null, ex);
             }
+    int placaBaseProgress = (int) ((apple.getStorage().getPlaca_base() / 25.0) * 100);
+    int cpuProgress = (int) ((apple.getStorage().getCpus() / 20.0) * 100);
+    int graphicCardProgress = (int) ((apple.getStorage().getTarjetas_graficas() / 10.0) * 100);
+    int ramProgress = (int) ((apple.getStorage().getMemoria_ram() / 55.0) * 100);
+    int powerSupplyProgress = (int) ((apple.getStorage().getFuente_alimentacion() / 35.0) * 100);
+     int placaBaseProgress1 = (int) ((dell.getStorage().getPlaca_base() / 25.0) * 100);
+    int cpuProgress1 = (int) ((dell.getStorage().getCpus() / 20.0) * 100);
+    int graphicCardProgress1 = (int) ((dell.getStorage().getTarjetas_graficas() / 10.0) * 100);
+    int ramProgress1 = (int) ((dell.getStorage().getMemoria_ram() / 55.0) * 100);
+    int powerSupplyProgress1 = (int) ((dell.getStorage().getFuente_alimentacion() / 35.0) * 100);
+
+    if (window.getBarcpusapple() != cpuProgress) {
+        window.setbarcpusapple(cpuProgress);
+    }
+    if (window.getBarcpusdell() != cpuProgress1) {
+        window.setbarcpusdell(cpuProgress1);
+    }
+    if (window.getBargraphicapple() != graphicCardProgress) {
+        window.setbargraphicapple(graphicCardProgress);
+    }
+    if (window.getBargraphicdell() != graphicCardProgress1) {
+        window.setbargraphicdell(graphicCardProgress1);
+    }
+    if (window.getBarmotherapple() != placaBaseProgress) {
+        window.setbarmotherapple(placaBaseProgress);
+    }
+    if (window.getBarmotherdell() != placaBaseProgress1) {
+        window.setbarmotherdell(placaBaseProgress1);
+    }
+    if (window.getBarpowerapple() != powerSupplyProgress) {
+        window.setbarpowerapple(powerSupplyProgress);
+    }
+    if (window.getBarpowerdell() != powerSupplyProgress1) {
+        window.setbarpowerdell(powerSupplyProgress1);
+    }
+    if (window.getBarramapple() != ramProgress) {
+        window.setbarramapple(ramProgress);
+    }
+    if (window.getBarramdell() != ramProgress1) {
+        window.setbarramdell(ramProgress1);
+    }
+
            if (window.getWorkassemapple() != apple.getCantidadTrabajadores()[0]) {
                window.setworkassemapple(String.valueOf(apple.getCantidadTrabajadores()[0]));
            }

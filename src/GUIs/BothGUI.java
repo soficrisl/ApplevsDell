@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUIs;
-
+import Clases.Almacen;
 import Clases.Empresa;
 import Filereading.ExcelManager;
 import javax.swing.JButton;
@@ -184,11 +184,11 @@ public class BothGUI extends javax.swing.JFrame {
         upgraphicapple = new javax.swing.JButton();
         downgraphicapple = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jProgressBar2 = new javax.swing.JProgressBar();
-        jProgressBar3 = new javax.swing.JProgressBar();
-        jProgressBar4 = new javax.swing.JProgressBar();
-        jProgressBar5 = new javax.swing.JProgressBar();
+        Bar_graphic_apple = new javax.swing.JProgressBar();
+        Bar_mother_apple = new javax.swing.JProgressBar();
+        Bar_ram_apple = new javax.swing.JProgressBar();
+        Bar_power_apple = new javax.swing.JProgressBar();
+        Bar_cpus_apple = new javax.swing.JProgressBar();
         jLabel10 = new javax.swing.JLabel();
         upassemapple = new javax.swing.JButton();
         downassemapple = new javax.swing.JButton();
@@ -244,11 +244,11 @@ public class BothGUI extends javax.swing.JFrame {
         upgraphicdell = new javax.swing.JButton();
         downgraphicdell = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        jProgressBar7 = new javax.swing.JProgressBar();
-        jProgressBar8 = new javax.swing.JProgressBar();
-        jProgressBar9 = new javax.swing.JProgressBar();
-        jProgressBar10 = new javax.swing.JProgressBar();
-        jProgressBar11 = new javax.swing.JProgressBar();
+        Bar_graphic_dell = new javax.swing.JProgressBar();
+        Bar_mother_dell = new javax.swing.JProgressBar();
+        Bar_ram_dell = new javax.swing.JProgressBar();
+        Bar_power_dell = new javax.swing.JProgressBar();
+        Bar_cpus_dell = new javax.swing.JProgressBar();
         workassemdell = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         upassemdell = new javax.swing.JButton();
@@ -473,11 +473,11 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Type of Worker");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-        jPanel5.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 100, 20));
-        jPanel5.add(jProgressBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 100, 20));
-        jPanel5.add(jProgressBar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 100, 20));
-        jPanel5.add(jProgressBar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 100, 20));
-        jPanel5.add(jProgressBar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 100, 20));
+        jPanel5.add(Bar_graphic_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 100, 20));
+        jPanel5.add(Bar_mother_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 100, 20));
+        jPanel5.add(Bar_ram_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 100, 20));
+        jPanel5.add(Bar_power_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 100, 20));
+        jPanel5.add(Bar_cpus_apple, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 100, 20));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -1012,11 +1012,11 @@ public class BothGUI extends javax.swing.JFrame {
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Type of Worker");
         jPanel7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-        jPanel7.add(jProgressBar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 100, 20));
-        jPanel7.add(jProgressBar8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 100, 20));
-        jPanel7.add(jProgressBar9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 100, 20));
-        jPanel7.add(jProgressBar10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 100, 20));
-        jPanel7.add(jProgressBar11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 100, 20));
+        jPanel7.add(Bar_graphic_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 100, 20));
+        jPanel7.add(Bar_mother_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 100, 20));
+        jPanel7.add(Bar_ram_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 100, 20));
+        jPanel7.add(Bar_power_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 100, 20));
+        jPanel7.add(Bar_cpus_dell, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 100, 20));
 
         workassemdell.setEditable(false);
         workassemdell.setBackground(new java.awt.Color(255, 255, 255));
@@ -1437,7 +1437,86 @@ public class BothGUI extends javax.swing.JFrame {
     
     
     
-    
+   
+
+    public int getBarcpusapple() {
+    return Bar_cpus_apple.getValue();
+}
+
+public int getBarcpusdell() {
+    return Bar_cpus_dell.getValue();
+}
+
+public int getBargraphicapple() {
+    return Bar_graphic_apple.getValue();
+}
+
+public int getBargraphicdell() {
+    return Bar_graphic_dell.getValue();
+}
+
+public int getBarmotherapple() {
+    return Bar_mother_apple.getValue();
+}
+
+public int getBarmotherdell() {
+    return Bar_mother_dell.getValue();
+}
+
+public int getBarpowerapple() {
+    return Bar_power_apple.getValue();
+}
+
+public int getBarpowerdell() {
+    return Bar_power_dell.getValue();
+}
+
+public int getBarramapple() {
+    return Bar_ram_apple.getValue();
+}
+
+public int getBarramdell() {
+    return Bar_ram_dell.getValue();
+}
+ public void setbarcpusapple(int a) {
+    Bar_cpus_apple.setValue(a);
+}
+
+public void setbarcpusdell(int a) {
+    Bar_cpus_dell.setValue(a);
+}
+
+public void setbargraphicapple(int a) {
+    Bar_graphic_apple.setValue(a);
+}
+
+public void setbargraphicdell(int a) {
+    Bar_graphic_dell.setValue(a);
+}
+
+public void setbarmotherapple(int a) {
+    Bar_mother_apple.setValue(a);
+}
+
+public void setbarmotherdell(int a) {
+    Bar_mother_dell.setValue(a);
+}
+
+public void setbarpowerapple(int a) {
+    Bar_power_apple.setValue(a);
+}
+
+public void setbarpowerdell(int a) {
+    Bar_power_dell.setValue(a);
+}
+
+public void setbarramapple(int a) {
+    Bar_ram_apple.setValue(a);
+}
+
+public void setbarramdell(int a) {
+    Bar_ram_dell.setValue(a);
+}
     
     public void setmbdell(String a) {
         mbdell.setText(a);
@@ -1974,6 +2053,16 @@ public class BothGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar Bar_cpus_apple;
+    private javax.swing.JProgressBar Bar_cpus_dell;
+    private javax.swing.JProgressBar Bar_graphic_apple;
+    private javax.swing.JProgressBar Bar_graphic_dell;
+    private javax.swing.JProgressBar Bar_mother_apple;
+    private javax.swing.JProgressBar Bar_mother_dell;
+    private javax.swing.JProgressBar Bar_power_apple;
+    private javax.swing.JProgressBar Bar_power_dell;
+    private javax.swing.JProgressBar Bar_ram_apple;
+    private javax.swing.JProgressBar Bar_ram_dell;
     private javax.swing.JLabel Graphic;
     private javax.swing.JTextField cpuapple;
     private javax.swing.JTextField cpudell;
@@ -2043,16 +2132,6 @@ public class BothGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar10;
-    private javax.swing.JProgressBar jProgressBar11;
-    private javax.swing.JProgressBar jProgressBar2;
-    private javax.swing.JProgressBar jProgressBar3;
-    private javax.swing.JProgressBar jProgressBar4;
-    private javax.swing.JProgressBar jProgressBar5;
-    private javax.swing.JProgressBar jProgressBar7;
-    private javax.swing.JProgressBar jProgressBar8;
-    private javax.swing.JProgressBar jProgressBar9;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
