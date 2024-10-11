@@ -10,16 +10,19 @@ package Clases;
  *
  * @author Katiuska Torres
  */
-import java.time.Duration;
+
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Random; 
+
 public class Director extends Thread{
     private int contador_dias;
     private Semaphore semaforo;
     private int sueldo;
-    Empresa business; 
+    private Empresa business; 
     private int days_mls; 
+    private boolean state; // true administrative false acountability
     
     public Director(Empresa business,int sueldo){
         this.contador_dias=contador_dias;
@@ -27,12 +30,7 @@ public class Director extends Thread{
         this.semaforo= new Semaphore(1);
         this.business = business;
         this.days_mls = business.getDays_in_mls(); 
-    }
-    public void Revisar_contador_dias(){
-    }
-    public void Enviar_computadoras(){
-    }
-    public void Registrar_ganancias(){
+        this.state = true; 
     }
 
     public int getContador_dias() {
@@ -52,21 +50,71 @@ public class Director extends Thread{
     }
     
     public void accountability () {
+        setState(false);
         try {
             Thread.sleep(getDays_mls());
+            Almacen storage = getBusiness().getStorage();
+            int gains [] = storage.Checkout(); 
+            getBusiness().setBrutegains(gains[0] + gains[1]);
         } catch (InterruptedException ex) {
             Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
+    @Override 
+    public void run (){
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        work(); 
+    }
+    
     public void work() {
-        if (business.getCounter_days() > 0) {
+        while (true){
+        if (getBusiness().getCounter_days() > 0) {
+            administrative(); 
         } else {
+            
             accountability(); 
-            business.setCounter_days(getBusiness().getDays_to_hand_in());
+            getBusiness().change_Days(1);
+            System.out.println("se entrego mi bro");
+        }
         }
     } 
-
+    
+    public void administrative () {
+        setState(true); 
+        Random rand = new Random();
+        int choice = rand.nextInt(24); 
+        boolean flag = false; 
+        long min = (getDays_mls()/1)*(1/24)*(1/60);
+        try {
+            Thread.sleep(getDays_mls()*choice/24);
+            int min_passed = 0; 
+            Project_Manager pm = getBusiness().getPm(); 
+                while (min_passed != 35) {
+                    if (!pm.isState()) {
+                        flag = true; 
+                        }
+                    Thread.sleep(min);
+                    min_passed++; 
+                    }
+                
+                if (flag) {
+                    pm.setFaults(pm.getFaults()+1);
+                    getBusiness().setFault(true); 
+                }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            
+    }
+        
+      
+    
     public Empresa getBusiness() {
         return business;
     }
@@ -81,6 +129,14 @@ public class Director extends Thread{
 
     public void setDays_mls(int days_mls) {
         this.days_mls = days_mls;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
     
     

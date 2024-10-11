@@ -12,31 +12,27 @@ import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class Project_Manager extends Thread {
-    private Semaphore semaforo;
     private int sueldo;
     private boolean state;  //True working, false anime 
     private int days_mls; 
-    private Empresa business; 
+    private Empresa business;
+    private int faults; 
+    private int salary_discounted; 
     
     public Project_Manager(Empresa business ,int sueldo){
         this.sueldo=sueldo;
-        this.semaforo= new Semaphore(1);
         this.days_mls = business.getDays_in_mls();
         this.state = true; 
         this.business = business; 
+        this.faults = 0; 
+        this.salary_discounted = 0; 
     }
 
     
-    public void work(){
+    public void change_state() {
         int counter_hours = 0; 
         int counter_half = 0;
         while (counter_hours < 16) {
-            /*
-            if (state) {
-                System.out.println("working");
-            }else {
-                System.out.println("anime");
-            }*/
             try {
                 Thread.sleep(days_mls / 48);
                 setState(!isState()); 
@@ -52,15 +48,44 @@ public class Project_Manager extends Thread {
             }
         }
         setState(true);
-        if (getBusiness().getCounter_days() > 0) {
-            getBusiness().setCounter_days(getBusiness().getCounter_days() -1);
-        }else {
-           // VER QUE HACER AQUI 
-        }
-        try {
-            Thread.sleep((days_mls/24)*8);
+    }
+    
+    @Override 
+    public void run (){
+         try {
+            Thread.sleep(10);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Project_Manager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            work();  
+    }
+          
+    
+    public void work(){
+        while (true) {
+        setSalary_discounted(getFaults() *100); 
+        change_state(); 
+        if (getBusiness().getCounter_days() == 0 ) {
+            try {
+                Thread.sleep((days_mls/24)*8);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Project_Manager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            change_state();
+            try {
+                Thread.sleep((days_mls/24)*8);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Project_Manager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            work();
+        } else {
+            try {
+                Thread.sleep((days_mls/24)*8);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Project_Manager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            getBusiness().change_Days(0);
+        }
         }
     }
 
@@ -94,6 +119,22 @@ public class Project_Manager extends Thread {
 
     public void setBusiness(Empresa business) {
         this.business = business;
+    }
+
+    public int getFaults() {
+        return faults;
+    }
+
+    public void setFaults(int faults) {
+        this.faults = faults;
+    }
+
+    public int getSalary_discounted() {
+        return salary_discounted;
+    }
+
+    public void setSalary_discounted(int salary_discounted) {
+        this.salary_discounted = salary_discounted;
     }
     
     
