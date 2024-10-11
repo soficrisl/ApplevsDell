@@ -54,70 +54,18 @@ Empresa B
 
 
 public class BothGUI extends javax.swing.JFrame {
-    int [] array; 
     
     /**
      * Creates new form BothGUI
      */
-    public BothGUI(int [] array) {
-        this.array = array; 
+    public BothGUI() {
         initComponents();
-        start(); 
     }
     
     
     private void start() {
-        int [] apple;
-        int [] dell; 
-        int [] simulation = {1000, 4}; ;
-        if (this.array.length == 1) {   
-            ExcelManager manager = new ExcelManager(); 
-            int [] obtain = manager.GetValues();
-            if (obtain.length == 1) {
-                apple = new int [1]; 
-                dell = new int [1]; 
-            } else { 
-                apple = new int [6];
-                dell = new int [6];
-                for (int i = 0; i < 2; i++) {
-                    simulation[i] = obtain[i]; 
-                }
-                for (int i = 2; i < 8; i++) {
-                    apple[i-2] = obtain[i]; 
-                }
-                for (int i = 8; i < 14; i++) {
-                    dell[i-8] = obtain[i]; 
-                }
-            }
-        } else {
-            apple = new int [6];
-            dell = new int [6];
-            for (int i = 0; i < 2; i++) {
-                    simulation[i] = this.array[i]; 
-                }
-                for (int i = 2; i < 8; i++) {
-                    apple[i-2] = this.array[i]; 
-                }
-                for (int i = 8; i < 14; i++) {
-                    dell[i-8] = this.array[i]; 
-                }      
-        }
-        //Empresa Apple    
-        int [] productsapple = {1,1,1,5,1}; 
-        int [] daysapple = {4,4,1,1,2}; 
-        System.out.println(simulation[1]);
-        System.out.println(simulation[0]);
-        Empresa applebusinness = new Empresa(0,18,productsapple, simulation[1], simulation[0], 100, 150, apple, daysapple);
-        
-        //Empresa  Dell
-        int [] productsdell = {1,1,2,3,1}; 
-        int [] daysdell = {3,3,1,1,3}; 
-        Empresa dellbusinness = new Empresa(1,18,productsdell, simulation[1], simulation[0], 80, 120, dell, daysdell); 
-        
-               
-                
-                //Valores de apple --------------------------------------
-        this.setVisible(true);
+       
+        /*
         while (true) {
                 applebusinness.work_business();
                 dellbusinness.work_business();
@@ -197,7 +145,7 @@ public class BothGUI extends javax.swing.JFrame {
                 }
                
         }
-        
+        */
 
        
         
@@ -1476,113 +1424,118 @@ public class BothGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void setmbdell(String a) {
+    
+    
+    
+    
+    
+    public void setmbdell(String a) {
         mbdell.setText(a);
     }
     
-    private void setramdell(String a) {
+    public void setramdell(String a) {
         ramdell.setText(a);
     }
     
-    private void setpowerdell(String a) {
+    public void setpowerdell(String a) {
         powerdell.setText(a);
     }
     
-    private void setcpudell(String a) {
+    public void setcpudell(String a) {
         cpudell.setText(a);
     }
     
-    private void setgraphicdell(String a) {
+    public void setgraphicdell(String a) {
         graphicdell.setText(a);
     }
-    private void setworkmbdell(String a) {
+    public void setworkmbdell(String a) {
         workmbdell.setText(a);
     }
     
-    private void setworkpowerdell(String a) {
+    public void setworkpowerdell(String a) {
         workpowerdell.setText(a);
     }
     
-    private void setworkcpudell(String a) {
+    public void setworkcpudell(String a) {
         workcpudell.setText(a);
     }
     
-    private void setworkramdell(String a) {
+    public void setworkramdell(String a) {
         workramdell.setText(a);
     }
     
-    private void setworkgraphicdell(String a) {
+    public void setworkgraphicdell(String a) {
         workgraphicdell.setText(a);
     }
     
-    private void setworkassemdell(String a) {
+    public void setworkassemdell(String a) {
         workassemdell.setText(a);
     }
     
-    private void setstandardpcdell(String a) {
+    public void setstandardpcdell(String a) {
         standardpcdell.setText(a);
     }
     
-    private void setpmstatedell(String a) {
+    public void setpmstatedell(String a) {
         pmstatedell.setText(a);
     }
      
-    private void setgraphicpcdell(String a) {
+    public void setgraphicpcdell(String a) {
         graphicpcdell.setText(a);
     }
      
-    private void setfoulsdell(String a) {
+    public void setfoulsdell(String a) {
         foulsdell.setText(a);
     }
     
-    private void setdiscounteddell(String a) {
+    public void setdiscounteddell(String a) {
         discounteddell.setText(a);
     }
      
-    private void setdirectordell(String a) {
+    public void setdirectordell(String a) {
         directordell.setText(a);
     }
     
-    private void setmbapple(String a) {
+    public void setmbapple(String a) {
         mbapple.setText(a);
     }
     
-    private void setramapple(String a) {
+    public void setramapple(String a) {
         ramapple.setText(a);
     }
     
-    private void setpowerapple(String a) {
+    public void setpowerapple(String a) {
         powerapple.setText(a);
     }
     
-    private void setcpuapple(String a) {
+    public void setcpuapple(String a) {
         cpuapple.setText(a);
     }
     
-    private void setgraphicapple(String a) {
+    public void setgraphicapple(String a) {
         graphicapple.setText(a);
     }
-    private void setworkmbapple(String a) {
+    public void setworkmbapple(String a) {
         workmbapple.setText(a);
     }
     
-    private void setworkpowerapple(String a) {
+    public void setworkpowerapple(String a) {
         workpowerapple.setText(a);
     }
     
-    private void setworkcpuapple(String a) {
+    public void setworkcpuapple(String a) {
         workcpuapple.setText(a);
     }
     
-    private void setworkramapple(String a) {
+    public void setworkramapple(String a) {
         workramapple.setText(a);
     }
     
-    private void setworkgraphicapple(String a) {
+    public void setworkgraphicapple(String a) {
         workgraphicapple.setText(a);
     }
     
-    private void setworkassemapple(String a) {
+    public void setworkassemapple(String a) {
         workassemapple.setText(a);
     }
     
@@ -1590,29 +1543,27 @@ public class BothGUI extends javax.swing.JFrame {
         standardpcapple.setText(a);
     }
     
-    private void setpmstateapple(String a) {
+    public void setpmstateapple(String a) {
         pmstateapple.setText(a);
     }
      
-    private void setgraphicpcapple(String a) {
+    public void setgraphicpcapple(String a) {
         graphicpcapple.setText(a);
     }
      
-    private void setfoulsapple(String a) {
+    public void setfoulsapple(String a) {
         foulsapple.setText(a);
     }
     
-    private void setdiscountedapple(String a) {
+    public void setdiscountedapple(String a) {
         discountedapple.setText(a);
     }
      
-    private void setdirectorapple(String a) {
+    public void setdirectorapple(String a) {
         directorapple.setText(a);
     }
 
-    public int[] getArray() {
-        return array;
-    }
+
 
 
     public int getCpuapple() {

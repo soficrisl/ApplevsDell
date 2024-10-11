@@ -373,6 +373,12 @@ public void initialize_workers() {//
    
     //trabaje todo como objetos asi fue mas facil
 public void work_business() {
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Empresa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    while (true) {
         Thread[] threads = new Thread[getNum_empleados()];//esto es para revisar constantemente revisando el array
         for (int i = 0; i < getNum_empleados(); i++) {
             final Object workerObject = getEmpleados()[i];//y esto evita errores de concurrencia.... no lo sabia, literal fue porq un video de youtube me explico
@@ -380,11 +386,9 @@ public void work_business() {
                 threads[i] = new Thread(() -> {
                     if (workerObject instanceof Ensamblador) {
                         Ensamblador ensamblador = (Ensamblador) workerObject;
-                        ensamblador.start();
                         System.out.println("Ensam trabajando");
                     } else if (workerObject instanceof Empleado) {
                         Empleado empleado = (Empleado) workerObject;
-                        empleado.start();
                         System.out.println("trabjador trabajando");
                     }
                 });
@@ -403,7 +407,7 @@ public void work_business() {
             Thread.currentThread().interrupt(); 
             return; 
         }
-    
+    }
 }
     
     public void change_Days(int i) {
